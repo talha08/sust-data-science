@@ -72,7 +72,16 @@
 
                     @if(Auth::user())
                         <li>
-                            <a href="{!!  route('dashboard') !!}" title="Dashboard">Dashboard</a>
+                            <a href="{!!  route('dashboard') !!}"  title="Dashboard" style=" color: salmon;">Dashboard</a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="#" title="Account">Account</a>
+                            <ul class="sub-menu">
+                                <li><a href="{!! route('login') !!}">Login</a></li>
+                                <li><a href="{!! route('labfront.archive_blog') !!}">Sign Up</a></li>
+
+                            </ul>
                         </li>
 
                     @endif

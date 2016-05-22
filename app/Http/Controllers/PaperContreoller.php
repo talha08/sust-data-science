@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Paper;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class PaperContreoller extends Controller
      */
     public function index()
     {
-        //
+        $event = Paper::orderBy('id', 'desc')->get();
+        return view('paper.index', compact('event'))->with('title',"All Paper List");
     }
 
     /**
@@ -26,7 +28,7 @@ class PaperContreoller extends Controller
      */
     public function create()
     {
-        //
+        return view('paper.create')->with('title',"Create New Paper");
     }
 
     /**
@@ -37,7 +39,16 @@ class PaperContreoller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $paper = new Paper();
+        $paper->paper_title = $request->paper_title;
+        $paper->paper_details = $request->paper_details;
+        $paper->paper_author = $request->paper_author;
+        $paper->paper_supervisor = $request->paper_supervisor;
+        $paper->paper_url = $request->paper_url;
+        $paper->paper_meta_data =  md5($request->paper_title);
+        $paper->save();
+
+        return redirect()->back()->with('success', 'Event Successfully Created');
     }
 
     /**
@@ -59,7 +70,8 @@ class PaperContreoller extends Controller
      */
     public function edit($id)
     {
-        //
+        $paper = paper::findOrFail($id);
+        return view('paper.edit', compact('paper'))->with('title',"Edit Paper");
     }
 
     /**
@@ -71,7 +83,17 @@ class PaperContreoller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $paper = Paper::findOrFail($id);
+        $paper->paper_title = $request->paper_title;
+        $paper->paper_details = $request->paper_details;
+        $paper->paper_author = $request->paper_author;
+        $paper->paper_supervisor = $request->paper_supervisor;
+        $paper->paper_url = $request->paper_url;
+       // $paper->paper_meta_data =  md5($request->paper_title);
+        $paper->save();
+
+
+        return redirect()->back()->with('success', 'Paper Successfully Updated');
     }
 
     /**
@@ -82,6 +104,8 @@ class PaperContreoller extends Controller
      */
     public function destroy($id)
     {
-        //
+        Paper::destroy($id);
+        return redirect()->route('paper.index')->with('success',"Paper Successfully deleted");
     }
+
 }

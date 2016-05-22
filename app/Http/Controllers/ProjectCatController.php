@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\projectCat;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ProjectCatController extends Controller
+class projectCatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,10 @@ class ProjectCatController extends Controller
      */
     public function index()
     {
-        //
+
+        $projectCat = projectCat::all();
+
+        return view('projectCat.index', compact('projectCat'))->with('title',"Project Category");
     }
 
     /**
@@ -26,7 +30,7 @@ class ProjectCatController extends Controller
      */
     public function create()
     {
-        //
+        return view('projectCat.create')->with('title',"Create Project Category");
     }
 
     /**
@@ -37,7 +41,11 @@ class ProjectCatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $projectCat = new projectCat();
+        $projectCat->cat_name = $request->cat_name;
+        $projectCat->cat_details = $request->cat_details;
+        $projectCat->save();
+        return \Redirect::route('tag.index')->with('success','Project Category Successfully Created');
     }
 
     /**
@@ -59,7 +67,9 @@ class ProjectCatController extends Controller
      */
     public function edit($id)
     {
-        //
+        $projectCat = projectCat::findOrFail($id);
+
+        return view('projectCat.edit', compact('projectCat'))->with('title',"Edit Project Category");
     }
 
     /**
@@ -71,7 +81,12 @@ class ProjectCatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $projectCat = projectCat::findOrFail($id);
+        $projectCat->cat_name = $request->cat_name;
+        $projectCat->cat_details = $request->cat_details;
+        $projectCat->save();
+
+        return \Redirect::route('projectCat.index')->with('success','Project Category Successfully Updated');
     }
 
     /**
@@ -82,6 +97,8 @@ class ProjectCatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        projectCat::destroy($id);
+
+        return \Redirect::route('projectCat.index')->with('success',"Project Category Successfully deleted");
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $event = Project::orderBy('id', 'desc')->get();
+        return view('project.index', compact('event'))->with('title',"All Project List");
     }
 
     /**
@@ -26,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('project.create')->with('title',"Create New Project");
     }
 
     /**
@@ -37,7 +39,18 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project();
+        $project->project_title = $request->project_title;
+        $project->project_details = $request->project_details;
+        $project->project_status = $request->project_status;
+        $project->project_developer = $request->project_developer;
+        $project->project_supervisor = $request->project_supervisor;
+        $project->project_url = $request->project_url;
+        //$project->project_image = $request->project_image;
+        $project->project_meta_data =  md5($request->project_title);
+        $project->save();
+
+        return redirect()->back()->with('success', 'Project Successfully Created');
     }
 
     /**
@@ -59,7 +72,8 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $event = Project::findOrFail($id);
+        return view('project.edit', compact('event'))->with('title',"Edit Project");
     }
 
     /**
@@ -71,7 +85,18 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->project_title = $request->project_title;
+        $project->project_details = $request->project_details;
+        $project->project_status = $request->project_status;
+        $project->project_developer = $request->project_developer;
+        $project->project_supervisor = $request->project_supervisor;
+        $project->project_url = $request->project_url;
+        //$project->project_image = $request->project_image;
+        $project->project_meta_data =  md5($request->project_title);
+        $project->save();
+
+        return redirect()->back()->with('success', 'Project Successfully Updated');
     }
 
     /**
@@ -82,6 +107,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Project::destroy($id);
+        return redirect()->route('project.index')->with('success',"Project Successfully deleted");
     }
 }

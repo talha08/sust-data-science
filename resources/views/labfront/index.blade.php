@@ -25,6 +25,7 @@
 			<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 				<ol class="breadcrumb">
+					<li><a href="#">SUST cse data Science Lab</a></li>
 					<li><a href="#">Home</a></li>
 
 				</ol>
@@ -56,7 +57,7 @@
 				<div class="carousel-inner"><!-- Wrapper for slides -->
 
 					<div class="item active">
-						<img src="labfront/img/slide-3.jpg" alt="Image slide 3" />
+						<img src="labfront/img/slide-3.jpg" width="1140" height="400" alt="Image slide 3" />
 						<div class="k-carousel-caption pos-1-3-right scheme-dark">
 							<div class="caption-content">
 								<h3 class="caption-title">Learning makes us stronger for life</h3>

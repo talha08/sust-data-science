@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $news = News::orderBy('id', 'desc')->get();
+        return view('news.index', compact('news'))->with('title',"All News List");
     }
 
     /**
@@ -26,7 +28,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create')->with('title',"Create New News");
     }
 
     /**
@@ -37,7 +39,14 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news = new News();
+        $news->news_title = $request->news_title;
+        $news->news_details = $request->news_details;
+        //$news->news_image = $request->event_image;
+        $news->news_meta_data =  md5($request->news_title);
+        $news->save();
+
+        return redirect()->back()->with('success', 'News Successfully Created');
     }
 
     /**
@@ -59,7 +68,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = News::findOrFail($id);
+        return view('news.edit', compact('news'))->with('title',"Edit News");
     }
 
     /**
@@ -71,7 +81,14 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $news = News::findOrFail($id);
+        $news->news_title = $request->news_title;
+        $news->news_details = $request->news_details;
+        //$news->news_image = $request->event_image;
+        //$news->news_meta_data =  md5($request->news_title);
+        $news->save();
+
+        return redirect()->back()->with('success', 'News Successfully Updated');
     }
 
     /**
@@ -82,6 +99,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        News::destroy($id);
+        return redirect()->route('news.index')->with('success',"News Successfully deleted");
     }
 }
