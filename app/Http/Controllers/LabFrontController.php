@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Event;
 use App\News;
+use App\Paper;
+use App\Project;
 use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,7 +23,16 @@ class LabFrontController extends Controller
     //Home PAGE
     /*==================================================*/
     public function index(){
-        return view('labfront.index')->with('title','SUST CSE Data Science Lab');
+        $event = Event::take(3)->orderBy('id','desc')->get();
+        $news = News::take(3)->orderBy('id','desc')->get();
+
+        $blog= Blog::take(4)->orderBy('id','desc')->get();
+        $project= Project::take(5)->orderBy('id','desc')->get();
+        $paper= Paper::take(5)->orderBy('id','desc')->get();
+
+
+        return view('labfront.index',compact('event','news','blog','project','paper'))
+            ->with('title','Home | SUST CSE Data Science Lab');
     }
 
 
@@ -216,6 +227,18 @@ class LabFrontController extends Controller
 
     }
 
+
+
+
+    /*==================================================*/
+    //Paper List
+    /*==================================================*/
+
+    public function paper(){
+        $news =   News::orderBy('id', 'desc')->paginate(6);
+        $event =  Event::take(5)->orderBy('id','desc')->get();
+        return view('labfront.news',compact('event','news'))->with('title','News List');
+    }
 
 
 }

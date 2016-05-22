@@ -24,9 +24,9 @@ class ProfileRequest extends Request
     public function rules()
     {
         return [
-            'platform'=> 'required',
-            'position'=> 'required',
-            'organization'=> 'required',
+           // 'platform'=> 'required',
+           // 'position'=> 'required',
+          // 'organization'=> 'required',
         ];
     }
 }

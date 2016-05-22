@@ -16,7 +16,7 @@ class ContactController extends Controller
 
     public function contact()
     {
-        return view('labfront.contact')->with('title',"Contact :||: Tech Blog");
+        return view('labfront.contact')->with('title',"Contact | Data Science Lab");
     }
 
 
@@ -49,14 +49,14 @@ class ContactController extends Controller
                 $message->from($data['email']);
                 //email 'To' field: cahnge this to emails that you want to be notified.
                 //$message->to('talhaqc@gmail.com', 'Talha')->cc('talha2012331008@gmail.com')->subject('Uniliver Building');
-                $message->to('talhaqc@gmail.com')->cc('talhaqc@gmail.com')->subject('User email From Blog');
+                $message->to('talhaqc@gmail.com')->cc('talhaqc@gmail.com')->subject('User email From SUSt Data Science Lab');
 
             });
 
-            return view('labfront.contact')->with('title','Contact')->with('success','Your message has been sent');
+            return redirect()->back()->with('success','Your message has been sent');
         }else{
             //return contact form with errors
-            return \Redirect::to('contact')->withErrors($validator)->with('title','Contact :||: Tech Blog')->with('error','Something Went Wrong, Please Try Again');
+            return \Redirect::to('contact')->withErrors($validator)->with('title','Contact | Data Science Lab')->with('error','Something Went Wrong, Please Try Again');
         }
     }
 

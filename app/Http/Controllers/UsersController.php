@@ -85,7 +85,7 @@ class UsersController extends Controller
                 $profile->user_id = $user->id;
                 $profile->platform = $request->platform;
                 $profile->position =$request->position;
-                $profile->organization = $request->organization;
+                //$profile->organization = $request->organization;
 
                 if($profile->save()){
 

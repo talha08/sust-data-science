@@ -45,7 +45,7 @@ class ProfileController extends Controller
                 'phone'=>$request->phone,
                 'platform'=>$request->platform,
                 'position'=>$request->position,
-                'organization'=>$request->organization,
+                //'organization'=>$request->organization,
                 'fb_user'=>$request->fb_user,
                 'twitter_user'=>$request->twitter_user,
                 'github_user'=>$request->github_user,

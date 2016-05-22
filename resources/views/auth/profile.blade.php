@@ -65,9 +65,9 @@
                                         <td><a href="#" class="ng-binding">{!!$user->profiles->position!!}</a></td>
                                     </tr>
 
-                                    <tr>
-                                        <td><b>Organization</b></td><td class="ng-binding">{!!$user->profiles->organization!!}</td>
-                                    </tr>
+                                    {{--<tr>--}}
+                                        {{--<td><b>Organization</b></td><td class="ng-binding">{!!$user->profiles->organization!!}</td>--}}
+                                    {{--</tr>--}}
 
                                     <tr>
                                         <td><b>Working Platform</b></td>
@@ -182,10 +182,10 @@
                                 </div><br>
 
 
-                                <div class="form-group ">
-                                    {!! Form::label('organization', 'Organization/Institute * :', array('class' => 'col-md-4 control-label')) !!}
-                                    {!! Form::text('organization', null, array('class' => 'form-control', 'placeholder' => 'Input organization/institute...')) !!}
-                                </div><br>
+                                {{--<div class="form-group ">--}}
+                                    {{--{!! Form::label('organization', 'Organization/Institute * :', array('class' => 'col-md-4 control-label')) !!}--}}
+                                    {{--{!! Form::text('organization', null, array('class' => 'form-control', 'placeholder' => 'Input organization/institute...')) !!}--}}
+                                {{--</div><br>--}}
 
                                 <div class="form-group ">
                                     {!! Form::label('fb_user', 'Facebook Account :', array('class' => 'col-md-4 control-label')) !!}
@@ -331,6 +331,7 @@
     {!! Html::script('js/ckeditor/ckeditor.js') !!}
 
     {!! Html::script('js/photo_upload.js') !!}
+
 
     //for Datatable
     <script type="text/javascript">

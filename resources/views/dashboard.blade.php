@@ -23,10 +23,36 @@
         <div class="col-lg-3 col-sm-6">
             <div class="widget-panel widget-style-2 white-bg">
                 <i class="ion-android-contacts text-pink"></i>
-                <h2 class="m-0 counter">{!! \App\User::where('status',1)->where('id','!=',1)->count() !!}</h2>
-                <div>Total Bloggers</div>
+                <h2 class="m-0 counter">{!!
+                \App\User::where('status',1)->where('id','!=',1)
+                ->where('is_teacher', 0)
+                ->count() !!}</h2>
+                <div>Total Student</div>
             </div>
         </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-android-contacts text-pink"></i>
+                <h2 class="m-0 counter">{!!
+                \App\User::where('status',1)
+                ->where('is_teacher', 1)
+                ->count() !!}</h2>
+                <div>Total Student</div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-android-contacts text-pink"></i>
+                <h2 class="m-0 counter">{!!
+                \App\User::where('status',1)
+                ->where('is_teacher', 2)
+                ->count() !!}</h2>
+                <div>Total Student</div>
+            </div>
+        </div>
+
 
         <div class="col-lg-3 col-sm-6">
             <div class="widget-panel widget-style-2 white-bg">
@@ -38,20 +64,36 @@
 
         <div class="col-lg-3 col-sm-6">
             <div class="widget-panel widget-style-2 white-bg">
-                <i class="ion-ios7-pricetag text-info"></i>
-                <h2 class="m-0 counter">{!! \App\Blog::where('user_id', Auth::user()->id)->count() !!}</h2>
-                <div>My Total Blogs</div>
+                <i class="ion-wifi text-purple"></i>
+                <h2 class="m-0 counter">{!! \App\News::count() !!}</h2>
+                <div>Total News</div>
             </div>
         </div>
 
         <div class="col-lg-3 col-sm-6">
             <div class="widget-panel widget-style-2 white-bg">
-                <i class="ion-eye text-success"></i>
-                <h2 class="m-0 counter">{!! \App\Blog::sum('views') !!}</h2>
-                <div>Total Views</div>
+                <i class="ion-wifi text-purple"></i>
+                <h2 class="m-0 counter">{!! \App\Event::count() !!}</h2>
+                <div>Total Event</div>
             </div>
         </div>
 
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-wifi text-purple"></i>
+                <h2 class="m-0 counter">{!! \App\Project::count() !!}</h2>
+                <div>Total Project</div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="widget-panel widget-style-2 white-bg">
+                <i class="ion-ios7-pricetag text-info"></i>
+                <h2 class="m-0 counter">{!! \App\Blog::where('user_id', Auth::user()->id)->count() !!}</h2>
+                <div>My Total Blogs</div>
+            </div>
+        </div>
 
 
 @endrole
@@ -84,7 +126,7 @@
 
     <div class="alert alert-danger">
         <center>
-            This Blog site is now in <b>Beta version</b>. Mistakes will be resolve soon. <br/>
+            This site is now in <b>Beta version</b>. Mistakes will be resolve soon. <br/>
             Thank You :)
         </center>
     </div>

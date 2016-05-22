@@ -1,23 +1,32 @@
-@extends('front.layout.master')
+@extends('labfront.layouts.master')
 @section('content')
 
-        <!--breadcrumbs start-->
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-sm-4">
-                <h1>{!! $title !!}</h1>
-            </div>
-            <div class="col-lg-8 col-sm-8">
-                <ol class="breadcrumb pull-right">
-                    <li><a href="{!! route('front.blog') !!}">Home</a></li>
-                    <li class="active">Apply</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-<!--breadcrumbs end-->
+    {{--path to go--}}
+    <div class="row"><!-- row -->
+
+        <div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+
+            <form action="#" id="top-searchform" method="get" role="search">
+                <div class="input-group">
+                    <input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+                </div>
+            </form>
+
+            <div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+
+        </div><!-- top search end -->
+
+        <div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
+
+            <ol class="breadcrumb">
+                <li><a href="{!! route('labfront.index') !!}">Home</a></li>
+                <li class="active">Sign Up</li>
+            </ol>
+
+        </div><!-- breadcrumbs end -->
+
+    </div><!-- row end -->
+    {{--path to go end--}}
 
 
 
@@ -28,7 +37,7 @@
 <!--container start-->
 <div class="container">
 
-
+    <h2>SignUp and Be a Proud Member of This Lab</h2> <br/>
 
         <div class="col-lg-7 col-sm-10 address">
 
@@ -40,31 +49,31 @@
 
 
 
-                <div class="form-group ">
+                <div class="form-group">
                     {!! Form::label('name', 'Complete Name :', array('class' => 'col-md-4 control-label')) !!}<br/>
                     {!! Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Your complete name...', 'autofocus')) !!}
                 </div><br>
 
-                <div class="form-group ">
+                <div class="form-group">
                     {!! Form::label('email', 'Email :', array('class' => 'col-md-4 control-label')) !!}<br/>
                     {!! Form::text('email', '', array('class' => 'form-control', 'placeholder' => 'Email Address...', 'autofocus')) !!}
                 </div><br>
 
-                <div class="form-group ">
+                <div class="form-group">
                     {!! Form::label('platform', 'Working Platform :', array('class' => 'col-md-4 control-label')) !!}<br/>
-                    {!! Form::select('platform', $platform,'', array('class' => 'form-control', 'placeholder' => 'Your working platform...','id' => 'status')) !!}
+                    {!! Form::select('platform', $platform,'', array('class' => 'select2' ,'placeholder' => 'Your working platform...','id' => 'status')) !!}
                 </div><br>
 
-                <div class="form-group ">
-                    {!! Form::label('position', 'Working Status :', array('class' => 'col-md-4 control-label')) !!}<br/>
-                    {!! Form::text('position', '', array('class' => 'form-control', 'placeholder' => 'Student/job...', 'autofocus')) !!}
+                <div class="form-group">
+                    {!! Form::label('position', 'Session :', array('class' => 'col-md-4 control-label')) !!}<br/>
+                    {!! Form::text('position', '', array('class' => 'form-control', 'placeholder' => 'ex;2012-2013', 'autofocus')) !!}
                 </div><br>
 
 
-                <div class="form-group ">
-                    {!! Form::label('organization', 'Organization/Institute :', array('class' => 'col-md-4 control-label')) !!}
-                    {!! Form::text('organization', '', array('class' => 'form-control', 'placeholder' => 'Input organization/institute...', 'autofocus')) !!}
-                </div><br>
+                {{--<div class="form-group">--}}
+                    {{--{!! Form::label('organization', 'Organization / Institute :', array('class' => 'col-md-4 control-label')) !!}--}}
+                    {{--{!! Form::text('organization', '', array('class' => 'form-control', 'placeholder' => 'Input organization/institute...', 'autofocus')) !!}--}}
+                {{--</div><br>--}}
 
 
 
@@ -121,7 +130,7 @@
 @stop
 
 @section('style')
-    {!! Html::style('css/chosen_dropdown/chosen.css') !!}
+    {!! Html::style('assets/select2/select2.css') !!}
 
 
 @stop
@@ -129,16 +138,18 @@
 
 @section('script')
 
-    {!! Html::script('js/chosen_dropdown/chosen.jquery.min.js') !!}
+    {!! Html::script('assets/select2/select2.min.js') !!}
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("#status").chosen();
 
+        jQuery(document).ready(function() {
+
+            // Select2
+            jQuery(".select2").select2({
+                width: '100%'
+            });
         });
-
-
 
     </script>
 @stop

@@ -86,7 +86,7 @@
 
 								<li class="widget-container widget_newsletter"><!-- widget -->
 
-									<h1 class="title-titan">School Newsletter</h1>
+									<h1 class="title-titan">Lab Newsletter</h1>
 
 									<form role="search" method="get" class="newsletter-form" action="#">
 										<div class="input-group">

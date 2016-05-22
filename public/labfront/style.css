@@ -678,7 +678,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 @media (min-width: 992px) and (max-width: 1199px) {
 	#k-head { margin-bottom: 20px; }
 	#k-site-logo { display: block; float: none !important; text-align: center; }
-	.k-main-navig { margin-top: 30px; }
+	.k-main-navig { margin-top: 10px; }
 	#drop-down-left a { border-top: none; padding-top: 0 !important; }
 	#drop-down-left > li:first-child { margin-left: 0; }
 	.k-logo img { height: 91px; }
@@ -690,7 +690,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 /* SM */
 @media (min-width: 768px) and (max-width: 991px) {
 	/*[class*='col-']:not(:last-child) { margin-bottom: 10px; }*/
-	#k-head { margin-bottom: 20px; }
+	#k-head { margin-bottom: 10px; }
 	#k-site-logo { display: block; float: none !important; text-align: center; }
 	.k-main-navig { margin-top: 30px; }
 	#drop-down-left a { border-top: none; padding-top: 0 !important; }

@@ -38,10 +38,18 @@
                    -->
                     <!-- Right navbar -->
 
+
+
+
                     <ul class="nav navbar-nav navbar-right top-menu top-right-menu">
 
+
+
+
+
+
                         {{--@include('includes.notificationMenu')--}}
-                        {{--@include('includes.inboxMenu')--}}
+                        @include('includes.home')
                         @include('includes.profileMenu')
 
                     </ul>

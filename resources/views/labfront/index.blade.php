@@ -5,6 +5,8 @@
 
 	<div class="container"><!-- container -->
 
+
+
 {{--path to go--}}
 		<div class="row"><!-- row -->
 
@@ -24,13 +26,15 @@
 
 				<ol class="breadcrumb">
 					<li><a href="#">Home</a></li>
-					<li class="active">Page Example</li>
+
 				</ol>
 
 			</div><!-- breadcrumbs end -->
 
 		</div><!-- row end -->
  {{--path to go end--}}
+
+
 
 
 
@@ -169,7 +173,18 @@
 
 						<div class="news-body">
 							<p>
-								Big Data makes for big and interesting problems! Our lab focuses on analyzing large-scale text streams such as news, blogs, and social media to identify cultural trends around the world's people, places, and things. Our research covers a range of topics in natural language processing. A current focus is using Deep Learning techniques to build concise representations of the meanings of words in all significant languages, and use these powerful features to recognize entities and measure sentiment and other properties of texts. Another focus involves analyzing Wikipedia to identify the fame and significance of historical figures as reported in our book Who's Bigger? and associated website. Our Lydia technology has been licensed by General Sentiment, a social media analysis startup.
+								Big Data makes for big and interesting problems!
+								Our lab focuses on analyzing large-scale text streams
+								such as news, blogs, and social media to identify cultural
+								trends around the world's people, places, and things.
+								Our research covers a range of topics in natural language processing.
+								A current focus is using Deep Learning techniques to build concise
+								representations of the meanings of words in all significant languages,
+								and use these powerful features to recognize entities and measure sentiment
+								and other properties of texts. Another focus involves analyzing Wikipedia to
+								identify the fame and significance of historical figures as reported in our
+								book Who's Bigger? and associated website. Our Lydia technology has been
+								licensed by General Sentiment, a social media analysis startup.
 
 							</p>
 
@@ -211,9 +226,9 @@
 					<!-- widgets -->
 
 
+{{--Newsletter--}}
 					<li class="widget-container widget_newsletter">
 						<!-- widget -->
-
 						<h1 class="title-titan">Lab Newsletter</h1>
 
 						<form role="search" method="get" class="newsletter-form" action="#">
@@ -225,6 +240,9 @@
 						</form>
 
 					</li>
+{{--Newsletter--}}
+
+
 
 					<li class="widget-container widget_text">
 						<!-- widget -->
@@ -232,21 +250,21 @@
 					<li class="widget-container widget_text">
 						<!-- widget -->
 
-						<a href="#" class="custom-button cb-green" title="How to apply?">
+						<a href="{!! route('user.create') !!}" class="custom-button cb-green" title="How to apply?">
 							<i class="custom-button-icon fa fa-check-square-o"></i>
-                        <span class="custom-button-wrap">
-                                    	<span class="custom-button-title">How to apply?</span>
-                        <span class="custom-button-tagline">Join us whenewer you feel it’s time!</span>
-                        </span>
+								<span class="custom-button-wrap">
+											<span class="custom-button-title">Apply For Membership?</span>
+								<span class="custom-button-tagline">Join us when ever you feel it's time!</span>
+								</span>
 							<em></em>
 						</a>
 
-						<a href="#" class="custom-button cb-gray" title="Campus tour">
+						<a href="{!! route('labfront.contact') !!}" class="custom-button cb-gray" title="Campus tour">
 							<i class="custom-button-icon fa  fa-play-circle-o"></i>
-                        <span class="custom-button-wrap">
-                                    	<span class="custom-button-title">Campus tour</span>
-                        <span class="custom-button-tagline">Student's life at the glance. Take a tour...</span>
-                        </span>
+								<span class="custom-button-wrap">
+										<span class="custom-button-title">Information?</span>
+								<span class="custom-button-tagline">If any question, Just email us ...</span>
+								</span>
 							<em></em>
 						</a>
 
@@ -261,6 +279,8 @@
 
 					</li>
 
+
+
 				</ul>
 				<!-- widgets end -->
 
@@ -274,6 +294,9 @@
 	<!-- row end -->
 
  {{--side bar end--}}
+
+
+
 
 
 
@@ -302,50 +325,24 @@
 
 						<ul class="list-unstyled">
 
-							<li class="up-event-wrap">
+							@foreach($event as $events)
+								<li class="up-event-wrap">
 
-								<h1 class="title-median"><a href="#" title="Annual alumni game">Annual alumni game</a></h1>
+									<h1 class="title-median"><a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" title="{!! Str::limit($events->event_title,20) !!}">{!! Str::limit($events->event_title,30) !!}</a></h1>
 
-								<div class="up-event-meta clearfix">
-									<div class="up-event-date">Jul 25, 2015</div>
-									<div class="up-event-time">9:00 - 11:00</div>
-								</div>
+									<div class="up-event-meta clearfix">
+										<div class="up-event-date">{!! \App\Event::fullDate($events->id,$events->event_start) !!}</div>
+										<div class="up-event-date">{!! \App\Event::fullDate($events->id,$events->event_end) !!}</div>
+										<div class="up-event-time">{!! \App\Event::fullTime($events->id,$events->event_time) !!}</div>
+									</div>
 
-								<p>
-									Fusce condimentum pulvinar mattis. Nunc condimentum sapien sit amet odio vulputate, nec suscipit orci pharetra... <a href="#" class="moretag" title="read more">MORE</a>
-								</p>
+									<p>
+										{!! Str::limit($events->event_details,100) !!}
+										<a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" class="moretag" title="read more">MORE</a>
+									</p>
 
-							</li>
-
-							<li class="up-event-wrap">
-
-								<h1 class="title-median"><a href="#" title="School talents gathering">School talents gathering</a></h1>
-
-								<div class="up-event-meta clearfix">
-									<div class="up-event-date">Aug 25, 2015</div>
-									<div class="up-event-time">8:30 - 10:30</div>
-								</div>
-
-								<p>
-									Pellentesque lobortis, arcu eget condimentum auctor, magna neque faucibus dui, ut varius diam neque sed diam... <a href="#" class="moretag" title="read more">MORE</a>
-								</p>
-
-							</li>
-
-							<li class="up-event-wrap">
-
-								<h1 class="title-median"><a href="#" title="School talents gathering">Campus "Open Doors"</a></h1>
-
-								<div class="up-event-meta clearfix">
-									<div class="up-event-date">Sep 04, 2015</div>
-									<div class="up-event-date">Sep 11, 2015</div>
-								</div>
-
-								<p>
-									Donec fringilla lacinia laoreet. Vestibulum ultrices blandit tempor. Aenean magna elit, varius eget quam a, posuere... <a href="#" class="moretag" title="read more">MORE</a>
-								</p>
-
-							</li>
+								</li>
+							@endforeach
 
 						</ul>
 
@@ -382,71 +379,29 @@
 
 						<ul class="list-unstyled">
 
+							@foreach($news as $newsList)
 							<li class="recent-news-wrap">
 
-								<h1 class="title-median"><a href="#" title="Megan Boyle flourishes...">Megan Boyle flourishes at Boston University</a></h1>
+								<h1 class="title-median"><a href="#" title="{!! Str::limit($newsList->news_title,30) !!}">{!! Str::limit($newsList->news_title,30) !!}</a></h1>
 
 								<div class="recent-news-meta">
-									<div class="recent-news-date">Jun 12, 2014</div>
+									<div class="recent-news-date">{!! \App\News::fullDate($newsList->id) !!}</div>
 								</div>
 
 								<div class="recent-news-content clearfix">
 									<figure class="recent-news-thumb">
-										<a href="#" title="Megan Boyle flourishes..."><img src="labfront/img/recent-news-thumb-1.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" />
+										<a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="{!! Str::limit($newsList->news_title,30) !!}"><img src="{!! asset($newsList->news_image) !!}" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" />
 										</a>
 									</figure>
 									<div class="recent-news-text">
 										<p>
-											Megan Boyle is flourishing at Boston University in Boston. Our High School Class of 2012 member is majoring... <a href="#" class="moretag" title="read more">MORE</a>
+											{!! Str::limit($newsList->news_details, 100) !!} <a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" class="moretag" title="read more">MORE</a>
 										</p>
 									</div>
 								</div>
-
 							</li>
+							@endforeach
 
-							<li class="recent-news-wrap">
-
-								<h1 class="title-median"><a href="#" title="Buntington Alum...">Buntington Alum Marc Bloom Pens New Book</a></h1>
-
-								<div class="recent-news-meta">
-									<div class="recent-news-date">Jun 10, 2014</div>
-								</div>
-
-								<div class="recent-news-content clearfix">
-									<figure class="recent-news-thumb">
-										<a href="#" title="Buntington Alum..."><img src="labfront/img/recent-news-thumb-2.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 2" />
-										</a>
-									</figure>
-									<div class="recent-news-text">
-										<p>
-											Marc Bloom has a lot to say. He likes to share his experiences and opinions with others, so the 2011 Buntington... <a href="#" class="moretag" title="read more">MORE</a>
-										</p>
-									</div>
-								</div>
-
-							</li>
-
-							<li class="recent-news-wrap">
-
-								<h1 class="title-median"><a href="#" title="Cody Rotschild Enjoys...">Cody Rotschild Enjoys Life in Montreal</a></h1>
-
-								<div class="recent-news-meta">
-									<div class="recent-news-date">Jun 05, 2014</div>
-								</div>
-
-								<div class="recent-news-content clearfix">
-									<figure class="recent-news-thumb">
-										<a href="#" title="Cody Rotschild Enjoys..."><img src="labfront/img/recent-news-thumb-3.jpg" class="attachment-thumbnail wp-post-image" alt="Thumbnail 3" />
-										</a>
-									</figure>
-									<div class="recent-news-text">
-										<p>
-											Cody Rotschild might have graduated with Buntington High School’s Class of 2011, but she is really a woman... <a href="#" class="moretag" title="read more">MORE</a>
-										</p>
-									</div>
-								</div>
-
-							</li>
 
 						</ul>
 
@@ -495,14 +450,17 @@
 
 
 					<div id="k-tab-download" class="tab-pane fade in active">
-						<!-- tab 1 starts -->
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque enim erat, tincidunt vitae massa id, consectetur est. Morbi gravida vulputate scelerisque. Nunc laoreet elit justo, eu commodo risus volutpat id. Aenean ac nis ornare, sagittis quam sagittis. Donec tristique diam dui, non euismod nulla tincidunt nec.
-						</p>
-						<div class="gap10"></div>
-						<p>
-							<a href="#" title="Download" class="btn btn-success"><i class="icon-cloud-download"></i> &nbsp; Read More</a>
-						</p>
+
+							@foreach($project as $projectList)
+								<div class="media">
+									<div class="media-body">
+										<h5 class="media-heading"><a href="#">{!! Str::limit($projectList->project_title,30) !!} </a></h5>
+										<p>
+											{!!Str::limit($projectList->project_details,80) !!}
+										</p>
+									</div>
+								</div>
+							@endforeach
 					</div>
 					<!-- tab 1 ends -->
 
@@ -511,30 +469,40 @@
 
 					<div id="k-tab-profile" class="tab-pane fade">
 						<!-- tab 2 starts -->
-						<p>
-							<img src="labfront/img/recent-news-thumb-2.jpg" alt="Right" class="alignleft" /> Phasellus porta nisl et enim auctor euismod. Nunc lectus purus, congue quis pulvinar vitae, tempus et risus. Nulla vestibulum purus ut dui molestie facilisis. Sed elementum vel velit vel ornare. Nam pharetra nisi quis nisi gravida consequat. Nam id lectus mollis, auctor massa eu, porttitor orci. Etiam pretium sem lectus, pellentesque viverra lorem dapibus eu.
-						</p>
-						<div class="gap10"></div>
-						<p>
-							<a href="#" title="Download" class="btn btn-success"><i class="icon-cloud-download"></i> &nbsp; Read More</a>
-						</p>
+						@foreach($paper as $papers)
+							<div class="media">
+								<div class="media-body">
+									<h5 class="media-heading"><a href="#">{!! Str::limit($papers->paper_title,30) !!} </a></h5>
+									<p>
+										{!!Str::limit($papers->paper_details,80) !!}
+									</p>
+								</div>
+							</div>
+						@endforeach
 					</div>
 					<!-- tab 2 ends -->
 
 
-
+   {{--blogs--}}
 					<div id="k-tab-settings" class="tab-pane fade">
 						<!-- tab 3 starts -->
-						<p>
-							<span class="badge badge-warning">1</span> &nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque enim erat, tincidunt vitae massa id, consectetur est. Duis vel placerat nisi. Vestibulum tempus metus eros, non porttitor i psum ultrices nec. In eleifend nulla dui. Aliquam ut nisi id tortor lac inia interdum nec at magna.
-						</p>
-						<p>
-							<span class="badge badge-warning">2</span> &nbsp; Aenean ac nis ornare, sagittis quam sagittis. Donec tristique diam dui, non euismod nulla tincidunt nec. In ut sapien id neque fermentum congue et et dui. Quisque pellent esque faucibus mattis. Donec eu sem turpis.
-						</p>
+						@foreach($blog as $new)
+							<div class="media">
+								<a class="pull-left" href="javascript:;">
+									<img class=" " src="{!! asset($new->img_thumbnail) !!}" alt="">
+								</a>
+								<div class="media-body">
+									<h5 class="media-heading"><a href="{!! route('labfront.blog_details',$new->meta_data) !!}">{!! \App\Blog::fullDate($new->id) !!} </a></h5>
+									<p>
+										{!! $new->title !!}
+									</p>
+								</div>
+							</div>
+						@endforeach
 
 					</div>
 					<!-- tab 3 ends -->
-
+	{{--blogs end--}}
 
 
 				</div>

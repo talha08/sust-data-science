@@ -30,7 +30,7 @@ class UserRequest extends Request
             'password_confirmation' => 'required',
             'platform'              => 'required',
             'position'              => 'required',
-            'organization'          => 'required',
+            //'organization'          => 'required',
         ];
     }
 }

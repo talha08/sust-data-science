@@ -22,6 +22,11 @@
                 <ul id="drop-down-left" class="k-dropdown-menu">
 
                     <li>
+                        <a href="{!!  route('labfront.index') !!}" title="home">Home</a>
+                    </li>
+
+
+                    <li>
                         <a href="{!! route('labfront.news') !!}" title="News">News</a>
                     </li>
 
@@ -62,8 +67,15 @@
 
 
                     <li>
-                        <a href="{!!  route('labfront.contact') !!}" title="Lab Contacts">Contact Us</a>
+                        <a href="{!!  route('labfront.contact') !!}" title="Contacts">Contact</a>
                     </li>
+
+                    @if(Auth::user())
+                        <li>
+                            <a href="{!!  route('dashboard') !!}" title="Dashboard">Dashboard</a>
+                        </li>
+
+                    @endif
                 </ul>
 
             </nav><!-- main navig end -->
