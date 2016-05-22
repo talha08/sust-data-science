@@ -56,7 +56,7 @@ Route::group(array('middleware' => 'auth'), function()
 
 
 
-//blog section
+//blog section     complete
 	Route::get('blog/create', array('as' => 'blog.create', 'uses' => 'BlogController@create'));
 	Route::post('blog', array('as' => 'blog.store', 'uses' => 'BlogController@store'));
 	Route::get('blog/{id}/edit', array('as' => 'blog.edit', 'uses' => 'BlogController@edit'));
@@ -64,14 +64,6 @@ Route::group(array('middleware' => 'auth'), function()
 	Route::delete('blog/{id}', array('as' => 'blog.delete', 'uses' => 'BlogController@destroy'));
 	Route::get('myBlog', array('as' => 'blog.own', 'uses' => 'BlogController@myBlog'));
 
-
-//award section
-	Route::get('award', array('as' => 'award.index', 'uses' => 'AwardController@index'));
-	Route::get('award/create', array('as' => 'award.create', 'uses' => 'AwardController@create'));
-	Route::post('award', array('as' => 'award.store', 'uses' => 'AwardController@store'));
-	Route::get('award/{id}/edit', array('as' => 'award.edit', 'uses' => 'AwardController@edit'));
-	Route::put('award/{id}/update', array('as' => 'award.update', 'uses' => 'AwardController@update'));
-	Route::delete('award/{id}', array('as' => 'award.delete', 'uses' => 'AwardController@destroy'));
 
 
 //paper section
@@ -84,15 +76,6 @@ Route::group(array('middleware' => 'auth'), function()
 
 
 
-//project category section
-	Route::get('projectCat', array('as' => 'projectCat.index', 'uses' => 'ProjectCatController@index'));
-	Route::get('projectCat/create', array('as' => 'projectCat.create', 'uses' => 'ProjectCatController@create'));
-	Route::post('projectCat', array('as' => 'projectCat.store', 'uses' => 'ProjectCatController@store'));
-	Route::get('projectCat/{id}/edit', array('as' => 'projectCat.edit', 'uses' => 'ProjectCatController@edit'));
-	Route::put('projectCat/{id}/update', array('as' => 'projectCat.update', 'uses' => 'ProjectCatController@update'));
-	Route::delete('projectCat/{id}', array('as' => 'projectCat.delete', 'uses' => 'ProjectCatController@destroy'));
-
-
 
 //project section
 	Route::get('project', array('as' => 'project.index', 'uses' => 'ProjectController@index'));
@@ -102,14 +85,6 @@ Route::group(array('middleware' => 'auth'), function()
 	Route::put('project/{id}/update', array('as' => 'project.update', 'uses' => 'ProjectController@update'));
 	Route::delete('project/{id}', array('as' => 'project.delete', 'uses' => 'ProjectController@destroy'));
 
-
-//event section
-	Route::get('event', array('as' => 'event.index', 'uses' => 'EventController@index'));
-	Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventController@create'));
-	Route::post('event', array('as' => 'event.store', 'uses' => 'EventController@store'));
-	Route::get('event/{id}/edit', array('as' => 'event.edit', 'uses' => 'EventController@edit'));
-	Route::put('event/{id}/update', array('as' => 'event.update', 'uses' => 'EventController@update'));
-	Route::delete('event/{id}', array('as' => 'event.delete', 'uses' => 'EventController@destroy'));
 
 
 
@@ -121,6 +96,15 @@ Route::group(array('middleware' => 'auth'), function()
 	Route::put('news/{id}/update', array('as' => 'news.update', 'uses' => 'NewsController@update'));
 	Route::delete('news/{id}', array('as' => 'news.delete', 'uses' => 'NewsController@destroy'));
 
+
+
+	//books section
+	Route::get('book', array('as' => 'book.index', 'uses' => 'BookController@index'));
+	Route::get('book/create', array('as' => 'book.create', 'uses' => 'BookController@create'));
+	Route::post('book', array('as' => 'book.store', 'uses' => 'BookController@store'));
+	Route::get('book/{id}/edit', array('as' => 'book.edit', 'uses' => 'BookController@edit'));
+	Route::put('book/{id}/update', array('as' => 'book.update', 'uses' => 'BookController@update'));
+	Route::delete('book/{id}', array('as' => 'book.delete', 'uses' => 'BookController@destroy'));
 
 
 });
@@ -141,10 +125,18 @@ Route::group(array('middleware' => 'auth'), function() {
 
 		//approve users
 		Route::get('allUser', array('as' => 'user.index', 'uses' => 'UsersController@index'));
+		//all blog section
+		Route::get('userApprove/{id}', array('as' => 'user.approve', 'uses' => 'UsersController@approve'));
+
+		//all blog
+		Route::get('blog', array('as' => 'blog.index', 'uses' => 'BlogController@index'));
+
+		//support/ help
+		Route::get('help', array('as' => 'help', 'uses' => 'UsersController@help'));
 
 
 
-		//tag section
+		//tag section   complete
 		Route::get('tag', array('as' => 'tag.index', 'uses' => 'TagController@index'));
 		Route::get('tag/create', array('as' => 'tag.create', 'uses' => 'TagController@create'));
 		Route::post('tag', array('as' => 'tag.store', 'uses' => 'TagController@store'));
@@ -152,17 +144,34 @@ Route::group(array('middleware' => 'auth'), function() {
 		Route::put('tag/{id}/update', array('as' => 'tag.update', 'uses' => 'TagController@update'));
 		Route::delete('tag/{id}', array('as' => 'tag.delete', 'uses' => 'TagController@destroy'));
 
+		//award section   complete
+		Route::get('award', array('as' => 'award.index', 'uses' => 'AwardController@index'));
+		Route::get('award/create', array('as' => 'award.create', 'uses' => 'AwardController@create'));
+		Route::post('award', array('as' => 'award.store', 'uses' => 'AwardController@store'));
+		Route::get('award/{id}/edit', array('as' => 'award.edit', 'uses' => 'AwardController@edit'));
+		Route::put('award/{id}/update', array('as' => 'award.update', 'uses' => 'AwardController@update'));
+		Route::delete('award/{id}', array('as' => 'award.delete', 'uses' => 'AwardController@destroy'));
 
-		//all blog section
-		Route::get('userApprove/{id}', array('as' => 'user.approve', 'uses' => 'UsersController@approve'));
 
-		//all blog
-		Route::get('blog', array('as' => 'blog.index', 'uses' => 'BlogController@index'));
+		//event section  complete
+		Route::get('event', array('as' => 'event.index', 'uses' => 'EventController@index'));
+		Route::get('event/create', array('as' => 'event.create', 'uses' => 'EventController@create'));
+		Route::post('event', array('as' => 'event.store', 'uses' => 'EventController@store'));
+		Route::get('event/{id}/edit', array('as' => 'event.edit', 'uses' => 'EventController@edit'));
+		Route::put('event/{id}/update', array('as' => 'event.update', 'uses' => 'EventController@update'));
+		Route::delete('event/{id}', array('as' => 'event.delete', 'uses' => 'EventController@destroy'));
+
+
+		//project category section
+		Route::get('projectCat', array('as' => 'projectCat.index', 'uses' => 'ProjectCatController@index'));
+		Route::get('projectCat/create', array('as' => 'projectCat.create', 'uses' => 'ProjectCatController@create'));
+		Route::post('projectCat', array('as' => 'projectCat.store', 'uses' => 'ProjectCatController@store'));
+		Route::get('projectCat/{id}/edit', array('as' => 'projectCat.edit', 'uses' => 'ProjectCatController@edit'));
+		Route::put('projectCat/{id}/update', array('as' => 'projectCat.update', 'uses' => 'ProjectCatController@update'));
+		Route::delete('projectCat/{id}', array('as' => 'projectCat.delete', 'uses' => 'ProjectCatController@destroy'));
 
 
 
-		//support/ help
-		Route::get('help', array('as' => 'help', 'uses' => 'UsersController@help'));
 
 	});
 

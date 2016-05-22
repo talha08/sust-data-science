@@ -28,7 +28,7 @@
 
 
 
-									{!! Form::open(array('route' => 'projectCat.store')) !!}
+									{!!Form::model($projectCat,['route' => ['projectCat.update',$projectCat->id], 'method' => 'put' ])!!}
 
 
 									<div class="form-group">
@@ -41,9 +41,8 @@
 										{!! Form::textarea('cat_details', null, array('class' => 'summernote form-control', 'placeholder' => 'Enter project category details')) !!}
 									</div><br/>
 
-
 									<div class="form-group">
-										{!! Form::submit('Create Project Category', array('class' => 'btn btn-primary')) !!}
+										{!! Form::submit('Update Project Category', array('class' => 'btn btn-primary')) !!}
 									</div>
 
 
@@ -98,6 +97,7 @@
 	</script>
 
 @endsection
+
 
 
 

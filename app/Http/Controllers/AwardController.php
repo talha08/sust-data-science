@@ -30,7 +30,7 @@ class AwardController extends Controller
     public function create()
     {
         $teacher = User::where('is_teacher',1)->lists('email','email');
-        $student = User::where('is_teacher',0)->lists('email','email');
+        $student = User::where('is_teacher',0)->where('status',1)->lists('email','email');
         return view('award.create',compact('teacher','student'))->with('title',"Create New Award");
     }
 
@@ -75,7 +75,7 @@ class AwardController extends Controller
     public function edit($id)
     {
         $teacher = User::where('is_teacher',1)->lists('email','email');
-        $student = User::where('is_teacher',0)->lists('email','email');
+        $student = User::where('is_teacher',0)->where('status',1)->lists('email','email');
         $award = Award::findOrFail($id);
         return view('award.edit', compact('award','teacher','student','super'))->with('title',"Edit Award");
     }
