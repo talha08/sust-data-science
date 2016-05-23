@@ -31,8 +31,8 @@
                                     {!! Form::open(array('route' => 'blog.store',  'files' => true) ) !!}
 
                                     <div class="form-group">
-                                        {!! Form::label('title', 'Title - (If use bengali title then must use its english) :', array('class' => 'control-label')) !!}<br/>
-                                        {!!Form::text('title', '',array('class' => 'form-control','placeholder' =>  '( কিভাবে ব্লগ তৈরি করতে হয়!) How to create a blog.'))!!}
+                                        {!! Form::label('title', 'Title :', array('class' => 'control-label')) !!}<br/>
+                                        {!!Form::text('title', '',array('class' => 'form-control','placeholder' =>  ' How to create a blog.'))!!}
                                     </div>
 
                                      {{--<div class="form-group"> --}}
