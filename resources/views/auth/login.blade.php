@@ -15,6 +15,10 @@
             <h3 class="text-center m-t-10"> <strong> Sign In</strong></h3>
         </div>
         <br>
+        <div class="text-center">
+             <p>email : admin@gmail.com</p>
+             <p>password : a</p>
+        </div>
 
              @include('includes.alert')
 
