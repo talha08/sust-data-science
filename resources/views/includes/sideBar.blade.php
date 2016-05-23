@@ -79,26 +79,146 @@
 
 
 
-
-                    <li class="{!! Menu::areActiveURLs(['https://dashboard.zopim.com/?first_login#visitor_list/state','https://sustcse.disqus.com/admin/moderate/','help']) !!}"><a href="#"><i
-                                    class="ion-ios7-people"></i> <span class="nav-label">Support</span></a>
+                    {{--news--}}
+                    <li class="{!! Menu::areActiveRoutes(['news.index', 'news.create']) !!}"><a href="#"><i class="ion-android-note"></i> <span class="nav-label">News</span></a>
                         <ul class="list-unstyled">
 
-
-                            <li class="{!! Menu::isActiveURL('https://dashboard.zopim.com/?first_login#visitor_list/state') !!}">
-                                <a href="{!!  URL::to('https://dashboard.zopim.com/?first_login#visitor_list/state') !!}" target="_blank">Chat Support</a>
+                            <li class="{!! Menu::isActiveRoute('news.index') !!}">
+                                <a href="{!!  URL::route( 'news.index') !!}">All News</a>
                             </li>
 
-                            <li class="{!! Menu::isActiveURL('https://sustcse.disqus.com/admin/moderate') !!}" >
-                                <a href="{!!  URL::to('https://sustcse.disqus.com/admin/moderate') !!}" target="_blank">Comment Moderate</a>
+                            <li class="{!! Menu::isActiveRoute('news.create') !!}">
+                                <a href="{!!  URL::route( 'news.create') !!}">Create News</a>
                             </li>
-
-                            <li class="{!! Menu::isActiveURL('help') !!}" >
-                                <a href="{!!  URL::to('help') !!}" >Account Information</a>
-                            </li>
-
                         </ul>
                     </li>
+                    {{--news end--}}
+
+                    {{--event--}}
+                    <li class="{!! Menu::areActiveRoutes(['event.index', 'event.create']) !!}"><a href="#"><i class="ion-speakerphone"></i> <span class="nav-label">Event</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('event.index') !!}">
+                                <a href="{!!  URL::route( 'event.index') !!}">All Event</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('event.create') !!}">
+                                <a href="{!!  URL::route( 'event.create') !!}">Create Event</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--event end--}}
+
+                    {{--paper--}}
+                    <li class="{!! Menu::areActiveRoutes(['paper.index', 'paper.create']) !!}"><a href="#"><i class="ion-ios7-bookmarks-outline"></i> <span class="nav-label">Paper</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('paper.index') !!}">
+                                <a href="{!!  URL::route( 'paper.index') !!}">All Paper</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('paper.create') !!}">
+                                <a href="{!!  URL::route( 'paper.create') !!}">Add Paper</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--paper end--}}
+
+
+                    {{--projectCat--}}
+                    <li class="{!! Menu::areActiveRoutes(['projectCat.index', 'projectCat.create']) !!}"><a href="#"><i class="ion-android-mixer"></i> <span class="nav-label">Categoty</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('projectCat.index') !!}">
+                                <a href="{!!  URL::route( 'projectCat.index') !!}">All project Category</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('projectCat.create') !!}">
+                                <a href="{!!  URL::route( 'projectCat.create') !!}">Add project Category</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--projectCat end--}}
+
+
+
+                    {{--project--}}
+                    <li class="{!! Menu::areActiveRoutes(['project.index', 'project.create']) !!}"><a href="#"><i class="ion-ios7-cog"></i> <span class="nav-label">Project</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('project.index') !!}">
+                                <a href="{!!  URL::route( 'project.index') !!}">All Project</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('project.create') !!}">
+                                <a href="{!!  URL::route( 'project.create') !!}">Add Project</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--project end--}}
+
+                    {{--award--}}
+                    <li class="{!! Menu::areActiveRoutes(['award.index', 'award.create']) !!}"><a href="#"><i class="ion-ribbon-b"></i> <span class="nav-label">Award</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('award.index') !!}">
+                                <a href="{!!  URL::route( 'award.index') !!}">All Award</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('award.create') !!}">
+                                <a href="{!!  URL::route( 'award.create') !!}">Add Award</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--event end--}}
+
+
+                    {{--book--}}
+                    <li class="{!! Menu::areActiveRoutes(['book.index', 'book.create']) !!}"><a href="#"><i class="fa fa-book"></i> <span class="nav-label">Book</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('book.index') !!}">
+                                <a href="{!!  URL::route( 'book.index') !!}">All Book</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('book.create') !!}">
+                                <a href="{!!  URL::route( 'book.create') !!}">Add Book</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--book end--}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    {{--<li class="{!! Menu::areActiveURLs(['https://dashboard.zopim.com/?first_login#visitor_list/state','https://sustcse.disqus.com/admin/moderate/','help']) !!}"><a href="#"><i--}}
+                                    {{--class="ion-ios7-people"></i> <span class="nav-label">Support</span></a>--}}
+                        {{--<ul class="list-unstyled">--}}
+
+
+                            {{--<li class="{!! Menu::isActiveURL('https://dashboard.zopim.com/?first_login#visitor_list/state') !!}">--}}
+                                {{--<a href="{!!  URL::to('https://dashboard.zopim.com/?first_login#visitor_list/state') !!}" target="_blank">Chat Support</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li class="{!! Menu::isActiveURL('https://sustcse.disqus.com/admin/moderate') !!}" >--}}
+                                {{--<a href="{!!  URL::to('https://sustcse.disqus.com/admin/moderate') !!}" target="_blank">Comment Moderate</a>--}}
+                            {{--</li>--}}
+
+                            {{--<li class="{!! Menu::isActiveURL('help') !!}" >--}}
+                                {{--<a href="{!!  URL::to('help') !!}" >Account Information</a>--}}
+                            {{--</li>--}}
+
+                        {{--</ul>--}}
+                    {{--</li>--}}
 
 
                     @endrole
