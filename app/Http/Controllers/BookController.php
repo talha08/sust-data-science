@@ -19,8 +19,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        $book = Book::orderBy('id', 'desc')->get();
-        return view('book.index', compact('book'))->with('title',"All Book List");
+        $books = Book::orderBy('id', 'desc')->get();
+        return view('book.index', compact('books'))->with('title',"All Book List");
     }
 
     /**
@@ -48,8 +48,8 @@ class BookController extends Controller
         $book->book_link1 = $request->book_link1;
         $book->book_link2 = $request->book_link2;
         $book->book_link3 = $request->book_link3;
-        $book->user_id =  Auth::user()->id;
-        $book->meta_data =  md5($request->book_name);
+        $book->user_id =  \Auth::user()->id;
+        $book->book_meta_data =  md5($request->book_name);
         $book->save();
 
         return redirect()->back()->with('success', 'Book Successfully Added');
@@ -94,8 +94,8 @@ class BookController extends Controller
         $book->book_link1 = $request->book_link1;
         $book->book_link2 = $request->book_link2;
         $book->book_link3 = $request->book_link3;
-        $book->user_id =  Auth::user()->id;
-        $book->meta_data =  md5($request->book_name);
+        $book->user_id =  \Auth::user()->id;
+        //$book->book_meta_data =  md5($request->book_name);
         $book->save();
 
         return redirect()->back()->with('success', 'Book Successfully Updated');
