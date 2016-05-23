@@ -28,33 +28,34 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="panel-body">
 
-									{!! Form::open(array('route' => 'project.store',  'files' => true) ) !!}
+
+									{!!Form::model($projects,['route' => ['project.update',$projects->id], 'method' => 'put' ])!!}
 
 									<div class="form-group">
 										{!! Form::label('project_title', 'Title* :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('project_title', '',array('class' => 'form-control','placeholder' =>  'Project title here'))!!}
+										{!!Form::text('project_title', null,array('class' => 'form-control','placeholder' =>  'Project title here'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
 										{!! Form::label('project_supervisor', 'Select Supervisor* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('project_supervisor', $teacher, '',array('class' => 'select2', 'autofocus'))!!}
+										{!!Form::select('project_supervisor', $teacher, null,array('class' => 'select2', 'autofocus'))!!}
 									</div><br/>
 
 									<div class="form-group">
 										{!! Form::label('project_developer', 'Select Student* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('project_developer', $students, '',array('class' => 'select2', 'autofocus'))!!}
+										{!!Form::select('project_developer', $students, null,array('class' => 'select2', 'autofocus'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
 										{!! Form::label('project_url', 'Project Url :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('project_url', '',array('class' => 'form-control','placeholder' =>  'put project url here...'))!!}
+										{!!Form::text('project_url', null,array('class' => 'form-control','placeholder' =>  'put project url here...'))!!}
 									</div><br/>
 
 									<div class="form-group">
 										{!! Form::label('project_details', 'Details :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::textarea('project_details', '',array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
+										{!!Form::textarea('project_details', null,array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
 									</div><br/>
 
 									{{--<div class="form-group">--}}

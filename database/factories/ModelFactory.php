@@ -71,6 +71,7 @@ $factory->define(App\Paper::class, function (Faker\Generator $faker) {
         'paper_supervisor' =>$faker->name,
         'paper_meta_data' =>$faker->unique()->word,
         'paper_url' =>$faker->url,
+        'paper_pdf' =>$faker->sentence(20),
     ];
 });
 

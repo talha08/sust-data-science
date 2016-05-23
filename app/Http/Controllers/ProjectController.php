@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,8 +18,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $event = Project::orderBy('id', 'desc')->get();
-        return view('project.index', compact('event'))->with('title',"All Project List");
+        $projects = Project::orderBy('id', 'desc')->get();
+        return view('project.index', compact('projects'))->with('title',"All Project List");
     }
 
     /**
@@ -28,7 +29,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('project.create')->with('title',"Create New Project");
+        $teacher = User::where('is_teacher','=',1 )->lists('email','email');
+        $students = User::where('is_teacher','=',0 )
+            ->orWhere('is_teacher','=',2 )
+            ->lists('email','email');
+        return view('project.create',compact('teacher','students'))->with('title',"Create New Project");
     }
 
     /**
@@ -39,10 +44,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
         $project = new Project();
         $project->project_title = $request->project_title;
         $project->project_details = $request->project_details;
-        $project->project_status = $request->project_status;
+        //$project->project_status = $request->project_status;
         $project->project_developer = $request->project_developer;
         $project->project_supervisor = $request->project_supervisor;
         $project->project_url = $request->project_url;
@@ -72,8 +78,12 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $event = Project::findOrFail($id);
-        return view('project.edit', compact('event'))->with('title',"Edit Project");
+        $teacher = User::where('is_teacher','=',1 )->lists('email','email');
+        $students = User::where('is_teacher','=',0 )
+            ->orWhere('is_teacher','=',2 )
+            ->lists('email','email');
+        $projects = Project::findOrFail($id);
+        return view('project.edit', compact('projects','teacher','students'))->with('title',"Edit Project");
     }
 
     /**
@@ -109,5 +119,19 @@ class ProjectController extends Controller
     {
         Project::destroy($id);
         return redirect()->route('project.index')->with('success',"Project Successfully deleted");
+    }
+
+
+    public function changeStatus($id){
+
+        Project::where('id','=',$id)->update([
+            'project_status' => 1
+        ]);
+
+//        $project = Project::findOrFail($id);
+//        $project->project_status = 1;
+//        $project->save();
+
+        return redirect()->back()->with('success', 'Status Successfully Updated');
     }
 }

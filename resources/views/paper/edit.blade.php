@@ -16,7 +16,7 @@
 						<h3 class="panel-title">{!!$title!!}</h3>
 
                     <span class="pull-right">
-						<a href="{!! route('project.index')!!}"><button class="btn btn-success">All Project</button></a>
+						<a href="{!! route('paper.index')!!}"><button class="btn btn-success">All Paper</button></a>
                     </span>
 					</div>
 
@@ -28,33 +28,32 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="panel-body">
 
-									{!! Form::open(array('route' => 'project.store',  'files' => true) ) !!}
-
+									{!!Form::model($paper,['route' => ['paper.update',$paper->id], 'method' => 'put' ])!!}
 									<div class="form-group">
-										{!! Form::label('project_title', 'Title* :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('project_title', '',array('class' => 'form-control','placeholder' =>  'Project title here'))!!}
+										{!! Form::label('paper_title', 'Title* :', array('class' => 'control-label')) !!}<br/>
+										{!!Form::text('paper_title', null,array('class' => 'form-control','placeholder' =>  'Paper title here'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
-										{!! Form::label('project_supervisor', 'Select Supervisor* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('project_supervisor', $teacher, '',array('class' => 'select2', 'autofocus'))!!}
+										{!! Form::label('paper_supervisor', 'Select Supervisor* :', array('class' => 'col-md-2 control-label')) !!}
+										{!!Form::select('paper_supervisor', $teacher, null,array('class' => 'select2', 'autofocus'))!!}
 									</div><br/>
 
 									<div class="form-group">
-										{!! Form::label('project_developer', 'Select Student* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('project_developer', $students, '',array('class' => 'select2', 'autofocus'))!!}
+										{!! Form::label('paper_author', 'Select Student* :', array('class' => 'col-md-2 control-label')) !!}
+										{!!Form::select('paper_author', $students, null,array('class' => 'select2', 'autofocus'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
-										{!! Form::label('project_url', 'Project Url :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('project_url', '',array('class' => 'form-control','placeholder' =>  'put project url here...'))!!}
+										{!! Form::label('paper_url', 'Paper Url(optional) :', array('class' => 'control-label')) !!}<br/>
+										{!!Form::text('paper_url', null,array('class' => 'form-control','placeholder' =>  'Paper title here'))!!}
 									</div><br/>
 
 									<div class="form-group">
-										{!! Form::label('project_details', 'Details :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::textarea('project_details', '',array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
+										{!! Form::label('paper_details', 'Details(optional) :', array('class' => 'control-label')) !!}<br/>
+										{!!Form::textarea('paper_details', null,array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
 									</div><br/>
 
 									{{--<div class="form-group">--}}
@@ -65,7 +64,7 @@
 
 
 									<div class="form-group">
-										{!! Form::submit('Submit Paper', array('class' => 'btn btn-primary')) !!}
+										{!! Form::submit('Update Paper', array('class' => 'btn btn-primary')) !!}
 									</div>
 
 

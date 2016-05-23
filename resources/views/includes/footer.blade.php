@@ -1,6 +1,6 @@
 <!-- Footer Start -->
 <footer class="footer">
-	Copyright &copy; Tech Blog, Bangladesh. All rights reserved.
+	Copyright &copy; Data Science Lab, CSE , SUST, Sylhet, Bangladesh. All rights reserved.
 </footer>
 <!-- Footer Ends -->
 

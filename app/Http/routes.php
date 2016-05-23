@@ -56,7 +56,7 @@ Route::group(array('middleware' => 'auth'), function()
 
 
 
-//blog section     complete
+//blog section   complete
 	Route::get('blog/create', array('as' => 'blog.create', 'uses' => 'BlogController@create'));
 	Route::post('blog', array('as' => 'blog.store', 'uses' => 'BlogController@store'));
 	Route::get('blog/{id}/edit', array('as' => 'blog.edit', 'uses' => 'BlogController@edit'));
@@ -66,26 +66,13 @@ Route::group(array('middleware' => 'auth'), function()
 
 
 
-//paper section
+//paper section  complete
 	Route::get('paper', array('as' => 'paper.index', 'uses' => 'PaperController@index'));
 	Route::get('paper/create', array('as' => 'paper.create', 'uses' => 'PaperController@create'));
 	Route::post('paper', array('as' => 'paper.store', 'uses' => 'PaperController@store'));
 	Route::get('paper/{id}/edit', array('as' => 'paper.edit', 'uses' => 'PaperController@edit'));
 	Route::put('paper/{id}/update', array('as' => 'paper.update', 'uses' => 'PaperController@update'));
 	Route::delete('paper/{id}', array('as' => 'paper.delete', 'uses' => 'PaperController@destroy'));
-
-
-
-
-//project section
-	Route::get('project', array('as' => 'project.index', 'uses' => 'ProjectController@index'));
-	Route::get('project/create', array('as' => 'project.create', 'uses' => 'ProjectController@create'));
-	Route::post('project', array('as' => 'project.store', 'uses' => 'ProjectController@store'));
-	Route::get('project/{id}/edit', array('as' => 'project.edit', 'uses' => 'ProjectController@edit'));
-	Route::put('project/{id}/update', array('as' => 'project.update', 'uses' => 'ProjectController@update'));
-	Route::delete('project/{id}', array('as' => 'project.delete', 'uses' => 'ProjectController@destroy'));
-
-
 
 
 //news section complete
@@ -95,6 +82,20 @@ Route::group(array('middleware' => 'auth'), function()
 	Route::get('news/{id}/edit', array('as' => 'news.edit', 'uses' => 'NewsController@edit'));
 	Route::put('news/{id}/update', array('as' => 'news.update', 'uses' => 'NewsController@update'));
 	Route::delete('news/{id}', array('as' => 'news.delete', 'uses' => 'NewsController@destroy'));
+
+
+
+
+    //project section complete
+	Route::get('project', array('as' => 'project.index', 'uses' => 'ProjectController@index'));
+	Route::get('project/create', array('as' => 'project.create', 'uses' => 'ProjectController@create'));
+	Route::post('project', array('as' => 'project.store', 'uses' => 'ProjectController@store'));
+	Route::get('project/{id}/edit', array('as' => 'project.edit', 'uses' => 'ProjectController@edit'));
+	Route::put('project/{id}/update', array('as' => 'project.update', 'uses' => 'ProjectController@update'));
+	Route::delete('project/{id}', array('as' => 'project.delete', 'uses' => 'ProjectController@destroy'));
+	Route::get('changeStatus/{id}', array('as' => 'project.changeStatus', 'uses' => 'ProjectController@changeStatus'));
+
+
 
 
 

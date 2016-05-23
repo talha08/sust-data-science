@@ -17,8 +17,8 @@ class CreateProjectsTable extends Migration
             $table->string('project_title')->nullable();
             $table->text('project_details')->nullable();
             $table->boolean('project_status')->default(0);
-            $table->text('project_developer')->nullable();
-            $table->text('project_supervisor')->nullable();
+            $table->string('project_developer')->nullable();
+            $table->string('project_supervisor')->nullable();
             $table->text('project_url')->nullable();
             $table->string('project_image')->default('/upload/default/big.jpg');
             $table->string('project_meta_data')->unique();
