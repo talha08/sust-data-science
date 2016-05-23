@@ -52,19 +52,27 @@
 
                         @if(! empty($user))
 								@foreach($user as $users)
-									<div class="leadership-wrapper"><!-- leadership single wrap -->
+										<div class="leadership-wrapper"><!-- leadership single wrap -->
 
-										<figure class="leadership-photo">
-											<img src="{!! asset($users->profiles->img_url)!!}" alt="{!! $users->name !!}" />
-										</figure>
-										<div class="leadership-meta clearfix">
-											<h1 class="leadership-function title-median">{!! $users->name !!} <small>Supervisor</small></h1>
-											<div class="leadership-position">Member Since {!! Carbon\Carbon::now()->diffForHumans($users->created_at) !!} </div>
-											<p class="leadership-bio">
-												{!! $users->profiles->about_me !!}
-											</p>
-										</div>
-									</div><!-- leadership single wrap end -->
+											<figure class="leadership-photo">
+												<a href="{!! route('labfront.peopleProfile',$users->id ) !!}">
+													<img src="{!! asset($users->profiles->img_url)!!}" alt="{!! $users->name !!}" />
+												</a>
+											</figure>
+											<div class="leadership-meta clearfix">
+
+												<h4 class="title-median"><a href="{!!  route('labfront.peopleProfile',$users->id ) !!}" title="Click to view full profile...">
+														{!! $users->name !!}<small>Student</small>
+													</a></h4>
+
+												<div class="leadership-position">Member Since {!! Carbon\Carbon::now()->diffForHumans($users->created_at) !!} </div>
+
+												<p class="leadership-bio">
+													{!! $users->profiles->about_me !!}
+												</p>
+
+											</div>
+										</div><!-- leadership single wrap end -->
 								@endforeach
                         @else
 							<p> No Student Or Developer Found in Database</p>

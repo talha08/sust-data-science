@@ -1,4 +1,4 @@
-<@extends('labfront.layouts.master')
+@extends('labfront.layouts.master')
 @section('content')
 @include('labfront.includes.disqus_comment')
 

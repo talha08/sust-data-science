@@ -146,9 +146,19 @@ class LabFrontController extends Controller
         $user = User::where('is_teacher', 1)
             ->where('status',1)->get();
         $news = News::take(3)->orderBy('id','desc')->get();
-        return view('labfront.supervisor',compact('user','news'))->with('title','Lab Supervisors');
+        return view('labfront.supervisor',compact('user','news'))->with('title','Lab Supervisors/Teachers');
     }
 
+
+    /*==================================================*/
+    //front peopleProfile
+    /*==================================================*/
+
+    public function peopleProfile($id){
+        $user = User::findOrFail($id);
+        $news = News::take(3)->orderBy('id','desc')->get();
+        return view('labfront.peopleProfile',compact('user','news'))->with('title','Profile');
+    }
 
     /*==================================================*/
     //Student List

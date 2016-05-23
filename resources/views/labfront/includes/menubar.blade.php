@@ -39,7 +39,7 @@
                         <ul class="sub-menu">
                             <li><a href="{!! route('labfront.supervisor') !!}">Teachers</a></li>
                             <li><a href="{!! route('labfront.student') !!}">Students</a></li>
-                            <li><a href="{!! route('labfront.alumni') !!}">Allumni</a></li>
+                            <li><a href="{!! route('labfront.alumni') !!}">Alumni</a></li>
                         </ul>
                     </li>
 

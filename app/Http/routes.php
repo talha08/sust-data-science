@@ -162,7 +162,7 @@ Route::group(array('middleware' => 'auth'), function() {
 		Route::delete('event/{id}', array('as' => 'event.delete', 'uses' => 'EventController@destroy'));
 
 
-		//project category section
+		//project category section   complete
 		Route::get('projectCat', array('as' => 'projectCat.index', 'uses' => 'ProjectCatController@index'));
 		Route::get('projectCat/create', array('as' => 'projectCat.create', 'uses' => 'ProjectCatController@create'));
 		Route::post('projectCat', array('as' => 'projectCat.store', 'uses' => 'ProjectCatController@store'));
@@ -183,6 +183,9 @@ Route::group(array('middleware' => 'auth'), function() {
 
 //home
 Route::get('home', array('as' => 'labfront.index', 'uses' => 'LabFrontController@index'));
+
+//profile viwe front
+Route::get('peopleProfile/{id}', array('as' => 'labfront.peopleProfile', 'uses' => 'LabFrontController@peopleProfile'));
 
 
 
