@@ -15,9 +15,9 @@
 
 						<h3 class="panel-title">{!!$title!!}</h3>
 
-                       <span class="pull-right">
-						   <a href="{!! route('news.index')!!}"><button class="btn btn-success">All News</button></a>
-                        </span>
+                    <span class="pull-right">
+							  <a href="{!! route('news.index')!!}"><button class="btn btn-success">All News</button></a>
+                    </span>
 					</div>
 
 
@@ -28,27 +28,24 @@
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<div class="panel-body">
 
-									{!! Form::open(array('route' => 'news.store',  'files' => true) ) !!}
+									{!!Form::model($news,['route' => ['news.update',$news->id], 'method' => 'put' ])!!}
 
 									<div class="form-group">
 										{!! Form::label('news_title', 'Title :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('news_title', '',array('class' => 'form-control','placeholder' =>  'News title here'))!!}
+										{!!Form::text('news_title', null,array('class' => 'form-control','placeholder' =>  'News title here'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
 										{!! Form::label('news_details', 'Details :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::textarea('news_details', '',array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
+										{!!Form::textarea('news_details', null,array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
 									</div><br/>
 
 
-									{{--<div class="form-group">--}}
-									{{--{!! Form::label('image', 'Choose an image') !!}--}}
-									{{--{!! Form::file('image') !!}--}}
-									{{--</div> <br>--}}
+
 
 									<div class="form-group">
-										{!! Form::submit('Create News', array('class' => 'btn btn-primary')) !!}
+										{!! Form::submit('Update news', array('class' => 'btn btn-primary')) !!}
 									</div>
 
 

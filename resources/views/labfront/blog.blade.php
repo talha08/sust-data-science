@@ -132,7 +132,7 @@
 								<h1 class="title-titan">Search For Blog</h1>
 								{!! Form::open(array('route' => 'search.action',  'files' => true) ) !!}
 								{!!Form::text('search_value','',array('class' => 'form-control','placeholder' => 'Search here' ))!!}
-								<span class="help-block">* Type and hit Enter.</span>
+								<span class="help-block">* Type and press Enter.</span>
 								{!! Form::close() !!}
 
 							</li>

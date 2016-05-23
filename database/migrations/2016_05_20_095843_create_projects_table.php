@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->text('project_developer')->nullable();
             $table->text('project_supervisor')->nullable();
             $table->text('project_url')->nullable();
-            $table->string('project_image')->default('/uploads/default/big.jpg');
+            $table->string('project_image')->default('/upload/default/big.jpg');
             $table->string('project_meta_data')->unique();
             $table->timestamps();
         });

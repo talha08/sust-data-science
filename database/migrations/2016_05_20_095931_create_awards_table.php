@@ -19,7 +19,7 @@ class CreateAwardsTable extends Migration
             $table->text('award_developer')->nullable();
             $table->string('award_supervisor')->nullable();
             $table->string('award_position')->nullable();
-            $table->string('award_image')->default('/uploads/default/big.jpg');
+            $table->string('award_image')->default('/upload/default/big.jpg');
             $table->string('award_meta_data')->unique();
             $table->timestamps();
         });

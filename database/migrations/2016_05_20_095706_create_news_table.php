@@ -16,7 +16,7 @@ class CreateNewsTable extends Migration
             $table->increments('id');
             $table->string('news_title')->nullable();
             $table->text('news_details')->nullable();
-            $table->string('news_image')->default('/uploads/default/big.jpg');
+            $table->string('news_image')->default('/upload/default/big.jpg');
             $table->string('news_meta_data')->unique();
             $table->timestamps();
         });

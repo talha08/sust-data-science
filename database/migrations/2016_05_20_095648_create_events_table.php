@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('event_start')->nullable();
             $table->string('event_end')->nullable();
             $table->string('event_time')->nullable();
-            $table->string('event_image')->default('/uploads/default/big.jpg');
+            $table->string('event_image')->default('/upload/default/big.jpg');
             $table->string('event_meta_data')->unique();
             //$table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();

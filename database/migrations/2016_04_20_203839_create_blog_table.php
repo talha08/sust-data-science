@@ -22,8 +22,8 @@ class CreateBlogTable extends Migration
             $table->integer('share')->default(0);
             $table->integer('like')->default(0);
             $table->string('tag'); //if use pivot table then hide it
-            $table->string('image')->default('/uploads/default/big.jpg');
-            $table->string('img_thumbnail')->default('/uploads/default/small.jpg');
+            $table->string('image')->default('/upload/default/big.jpg');
+            $table->string('img_thumbnail')->default('/upload/default/small.jpg');
             $table->string('meta_data')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();

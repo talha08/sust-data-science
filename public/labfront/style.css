@@ -675,8 +675,8 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 
 }
 /* MD */
-@media (min-width: 992px) and (max-width: 1199px) {
-	#k-head { margin-bottom: 20px; }
+@media (min-width: 992px) and (max-width: 1299px) {
+	#k-head { margin-bottom: 10px; }
 	#k-site-logo { display: block; float: none !important; text-align: center; }
 	.k-main-navig { margin-top: 10px; }
 	#drop-down-left a { border-top: none; padding-top: 0 !important; }
@@ -692,7 +692,7 @@ a.list-group-item.active > .badge, .nav-pills > .active > a > .badge { backgroun
 	/*[class*='col-']:not(:last-child) { margin-bottom: 10px; }*/
 	#k-head { margin-bottom: 10px; }
 	#k-site-logo { display: block; float: none !important; text-align: center; }
-	.k-main-navig { margin-top: 30px; }
+	.k-main-navig { margin-top: 10px; }
 	#drop-down-left a { border-top: none; padding-top: 0 !important; }
 	#drop-down-left .k-item-desc { display: none; }	
 	#drop-down-left > li:first-child { margin-left: 0; }

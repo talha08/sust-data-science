@@ -88,7 +88,7 @@ Route::group(array('middleware' => 'auth'), function()
 
 
 
-//news section
+//news section complete
 	Route::get('news', array('as' => 'news.index', 'uses' => 'NewsController@index'));
 	Route::get('news/create', array('as' => 'news.create', 'uses' => 'NewsController@create'));
 	Route::post('news', array('as' => 'news.store', 'uses' => 'NewsController@store'));
@@ -220,9 +220,8 @@ Route::get('home/event/{meta_data}', array('as' => 'labfront.event_single', 'use
 
 
 
-
-
-
+//subscriber or newsletter
+Route::post('home/subscriber', array('as' => 'subscriber.action', 'uses' => 'SubscriberController@addSubscriber'));
 
 
 

@@ -32,7 +32,7 @@
 
 									<div class="form-group">
 										{!! Form::label('event_title', 'Title :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('event_title', '',array('class' => 'form-control','placeholder' =>  'Award title here'))!!}
+										{!!Form::text('event_title', '',array('class' => 'form-control','placeholder' =>  'Event title here'))!!}
 									</div><br/>
 
 

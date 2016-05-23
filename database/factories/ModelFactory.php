@@ -124,3 +124,18 @@ $factory->define(App\Event::class, function (Faker\Generator $faker) {
         'event_meta_data' =>$faker->unique()->word,
     ];
 });
+
+
+//for event table
+$factory->define(App\Book::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' =>1,
+        'book_name' =>$faker->sentence(50),
+        'book_details' =>$faker->sentence(300),
+        'book_image' =>$faker->imageUrl($width = 558, $height = 221),
+        'book_link1' =>$faker->url,
+        'book_link2' =>$faker->url,
+        'book_link3' =>$faker->url,
+        'book_meta_data' =>$faker->unique()->word,
+    ];
+});

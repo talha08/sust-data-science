@@ -35,7 +35,7 @@
 											<th>Start Date</th>
 											<th>End Date</th>
 											<th>Start Time </th>
-											<th>Details</th>
+											<th>View</th>
 											<th>Edit</th>
 											<th>Delete</th>
 										</tr>

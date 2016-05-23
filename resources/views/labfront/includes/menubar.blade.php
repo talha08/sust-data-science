@@ -4,6 +4,7 @@
 
         <div class="col-lg-12">
 
+
             <div id="k-site-logo" class="pull-left"><!-- site logo -->
 
                 <h1 class="k-logo">
@@ -14,8 +15,9 @@
                 </h1>
 
                 <a id="mobile-nav-switch" href="#drop-down-left"><span class="alter-menu-icon"></span></a><!-- alternative menu button -->
-
             </div><!-- site logo end -->
+
+
 
             <nav id="k-menu" class="k-main-navig"><!-- main navig -->
 
@@ -50,7 +52,8 @@
                         <ul class="sub-menu">
                             <li><a href="#">Complete Projects</a></li>
                             <li><a href="#">Running Projects</a></li>
-                            <li><a href="#">Paper</a></li>
+                            <li><a href="#">Papers</a></li>
+                            <li><a href="#">Books</a></li>
                         </ul>
                     </li>
 

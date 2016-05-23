@@ -150,25 +150,15 @@ class LabFrontController extends Controller
     }
 
 
-    /*==================================================*/
-    //front peopleProfile
-    /*==================================================*/
-
-    public function peopleProfile($id){
-        $user = User::findOrFail($id);
-        $news = News::take(3)->orderBy('id','desc')->get();
-        return view('labfront.peopleProfile',compact('user','news'))->with('title','Profile');
-    }
 
     /*==================================================*/
     //Student List
     /*==================================================*/
 
     public function student(){
-        $user = User::where('is_teacher', 0)
-            ->where('status',1)->get();
+        $user = User::where('is_teacher', 0)->where('status',1)->get();
         $news = News::take(3)->orderBy('id','desc')->get();
-        return view('labfront.supervisor',compact('user','news'))->with('title','Lab Student/Developer');
+        return view('labfront.student',compact('user','news'))->with('title','Lab Student/Developer');
     }
 
 
@@ -181,6 +171,18 @@ class LabFrontController extends Controller
             ->where('status',1)->get();
         $news = News::take(3)->orderBy('id','desc')->get();
         return view('labfront.alumni',compact('user','news'))->with('title','Lab Alumni');
+    }
+
+
+
+    /*==================================================*/
+    //front peopleProfile
+    /*==================================================*/
+
+    public function peopleProfile($id){
+        $user = User::findOrFail($id);
+        $news = News::take(3)->orderBy('id','desc')->get();
+        return view('labfront.peopleProfile',compact('user','news'))->with('title','Profile');
     }
 
 

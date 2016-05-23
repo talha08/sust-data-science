@@ -12,7 +12,7 @@
 <div class="wrapper-page animated fadeInDown">
     <div class="panel panel-color panel-primary">
         <div class="panel-heading">
-            <h3 class="text-center m-t-10"> Sign In to <strong>Tech Blog</strong></h3>
+            <h3 class="text-center m-t-10"> <strong> Sign In</strong></h3>
         </div>
         <br>
 
@@ -79,7 +79,7 @@
         <div class="registration">
             <center>
             <br>
-                Don't have an blogger account yet? <br/>
+                Don't have an account yet? <br/>
             <a class="" href="{!! route('user.create') !!}">
                 Apply For Account.
             </a>

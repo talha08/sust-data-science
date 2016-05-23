@@ -17,11 +17,11 @@ class CreateBookTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('book_name');
             $table->text('book_details');
-            $table->string('book_image')->default('/uploads/default/small.jpg');
+            $table->string('book_image')->default('/upload/default/small.jpg');
             $table->string('book_link1')->nullable();
             $table->string('book_link2')->nullable();
             $table->string('book_link3')->nullable();
-            $table->string('meta_data')->unique();
+            $table->string('book_meta_data')->unique();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });

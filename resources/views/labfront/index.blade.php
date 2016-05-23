@@ -22,14 +22,14 @@
 
 			</div><!-- top search end -->
 
-			<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
+
+
+			<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 				<ol class="breadcrumb">
 					<li><a href="#">SUST cse data Science Lab</a></li>
 					<li><a href="#">Home</a></li>
-
 				</ol>
-
 			</div><!-- breadcrumbs end -->
 
 		</div><!-- row end -->
@@ -227,21 +227,31 @@
 					<!-- widgets -->
 
 
-{{--Newsletter--}}
+				{{--Newsletter--}}
 					<li class="widget-container widget_newsletter">
 						<!-- widget -->
 						<h1 class="title-titan">Lab Newsletter</h1>
-
-						<form role="search" method="get" class="newsletter-form" action="#">
+						@include('includes.alert')
+						<form role="search" method="post" class="newsletter-form" action="{!!route('subscriber.action')!!}">
+							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 							<div class="input-group">
-								<input type="text" placeholder="Your e-mail address" autocomplete="off" class="form-control newsletter-form-input" name="email" />
+								<input type="text" placeholder="Your e-mail address" autocomplete="off" class="form-control newsletter-form-input" name="subscriber_email" />
 								<span class="input-group-btn"><button type="submit" class="btn btn-default">GO!</button></span>
 							</div>
 							<span class="help-block">* Enter your e-mail address to subscribe.</span>
 						</form>
 
+						{{--@include('includes.alert')--}}
+						{{--<div class="input-group">--}}
+						{{--{!! Form::open(array('route' => 'subscriber.action') ) !!}--}}
+						{{--{!!Form::text('subscriber_email','',array('class' => 'form-control newsletter-form-input','placeholder' => 'Your email here...' ))!!}--}}
+						{{--<span class="input-group-btn"><button type="submit" class="btn btn-default">GO!</button></span>--}}
+						{{--</div>--}}
+						{{--<span class="help-block">* Enter your e-mail address to subscribe.</span>--}}
+						{{--{!! Form::close() !!}--}}
+
 					</li>
-{{--Newsletter--}}
+				{{--Newsletter--}}
 
 
 

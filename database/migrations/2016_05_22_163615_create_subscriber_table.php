@@ -12,7 +12,11 @@ class CreateSubscriberTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('subscriber', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('subscriber_email');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +26,6 @@ class CreateSubscriberTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('subscriber');
     }
 }

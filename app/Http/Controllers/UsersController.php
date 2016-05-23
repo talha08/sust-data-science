@@ -22,7 +22,7 @@ class UsersController extends Controller
     {
         $user = User::where('status', 1)->where('id','!=',1)->get();
         return view('user.index', compact('user'))
-            ->with('title', 'All Blogger List');
+            ->with('title', 'All User List');
     }
 
 
@@ -67,7 +67,7 @@ class UsersController extends Controller
         ];
 
         return view('user.create',compact('platform'))
-            ->with('title', 'Apply For Blogger');
+            ->with('title', 'Apply For Membership');
     }
 
 
