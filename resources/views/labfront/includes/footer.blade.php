@@ -154,13 +154,21 @@
 {!! Html::script('labfront/js/jquery.fitvids.js') !!}
 {!! Html::script('labfront/js/audioplayer/audioplayer.min.js') !!}
 {!! Html::script('labfront/js/jquery.easy-pie-chart.js') !!}
+{!! Html::script('js/jquery.sticky.js') !!}
+
 
 {!! Html::script('labfront/js/theme.js') !!}
+
+
 
 @yield('script')
 
 
-
+<script>
+    $(document).ready(function(){
+        $("#sticker").sticky({topSpacing:0});
+    });
+</script>
 
 
 

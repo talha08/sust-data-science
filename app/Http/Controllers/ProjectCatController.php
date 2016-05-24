@@ -45,7 +45,7 @@ class projectCatController extends Controller
         $projectCat->cat_name = $request->cat_name;
         $projectCat->cat_details = $request->cat_details;
         $projectCat->save();
-        return \Redirect::route('tag.index')->with('success','Project Category Successfully Created');
+        return \Redirect::route('projectCat.index')->with('success','Project Category Successfully Created');
     }
 
     /**

@@ -2,8 +2,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="Md. Abu Talha">
-    <meta name="keyword" content="Sust Data Science Lab">
+    <meta name="author" content="Md. Abu Talha & Farzad Bin Fazle">
+    <meta name="keyword" content="Sust, Data, Science, Lab, Cse,">
 
     {!! Html::favicon('favicon.ico') !!}
 

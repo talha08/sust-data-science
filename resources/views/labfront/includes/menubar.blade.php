@@ -1,8 +1,8 @@
 <div id="k-head" class="container"><!-- container + head wrapper -->
 
-    <div class="row"><!-- row -->
+    <div class="row" ><!-- row -->
 
-        <div class="col-lg-12">
+        <div class="col-lg-12" >
 
 
             <div id="k-site-logo" class="pull-left"><!-- site logo -->
@@ -82,7 +82,7 @@
                             <a href="#" title="Account">Account</a>
                             <ul class="sub-menu">
                                 <li><a href="{!! route('login') !!}">Login</a></li>
-                                <li><a href="{!! route('labfront.archive_blog') !!}">Sign Up</a></li>
+                                <li><a href="{!! route('user.create') !!}">Sign Up</a></li>
 
                             </ul>
                         </li>
@@ -97,3 +97,5 @@
     </div><!-- row end -->
 
 </div><!-- container + head wrapper end -->
+
+
