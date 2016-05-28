@@ -42,6 +42,7 @@ class AwardController extends Controller
      */
     public function store(Request $request)
     {
+
         $award = new Award();
         $award->award_title = $request->award_title;
         $award->award_details = $request->award_details;

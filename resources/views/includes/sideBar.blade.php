@@ -62,15 +62,22 @@
 
 
                     {{--user--}}
-                    <li class="{!! Menu::areActiveRoutes(['user.index','user.applyList']) !!}"><a href="#"><i
+                    <li class="{!! Menu::areActiveRoutes(['user.student','user.teacher','user.alumni','user.applyList']) !!}"><a href="#"><i
                                     class="ion-person-stalker"></i> <span class="nav-label">Users</span></a>
                         <ul class="list-unstyled">
 
-                            <li class="{!! Menu::isActiveRoute('user.index') !!}">
-                                <a href="{!!  URL::route('user.index') !!}">All Users</a>
+                            <li class="{!! Menu::isActiveRoute('user.student') !!}">
+                                <a href="{!!  URL::route('user.student') !!}">Students</a>
                             </li>
+                            <li class="{!! Menu::isActiveRoute('user.teacher') !!}">
+                                <a href="{!!  URL::route('user.teacher') !!}">Teachers</a>
+                            </li>
+                            <li class="{!! Menu::isActiveRoute('user.alumni') !!}">
+                                <a href="{!!  URL::route('user.alumni') !!}">Alumni</a>
+                            </li>
+
                             <li class="{!! Menu::isActiveRoute('user.applyList') !!}">
-                                <a href="{!!  URL::route('user.applyList') !!}">Apply Users</a>
+                                <a href="{!!  URL::route('user.applyList') !!}">Waiting Users</a>
                             </li>
 
                         </ul>
@@ -157,6 +164,23 @@
                     </li>
                     {{--project end--}}
 
+
+                    {{--book--}}
+                    <li class="{!! Menu::areActiveRoutes(['book.index', 'book.create']) !!}"><a href="#"><i class="fa fa-book"></i> <span class="nav-label">Book</span></a>
+                        <ul class="list-unstyled">
+
+                            <li class="{!! Menu::isActiveRoute('book.index') !!}">
+                                <a href="{!!  URL::route( 'book.index') !!}">All Book</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('book.create') !!}">
+                                <a href="{!!  URL::route( 'book.create') !!}">Add Book</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--book end--}}
+
+
                     {{--award--}}
                     <li class="{!! Menu::areActiveRoutes(['award.index', 'award.create']) !!}"><a href="#"><i class="ion-ribbon-b"></i> <span class="nav-label">Award</span></a>
                         <ul class="list-unstyled">
@@ -173,20 +197,7 @@
                     {{--event end--}}
 
 
-                    {{--book--}}
-                    <li class="{!! Menu::areActiveRoutes(['book.index', 'book.create']) !!}"><a href="#"><i class="fa fa-book"></i> <span class="nav-label">Book</span></a>
-                        <ul class="list-unstyled">
 
-                            <li class="{!! Menu::isActiveRoute('book.index') !!}">
-                                <a href="{!!  URL::route( 'book.index') !!}">All Book</a>
-                            </li>
-
-                            <li class="{!! Menu::isActiveRoute('book.create') !!}">
-                                <a href="{!!  URL::route( 'book.create') !!}">Add Book</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {{--book end--}}
 
 
 

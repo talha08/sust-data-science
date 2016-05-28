@@ -22,9 +22,9 @@ class CreateProfileTable extends Migration
             $table->string('fb_user')->nullable();
             $table->string('twitter_user')->nullable();
             $table->string('github_user')->nullable();
-            $table->string('platform');
-            $table->string('position');
-            $table->string('organization');
+            $table->string('platform')->nullable();
+            $table->string('position')->nullable();
+            $table->string('organization')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

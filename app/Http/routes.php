@@ -114,15 +114,26 @@ Route::group(array('middleware' => 'auth'), function()
 Route::group(array('middleware' => 'auth'), function() {
 	Route::group(array('middleware' => 'user'), function() {
 
-		//blogger list
-		Route::get('allUser', array('as' => 'user.index', 'uses' => 'UsersController@index'));
-		Route::delete('allUser/{id}', array('as' => 'user.delete', 'uses' => 'UsersController@destroy'));
+		//user list
+		//Route::get('allUser', array('as' => 'user.index', 'uses' => 'UsersController@index'));
+		Route::get('student-list', array('as' => 'user.student', 'uses' => 'UsersController@student'));
+		Route::delete('student-list/{id}', array('as' => 'user.delete', 'uses' => 'UsersController@destroy'));
+		Route::get('teacher-list', array('as' => 'user.teacher', 'uses' => 'UsersController@teacher'));
+		Route::delete('teacher-list/{id}', array('as' => 'user.delete', 'uses' => 'UsersController@destroy'));
+		Route::get('alumni-list', array('as' => 'user.alumni', 'uses' => 'UsersController@alumni'));
+		Route::delete('alumni-list/{id}', array('as' => 'user.delete', 'uses' => 'UsersController@destroy'));
+		Route::get('makeAlumni/{id}', array('as' => 'user.makeAlumni', 'uses' => 'UsersController@makeAlumni'));
+          //here different delete for different user
+
 
 
 		//apply user list
 		Route::get('allApplyList', array('as' => 'user.applyList', 'uses' => 'UsersController@applyList'));
 		Route::delete('allApplyList/{id}', array('as' => 'user.destroy', 'uses' => 'UsersController@destroy'));
 
+		//teacher add by admin
+		Route::get('teacher-add', array('as' => 'user.teacherAdd', 'uses' => 'TeacherAddController@teacherAdd'));
+		Route::post('teacher-add/store', array('as' => 'user.teacherStore', 'uses' => 'TeacherAddController@teacherStore'));
 
 		//approve users
 		Route::get('allUser', array('as' => 'user.index', 'uses' => 'UsersController@index'));
@@ -170,8 +181,6 @@ Route::group(array('middleware' => 'auth'), function() {
 		Route::get('projectCat/{id}/edit', array('as' => 'projectCat.edit', 'uses' => 'ProjectCatController@edit'));
 		Route::put('projectCat/{id}/update', array('as' => 'projectCat.update', 'uses' => 'ProjectCatController@update'));
 		Route::delete('projectCat/{id}', array('as' => 'projectCat.delete', 'uses' => 'ProjectCatController@destroy'));
-
-
 
 
 	});
@@ -244,7 +253,9 @@ Route::post('home/subscriber', array('as' => 'subscriber.action', 'uses' => 'Sub
 
 
 
-
+Route::get('xxx',function(){
+	return \App\Award::all();
+});
 
 
 

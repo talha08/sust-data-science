@@ -17,12 +17,51 @@ use App\Role;
 
 class UsersController extends Controller
 {
-    //List all Blogger
+    //List all User
     public function index()
     {
-        $user = User::where('status', 1)->where('id','!=',1)->get();
+        $user = User::where('status', 1)
+            //->where('id','!=',1)
+            ->get();
         return view('user.index', compact('user'))
             ->with('title', 'All User List');
+    }
+
+    //List all students
+    public function student()
+    {
+        $user = User::where('status', 1)->where('is_teacher','=',0)->get();
+        return view('user.student', compact('user'))
+            ->with('title', 'All Student List');
+    }
+
+    //List all Teachers
+    public function teacher()
+    {
+        $user = User::where('status', 1)->where('is_teacher','=',1)->get();
+        return view('user.teacher', compact('user'))
+            ->with('title', 'All Teacher List');
+    }
+
+    //List all Alumni
+    public function alumni()
+    {
+        $user = User::where('status', 1)->where('is_teacher','=',2)->get();
+        return view('user.alumni', compact('user'))
+            ->with('title', 'All Alumni List');
+    }
+
+
+    // make a student to alumni
+    public  function makeAlumni($id){
+        $user = User::findOrFail($id);
+        $user->is_teacher = 2;
+        if($user->save()){
+            return redirect()->back()->with('success', 'User Successfully as a Alumni');
+        }
+        else{
+            return redirect()->back()->with('error', 'Something Went Wrong, Try Again');
+        }
     }
 
 
@@ -47,7 +86,7 @@ class UsersController extends Controller
 
 
 
-    //create blogger/ apply for blogger
+    //create user
     public function create()
     {
         $platform= [
@@ -71,7 +110,7 @@ class UsersController extends Controller
     }
 
 
-    //store blogger data
+    //store users data
     public function store(UserRequest $request)
     {
 
@@ -135,8 +174,9 @@ class UsersController extends Controller
     {
         User::destroy($id);
 
-        return redirect()->route('user.index')->with('success', "User Successfully deleted");
+        return redirect()->back()->with('success', "User Successfully deleted");
     }
+
 
     //3rd party account information
     public function help(){

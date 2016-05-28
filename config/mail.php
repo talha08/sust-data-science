@@ -54,7 +54,7 @@ return array(
     |
     */
 
-    'from' => array('address' => 'infancy.itbd@gmail.com', 'name' => 'Tech Blog Password Reset'),
+    'from' => array('address' => 'infancy.itbd@gmail.com', 'name' => 'Data Science Lab, CSE, SUST'),
 
     /*
     |--------------------------------------------------------------------------
