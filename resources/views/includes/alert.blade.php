@@ -1,9 +1,12 @@
 @if($success = Session::get('success'))
     <div class="alert alert-success alert-dismissable fade in">
 	  	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	  	{!! $success !!}
+		<i class="fa fa-check-circle fa-lg fa-fw"></i>{!! $success !!}
 	</div>
 @endif
+
+
+
 
 @if($error = Session::get('error'))
     <div class="alert alert-danger alert-dismissable fade in">

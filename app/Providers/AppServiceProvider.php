@@ -27,4 +27,6 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
         }
     }
+
+
 }

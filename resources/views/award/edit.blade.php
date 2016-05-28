@@ -38,13 +38,13 @@
 
 									<div class="form-group">
 										{!! Form::label('award_developer', 'Select Student :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('award_developer', $student,$award->award_developer ,array('class' => 'select2', 'autofocus'))!!}
+										{!!Form::select('award_developer[]', $student, null ,array('class' => 'select2', 'multiple','autofocus'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
 										{!! Form::label('award_supervisor', 'Select Supervisor :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('award_supervisor', $teacher, $award->award_supervisor ,array('class' => 'select2', 'autofocus'))!!}
+										{!!Form::select('award_supervisor[]', $teacher, null ,array('class' => 'select2','multiple', 'autofocus'))!!}
 									</div><br/>
 
 
@@ -91,6 +91,9 @@
 	{!! Html::style('assets/select2/select2.css') !!}
 	{!! Html::style('assets/summernote/summernote.css') !!}
 
+
+
+
 @stop
 
 
@@ -113,10 +116,13 @@
 				focus: true                 // set focus to editable area after initializing summernote
 			});
 
-			// Select2
+
 			jQuery(".select2").select2({
 				width: '100%'
+
 			});
+
+
 		});
 
 	</script>

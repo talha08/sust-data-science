@@ -32,10 +32,7 @@
 											<th>id</th>
 											<th>Title</th>
 											<th>Details</th>
-											<th>Developer</th>
-											<th>Supervisor</th>
 											<th>Position </th>
-											<th>Details</th>
 											<th>Edit</th>
 											<th>Delete</th>
 										</tr>
@@ -44,13 +41,9 @@
 										@foreach ($award as $awards)
 											<tr>
 												<td>{!! $awards->id !!}</td>
-												<td>{!! $awards->award_title !!}</td>
-												<td>{!!Str::limit($awards->award_details,20) !!}</td>
-												<td>{!! $awards->award_developer !!}</td>
-												<td>{!! $awards->award_supervisor !!}</td>
+												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$awards->id}}" >{!! $awards->award_title !!}</a></td>
+												<td>{!!Str::limit($awards->award_details,40) !!}</td>
 												<td>{!! $awards->award_position !!}</td>
-
-												<td> <a><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_{{$awards->id}}" >Details</button></a></td>
 												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('award.edit',$awards->id)!!}"  style="margin-right: 3px;">Edit</a></td>
 												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $awards->id!!}">Delete</a></td>
 											</tr>
@@ -72,9 +65,20 @@
 
 																<p><b>Award: </b>{{ $awards->award_title}}</p>
 																<p><b>Details: </b>{{ $awards->award_details}}</p>
-																<p><b>Developer: </b>{{ $awards->award_developer}}</p>
-																<p><b>Supervisor: </b>{{ $awards->award_supervisor}}</p>
 																<p><b>Position: </b>{{ $awards->award_position}}</p>
+
+																@foreach($awards->users as $user=> $value)
+																		@if($value->is_teacher == 1)
+																		<b>Supervisor: </b>{{ $value->name }}<br/>
+
+
+																	    @else
+																		<b>Student: </b>{{ $value->name }}<br/>
+																	    @endif
+
+
+																@endforeach
+
 															</div>
 														</center>
 														<div class="modal-footer">
