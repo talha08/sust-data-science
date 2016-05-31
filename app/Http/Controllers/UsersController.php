@@ -113,6 +113,7 @@ class UsersController extends Controller
     //store users data
     public function store(UserRequest $request)
     {
+       return  $request->all();
 
             $user = new User;
             $user->name = $request->name;

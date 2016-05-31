@@ -18,6 +18,8 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
+
+
     /**
      * The database table used by the model.
      *
@@ -41,6 +43,29 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
 
 
+
+
+    /**
+     * One to Many relationship with Teacher
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function teachers(){
+        return $this->hasOne('App\Teacher','user_id','id');
+    }
+
+
+    /**
+     * One to Many relationship with Student
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function students(){
+        return $this->hasOne('App\Student','user_id','id');
+    }
+
+
+
     /**
      * for User and Book Table One To Many Relationship
      *
@@ -57,16 +82,6 @@ class User extends Model implements AuthenticatableContract,
      */
     public function blogs(){
         return $this->hasMany('App\Blog','user_id','id');
-    }
-
-
-    /**
-     * for OneToMany relationship with Profile
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function profiles(){
-        return $this->hasOne('App\Profile','user_id','id');
     }
 
 

@@ -1,9 +1,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="Shahjalal University of Science and Technology, Sylhet.
+    Computer Science and Engineering Department,Data Science Lab. ">
+
     <meta name="author" content="Md. Abu Talha & Farzad Bin Fazle">
-    <meta name="keyword" content="Sust, Data, Science, Lab, Cse,">
+    <meta name="keyword" content="Sust, Data, Science, Lab, Cse,Sylhet, Ebent, News, Bangladesh, Award, Contest, Thesis">
 
     {!! Html::favicon('favicon.ico') !!}
 

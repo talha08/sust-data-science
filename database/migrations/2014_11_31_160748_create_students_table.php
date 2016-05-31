@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfileTable extends Migration
+class CreateStudentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,20 @@ class CreateProfileTable extends Migration
      */
     public function up()
     {
-        Schema::create('profile', function (Blueprint $table) {
+        Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->text('about_me')->nullable();
             $table->string('phone')->nullable();
+            $table->string('year')->nullable();
+            $table->string('semester')->nullable();
             $table->string('img_url')->default('/upload/profile/default/avatar.jpg');
             $table->string('thumb_url')->default('/upload/profile/default/icon.jpg');
-            $table->string('fb_user')->nullable();
-            $table->string('twitter_user')->nullable();
             $table->string('github_user')->nullable();
-            $table->string('platform')->nullable();
-            $table->string('position')->nullable();
-            $table->string('organization')->nullable();
+            $table->string('linkedIn_user')->nullable();
+            $table->text('platform')->nullable();
+            $table->string('position')->default('Students');
+            $table->string('organization')->default('Shahjalal University of Science and Technology, Sylhet');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
@@ -37,6 +38,6 @@ class CreateProfileTable extends Migration
      */
     public function down()
     {
-        Schema::drop('profile');
+        Schema::drop('students');
     }
 }

@@ -50,7 +50,7 @@
 
                         {{--@include('includes.notificationMenu')--}}
                         @include('includes.home')
-                        @include('includes.profileMenu')
+                        {{--@include('includes.profileMenu')--}}
 
                     </ul>
                     <!-- End right navbar -->
