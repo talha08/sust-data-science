@@ -173,6 +173,16 @@ Route::group(array('middleware' => 'auth'), function() {
 		Route::put('event/{id}/update', array('as' => 'event.update', 'uses' => 'EventController@update'));
 		Route::delete('event/{id}', array('as' => 'event.delete', 'uses' => 'EventController@destroy'));
 
+		//Route::get('event/{event_meta_data}', array('as' => 'event.show', 'uses' => 'EventController@show'));
+		Route::get('event-file-upload', array('as' => 'event.eventFileUpload', 'uses' => 'EventController@fileUploadView')); //file upload dropdown view
+		Route::post('eventFileUpload', array('as' => 'event.upload', 'uses' => 'EventController@fileUpload')); //file upload from dropdown event
+	    Route::post('singleFileUpload', array('as' => 'event.singleUpload', 'uses' => 'EventController@singleFileUpload')); //for modal file upload
+
+		//Route::get('/download/{event_file}', array('as' => 'event.download', 'uses' => 'EventController@getDownload'));
+
+
+
+
 
 		//project category section   complete
 		Route::get('projectCat', array('as' => 'projectCat.index', 'uses' => 'ProjectCatController@index'));
@@ -186,7 +196,6 @@ Route::group(array('middleware' => 'auth'), function() {
 	});
 
 });
-
 
 
 

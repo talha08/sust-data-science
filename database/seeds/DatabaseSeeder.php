@@ -25,11 +25,12 @@ class DatabaseSeeder extends Seeder
         $this->call(TagTableSeeder::class);
         $this->call(BlogTableSeeder::class);
         $this->call(ProjectCatTableSeeder::class);
-        $this->call(ProjectTableSeeder::class);
-        $this->call(PaperTableSeeder::class);
+        //$this->call(ProjectTableSeeder::class);
+        //$this->call(PaperTableSeeder::class);
         $this->call(NewsTableSeeder::class);
         //$this->call(AwardTableSeeder::class);
         $this->call(EventTableSeeder::class);
+       // $this->call(EventFileTableSeeder::class);
         $this->call(BookTableSeeder::class);
 
 

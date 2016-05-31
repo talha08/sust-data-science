@@ -78,4 +78,21 @@ class User extends Model implements AuthenticatableContract,
     public function awards(){
         return $this->belongsToMany('App\Award','award_user','award_id','user_id');
     }
+
+    /**
+     * For Project and User Many to Many Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function projects(){
+        return $this->belongsToMany('App\Project','project_user','project_id','user_id');
+    }
+
+    /**
+     * For User and Paper Many To Many RelationShip
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function papers(){
+        return $this->belongsToMany('App\Paper','paper_user','paper_id','user_id');
+    }
 }

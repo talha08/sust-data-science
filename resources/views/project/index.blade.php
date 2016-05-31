@@ -32,33 +32,27 @@
 											<th>id</th>
 											<th>Title</th>
 											<th>Details</th>
-											<th>Student</th>
-											<th>Supervisor</th>
 											<th>Status</th>
-											<th>View</th>
-											<th>Edit</th>
-											<th>Delete</th>
+											<th>Actions</th>
+
 										</tr>
 										</thead>
 										<tbody>
 										@foreach ($projects as $project)
 											<tr>
 												<td>{!! $project->id !!}</td>
-												<td>{!! $project->project_title !!}</td>
+												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$project->id}}" >{!!  $project->project_title !!}</a></td>
 												<td>{!!Str::limit($project->project_details,20) !!}</td>
-												<td>{!! $project->project_developer !!}</td>
-												<td>{!! $project->project_supervisor !!}</td>
-
-												 @if($project->project_status == 1)
-													<td>Complete</td>
+												@if($project->project_status == 0)
+													<td><a class="btn btn-success btn-xs btn-archive " href="{!!route('project.changeStatus',$project->id)!!}"  style="margin-right: 3px;">Complete</a></td>
 												 @else
-													<td><a class="btn btn-success btn-xs btn-archive " href="{!!route('project.changeStatus',$project->id)!!}"  style="margin-right: 3px;">Running</a></td>
+													<td><a class="btn btn-info btn-xs btn-archive " href="{!!route('project.changeStatus',$project->id)!!}"  style="margin-right: 3px;">Running</a></td>
 											     @endif
 
-
-												<td> <a><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_{{$project->id}}" >Details</button></a></td>
-												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('project.edit',$project->id)!!}"  style="margin-right: 3px;">Edit</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $project->id!!}">Delete</a></td>
+												<td>
+													<a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('project.edit',$project->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
+													<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $project->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a>
+												</td>
 											</tr>
 
 											<!-- Modal -->
@@ -69,16 +63,41 @@
 														<center>
 															<div class="modal-header">
 																<button type="button" class="close" data-dismiss="modal">&times;</button>
-																{{ $project->project_title}}
+																<b>{{ $project->project_title}}</b>
 
 															</div>
 															<div class="modal-body" >
 
 
-																<p>{{ $project->project_details}}</p>
-																<p><b>Student: </b>{{ $project->project_developer}}</p>
-																<p><b>Supervisor: </b>{{ $project->project_supervisor}}</p>
-																<p><b>project Url: </b>{{ $project->project_url}}</p>
+																<p>{{ $project->project_details}}</p><br/>
+																<b>Project Link: </b><p><a class="" href="{!!$project->project_url!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$project->project_url!!}</a></p><br/>
+
+																<b>Supervisors: </b><br>
+																@foreach($project->users as $user=> $value)
+																	@if($value->is_teacher == 1)
+																		{{ $value->name }}<br/>
+																	@endif
+																@endforeach
+
+																<b>Students: </b><br>
+																@foreach($project->users as $user=> $value)
+																	@if($value->is_teacher != 0)
+																		{{ $value->name }}<br/>
+																	@endif
+																@endforeach
+
+																<b>Uses Language/Framework: </b><br><br>
+																<?php
+																$myString = $project->project_language;
+																$myArray = explode(',', $myString);
+																//print_r($myArray[1]);
+																	for($i=0; $i<count($myArray);$i++){
+																		//echo $myArray[$i]."<br/>";
+																		//echo '<div class="tags"><a href="#" class="tag">'.$myArray[$i].'</a></div>';
+																		echo '<a class="tag">'.$myArray[$i].'</a>';
+																	}
+																?>
+
 
 
 															</div>
@@ -136,11 +155,13 @@
 @section('style')
 
 	{!! Html::style('assets/datatables/jquery.dataTables.min.css') !!}
+	{!! Html::style('css/languageTag.css') !!}
 
 	<style>
-
-		.modal-dialog  {width:75%;}
+		/*.modal-dialog  {width:75%;}*/
 	</style>
+
+
 
 @stop
 
@@ -148,6 +169,7 @@
 
 	{!! Html::script('assets/datatables/jquery.dataTables.min.js') !!}
 	{!! Html::script('assets/datatables/dataTables.bootstrap.js') !!}
+
 
 
 	//for Datatable

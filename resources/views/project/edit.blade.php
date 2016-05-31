@@ -32,30 +32,35 @@
 									{!!Form::model($projects,['route' => ['project.update',$projects->id], 'method' => 'put' ])!!}
 
 									<div class="form-group">
-										{!! Form::label('project_title', 'Title* :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('project_title', null,array('class' => 'form-control','placeholder' =>  'Project title here'))!!}
-									</div><br/>
-
-
-									<div class="form-group">
-										{!! Form::label('project_supervisor', 'Select Supervisor* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('project_supervisor', $teacher, null,array('class' => 'select2', 'autofocus'))!!}
-									</div><br/>
-
-									<div class="form-group">
-										{!! Form::label('project_developer', 'Select Student* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('project_developer', $students, null,array('class' => 'select2', 'autofocus'))!!}
+										{!! Form::label('project_title', 'Title :', array('class' => 'control-label')) !!}<br/>
+										{!! Form::text('project_title', null,array('class' => 'form-control','placeholder' =>  'Project title here'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
 										{!! Form::label('project_url', 'Project Url :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('project_url', null,array('class' => 'form-control','placeholder' =>  'put project url here...'))!!}
+										{!! Form::text('project_url', null,array('class' => 'form-control','placeholder' =>  'put project url here...'))!!}
+									</div><br/>
+
+									<div class="form-group">
+										{!! Form::label('project_supervisor', 'Select Supervisor :', array('class' => 'col-md-2 control-label')) !!}
+										{!!Form::select('project_supervisor[]', $teacher, $x,array('class' => 'select2','multiple', 'autofocus'))!!}
+									</div><br/>
+
+									<div class="form-group">
+										{!! Form::label('project_developer', 'Select Student :', array('class' => 'col-md-2 control-label')) !!}
+										{!! Form::select('project_developer[]', $students, $x,array('class' => 'select2', 'multiple','autofocus'))!!}
+									</div><br/>
+
+
+									<div class="form-group">
+										{!! Form::label('project_language', 'Input Uses Language (Type and hit Enter) :', array('class' => 'control-label')) !!}<br/>
+										{!! Form::text('project_language[]',  null,array('class' => 'tags','id'=>'tags','multiple', 'autofocus'))!!}
 									</div><br/>
 
 									<div class="form-group">
 										{!! Form::label('project_details', 'Details :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::textarea('project_details', null,array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
+										{!! Form::textarea('project_details', null,array('class' => 'summernote form-control','placeholder' =>  '...................'))!!}
 									</div><br/>
 
 									{{--<div class="form-group">--}}
@@ -66,7 +71,7 @@
 
 
 									<div class="form-group">
-										{!! Form::submit('Submit Paper', array('class' => 'btn btn-primary')) !!}
+										{!! Form::submit('Submit Project', array('class' => 'btn btn-primary')) !!}
 									</div>
 
 
@@ -94,6 +99,7 @@
 
 	{!! Html::style('assets/select2/select2.css') !!}
 	{!! Html::style('assets/summernote/summernote.css') !!}
+	{!! Html::style('assets/tagsinput/jquery.tagsinput.css') !!}
 
 @stop
 
@@ -103,6 +109,7 @@
 
 	{!! Html::script('assets/select2/select2.min.js') !!}
 	{!! Html::script('assets/summernote/summernote.min.js') !!}
+	{!! Html::script('assets/tagsinput/jquery.tagsinput.min.js') !!}
 
 	<script type="text/javascript">
 
@@ -121,6 +128,13 @@
 			jQuery(".select2").select2({
 				width: '100%'
 			});
+
+			// Tags Input
+			jQuery('#tags').tagsInput({
+				width:'auto',
+				height: 40
+			});
+
 		});
 
 	</script>

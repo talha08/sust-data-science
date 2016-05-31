@@ -133,18 +133,18 @@
 
 
                     {{--projectCat--}}
-                    <li class="{!! Menu::areActiveRoutes(['projectCat.index', 'projectCat.create']) !!}"><a href="#"><i class="ion-android-mixer"></i> <span class="nav-label">Categoty</span></a>
-                        <ul class="list-unstyled">
+                    {{--<li class="{!! Menu::areActiveRoutes(['projectCat.index', 'projectCat.create']) !!}"><a href="#"><i class="ion-android-mixer"></i> <span class="nav-label">Categoty</span></a>--}}
+                        {{--<ul class="list-unstyled">--}}
 
-                            <li class="{!! Menu::isActiveRoute('projectCat.index') !!}">
-                                <a href="{!!  URL::route( 'projectCat.index') !!}">All project Category</a>
-                            </li>
+                            {{--<li class="{!! Menu::isActiveRoute('projectCat.index') !!}">--}}
+                                {{--<a href="{!!  URL::route( 'projectCat.index') !!}">All project Category</a>--}}
+                            {{--</li>--}}
 
-                            <li class="{!! Menu::isActiveRoute('projectCat.create') !!}">
-                                <a href="{!!  URL::route( 'projectCat.create') !!}">Add project Category</a>
-                            </li>
-                        </ul>
-                    </li>
+                            {{--<li class="{!! Menu::isActiveRoute('projectCat.create') !!}">--}}
+                                {{--<a href="{!!  URL::route( 'projectCat.create') !!}">Add project Category</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     {{--projectCat end--}}
 
 

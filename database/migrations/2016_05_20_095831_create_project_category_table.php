@@ -14,7 +14,7 @@ class CreateProjectCategoryTable extends Migration
     {
         Schema::create('project_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cat_name');
+            $table->text('cat_name');
             $table->text('cat_details')->nullable();
             $table->timestamps();
         });

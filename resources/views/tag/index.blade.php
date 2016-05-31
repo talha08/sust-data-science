@@ -32,8 +32,8 @@
                                             <th>id</th>
                                             <th> Category Name</th>
                                             <th>Created at</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Actions</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -42,8 +42,10 @@
                                                 <td>{!! $tags->id !!}</td>
                                                 <td>{!! $tags->name !!}</td>
                                                 <td>{!! $tags->created_at->format('Y-m-d') !!}</td>
-                                                <td><a class="btn btn-info btn-xs btn-archive Editbtn" href="{!!route('tag.edit',$tags->id)!!}"  style="margin-right: 3px;">Edit</a></td>
-                                                <td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $tags->id!!}">Delete</a></td>
+                                                <td>
+                                                    <a class="btn btn-info btn-xs btn-archive Editbtn" href="{!!route('tag.edit',$tags->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
+                                                    <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $tags->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a>
+                                                </td>
                                             </tr>
 
                                         @endforeach

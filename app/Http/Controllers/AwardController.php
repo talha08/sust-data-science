@@ -48,11 +48,13 @@ class AwardController extends Controller
         $award->award_title = $request->award_title;
         $award->award_details = $request->award_details;
         $award->award_position = $request->award_position;
-        $award->users()->attach($request->award_supervisor);
-        $award->users()->attach($request->award_developer);
+        $award->award_meta_data =  str_slug($request->award_title);
         //$award->award_image = $request->award_image;
-        $award->award_meta_data =  md5($request->award_title);
+
        if( $award->save()){
+           $award->users()->attach($request->award_supervisor);
+           $award->users()->attach($request->award_developer);
+
            return redirect()->back()->with('success', 'Award Successfully Created');
        }
 
@@ -88,7 +90,7 @@ class AwardController extends Controller
 
 
 
-    /**
+    /** vg
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -96,10 +98,11 @@ class AwardController extends Controller
      */
     public function edit($id)
     {
+        $x= AwardPeople::where('award_id',$id)->lists('user_id','user_id')->all();
         $teacher = User::where('is_teacher',1)->lists('name','id')->all();
         $student = User::where('is_teacher',0)->where('status',1)->lists('name','id')->all();
         $award = Award::findOrFail($id);
-        return view('award.edit', compact('award','teacher','student','super'))->with('title',"Edit Award");
+        return view('award.edit', compact('award','teacher','student','super','x'))->with('title',"Edit Award");
     }
 
 
@@ -118,13 +121,14 @@ class AwardController extends Controller
         $award->award_details = $request->award_details;
         $award->award_position = $request->award_position;
         //$award->award_image = $request->award_image;
-        $award->users()->sync($request->award_supervisor);
-        $award->users()->attach($request->award_developer);
-        $award->award_meta_data =  md5($request->award_title);
+        $award->award_meta_data =  str_slug($request->award_title);
         if( $award->save()){
+
+            $award->users()->sync($request->award_supervisor);
+            $award->users()->attach($request->award_developer);
+
             return redirect()->back()->with('success', 'Award Successfully Updated');
         }
-
         return redirect()->back()->with('error', 'Something went wrong');
     }
 

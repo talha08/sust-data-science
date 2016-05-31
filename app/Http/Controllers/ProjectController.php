@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\ProjectsPeople;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
+
         $projects = Project::orderBy('id', 'desc')->get();
         return view('project.index', compact('projects'))->with('title',"All Project List");
     }
@@ -29,10 +31,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $teacher = User::where('is_teacher','=',1 )->lists('email','email');
-        $students = User::where('is_teacher','=',0 )
-            ->orWhere('is_teacher','=',2 )
-            ->lists('email','email');
+        $teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+        //developer can be a student or alumni
+        $students = User::where('is_teacher','=',0 )->orWhere('is_teacher','=',2 )->lists('name','id')->all();
         return view('project.create',compact('teacher','students'))->with('title',"Create New Project");
     }
 
@@ -48,15 +49,20 @@ class ProjectController extends Controller
         $project = new Project();
         $project->project_title = $request->project_title;
         $project->project_details = $request->project_details;
-        //$project->project_status = $request->project_status;
-        $project->project_developer = $request->project_developer;
-        $project->project_supervisor = $request->project_supervisor;
         $project->project_url = $request->project_url;
-        //$project->project_image = $request->project_image;
-        $project->project_meta_data =  md5($request->project_title);
-        $project->save();
+        $project->project_meta_data =  str_slug($request->project_title);
 
-        return redirect()->back()->with('success', 'Project Successfully Created');
+        $language = implode(",", $request->project_language);
+        $project->project_language = $language ;
+        //$project->project_image = $request->project_image;
+
+        if($project->save()){
+            $project->users()->attach($request->project_developer);
+            $project->users()->attach($request->project_supervisor);
+
+            return redirect()->route('project.index')->with('success', 'Project Successfully Created');
+        }
+        return redirect()->back()->with('error', 'Something Went Wrong');
     }
 
     /**
@@ -78,12 +84,12 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $teacher = User::where('is_teacher','=',1 )->lists('email','email');
-        $students = User::where('is_teacher','=',0 )
-            ->orWhere('is_teacher','=',2 )
-            ->lists('email','email');
+        $teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+        //developer can be a student or alumni
+        $students = User::where('is_teacher','=',0 )->orWhere('is_teacher','=',2 )->lists('name','id')->all();
+        $x= ProjectsPeople::where('project_id',$id)->lists('user_id','user_id')->all();
         $projects = Project::findOrFail($id);
-        return view('project.edit', compact('projects','teacher','students'))->with('title',"Edit Project");
+        return view('project.edit', compact('projects','teacher','students','x'))->with('title',"Edit Project");
     }
 
     /**
@@ -98,15 +104,23 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $project->project_title = $request->project_title;
         $project->project_details = $request->project_details;
-        $project->project_status = $request->project_status;
-        $project->project_developer = $request->project_developer;
-        $project->project_supervisor = $request->project_supervisor;
+        //$project->project_status = $request->project_status;
         $project->project_url = $request->project_url;
-        //$project->project_image = $request->project_image;
-        $project->project_meta_data =  md5($request->project_title);
-        $project->save();
+        $project->project_meta_data =  str_slug($request->project_title);
 
-        return redirect()->back()->with('success', 'Project Successfully Updated');
+        $language = implode(",", $request->project_language);
+        $project->project_language = $language ;
+        //$project->project_image = $request->project_image;
+
+        if( $project->save()){
+
+            $project->users()->sync($request->project_developer);
+            $project->users()->attach($request->project_supervisor);
+
+            return redirect()->back()->with('success', 'Project Successfully Updated');
+        }
+
+        return redirect()->back()->with('error', 'Something Went Wrong');
     }
 
     /**
@@ -124,13 +138,20 @@ class ProjectController extends Controller
 
     public function changeStatus($id){
 
-        Project::where('id','=',$id)->update([
-            'project_status' => 1
-        ]);
 
-//        $project = Project::findOrFail($id);
-//        $project->project_status = 1;
-//        $project->save();
+//        Project::where('id','=',$id)->update([
+//            'project_status' => 0
+//        ]);
+
+        $project = Project::findOrFail($id);
+        if($project->project_status == 1){
+            $project->project_status = 0;
+            $project->save();
+        }else{
+            $project->project_status = 1;
+            $project->save();
+        }
+
 
         return redirect()->back()->with('success', 'Status Successfully Updated');
     }

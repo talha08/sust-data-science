@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Paper;
+use App\PaperPeople;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -30,10 +31,9 @@ class PaperController extends Controller
      */
     public function create()
     {
-         $teacher = User::where('is_teacher','=',1 )->lists('email','email');
-         $students = User::where('is_teacher','=',0 )
-             ->orWhere('is_teacher','=',2 )
-             ->lists('email','email');
+         $teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+        //developer can be a student or alumni
+         $students = User::where('is_teacher','=',0 )->orWhere('is_teacher','=',2 )->lists('name','id')->all();
         return view('paper.create', compact('students','teacher'))->with('title',"Create New Paper");
     }
 
@@ -48,14 +48,17 @@ class PaperController extends Controller
         $paper = new Paper();
         $paper->paper_title = $request->paper_title;
         $paper->paper_details = $request->paper_details;
-        $paper->paper_author = $request->paper_author;
-        $paper->paper_supervisor = $request->paper_supervisor;
         $paper->paper_url = $request->paper_url;
+        $paper->paper_meta_data =  str_slug($request->paper_title);
        // $paper->paper_pdf = $request->paper_pdf;
-        $paper->paper_meta_data =  md5($request->paper_title);
-        $paper->save();
+        if($paper->save()){
+            $paper->users()->attach($request->paper_author);
+            $paper->users()->attach($request->paper_supervisor);
 
-        return redirect()->back()->with('success', 'Paper Successfully Created');
+            return redirect()->back()->with('success', 'Paper Successfully Created');
+        }
+        return redirect()->back()->with('error', 'Something went wrong');
+
     }
 
     /**
@@ -77,12 +80,12 @@ class PaperController extends Controller
      */
     public function edit($id)
     {
-        $teacher = User::where('is_teacher','=',1 )->lists('email','email');
-        $students = User::where('is_teacher','=',0 )
-            ->orWhere('is_teacher','=',2 )
-            ->lists('email','email');
+        $teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+        //developer can be a student or alumni
+        $students = User::where('is_teacher','=',0 )->orWhere('is_teacher','=',2 )->lists('name','id')->all();
+        $x= PaperPeople::where('paper_id',$id)->lists('user_id','user_id')->all();
         $paper = paper::findOrFail($id);
-        return view('paper.edit', compact('paper','students','teacher'))->with('title',"Edit Paper");
+        return view('paper.edit', compact('paper','students','teacher','x'))->with('title',"Edit Paper");
     }
 
     /**
@@ -97,16 +100,23 @@ class PaperController extends Controller
         $paper = Paper::findOrFail($id);
         $paper->paper_title = $request->paper_title;
         $paper->paper_details = $request->paper_details;
-        $paper->paper_author = $request->paper_author;
-        $paper->paper_supervisor = $request->paper_supervisor;
         $paper->paper_url = $request->paper_url;
         // $paper->paper_pdf = $request->paper_pdf;
-        // $paper->paper_meta_data =  md5($request->paper_title);
-        $paper->save();
+         $paper->paper_meta_data =  str_slug($request->paper_title);
+        if( $paper->save()){
 
+            $paper->users()->sync($request->paper_author);
+            $paper->users()->attach($request->paper_supervisor);
 
-        return redirect()->back()->with('success', 'Paper Successfully Updated');
+            return redirect()->back()->with('success', 'Paper Successfully Updated');
+        }
+
+        return redirect()->back()->with('error', 'Something Went Wrong');
     }
+
+
+
+
 
     /**
      * Remove the specified resource from storage.

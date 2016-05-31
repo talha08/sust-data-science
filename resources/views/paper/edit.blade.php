@@ -37,12 +37,12 @@
 
 									<div class="form-group">
 										{!! Form::label('paper_supervisor', 'Select Supervisor* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('paper_supervisor', $teacher, null,array('class' => 'select2', 'autofocus'))!!}
+										{!!Form::select('paper_supervisor[]', $teacher, $x,array('class' => 'select2', 'multiple','autofocus'))!!}
 									</div><br/>
 
 									<div class="form-group">
 										{!! Form::label('paper_author', 'Select Student* :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('paper_author', $students, null,array('class' => 'select2', 'autofocus'))!!}
+										{!!Form::select('paper_author[]', $students, $x,array('class' => 'select2','multiple', 'autofocus'))!!}
 									</div><br/>
 
 

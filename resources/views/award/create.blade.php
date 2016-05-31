@@ -67,11 +67,7 @@
 									{{--</div> <br>--}}
 
 									<div class="form-group">
-										{!! Form::submit('Submit',  array(
-														'type' => 'Create Award',
-													    'class'=> 'btn btn-primary',
-														//'onclick'=>'return ("Creating....")'
-										)) !!}
+										{!! Form::submit('Create Award', array('class' => 'btn btn-primary')) !!}
 									</div>
 
 

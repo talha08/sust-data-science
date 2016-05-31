@@ -127,6 +127,14 @@ $factory->define(App\Event::class, function (Faker\Generator $faker) {
 });
 
 
+//for eventFile table
+$factory->define(App\EventFile::class, function (Faker\Generator $faker) {
+    return [
+        'event_id' =>random_int(1,9),
+        'event_file' =>$faker->file('/upload/eventFile'),
+    ];
+});
+
 //for event table
 $factory->define(App\Book::class, function (Faker\Generator $faker) {
     return [

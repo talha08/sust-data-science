@@ -33,6 +33,7 @@
                 <!-- Custom styles for this template -->
         {!! Html::style('css/style.css') !!}
         {!! Html::style('css/helper.css') !!}
+        {{--{!! Html::style('assets/sweet-alert/sweet-alert.min.css') !!}--}}
 
 
 

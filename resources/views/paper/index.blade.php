@@ -32,25 +32,18 @@
 											<th>id</th>
 											<th>Title</th>
 											<th>Details</th>
-											<th>Student</th>
-											<th>Supervisor</th>
-											<th>View</th>
-											<th>Edit</th>
-											<th>Delete</th>
+											<th>Actions</th>
+
 										</tr>
 										</thead>
 										<tbody>
 										@foreach ($papers as $paper)
 											<tr>
 												<td>{!! $paper->id !!}</td>
-												<td>{!! $paper->paper_title !!}</td>
+												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$paper->id}}" >{!! $paper->paper_title !!}</a></td>
 												<td>{!!Str::limit($paper->paper_details,20) !!}</td>
-												<td>{!! $paper->paper_author !!}</td>
-												<td>{!! $paper->paper_supervisor !!}</td>
-
-												<td> <a><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_{{$paper->id}}" >Details</button></a></td>
-												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('paper.edit',$paper->id)!!}"  style="margin-right: 3px;">Edit</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $paper->id!!}">Delete</a></td>
+												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('paper.edit',$paper->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
+												<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $paper->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a></td>
 											</tr>
 
 											<!-- Modal -->
@@ -68,10 +61,21 @@
 
 
 																<p>{{ $paper->paper_details}}</p>
-																<p><b>Student: </b>{{ $paper->paper_author}}</p>
-																<p><b>Supervisor: </b>{{ $paper->paper_supervisor}}</p>
-																<p><b>Paper Url: </b>{{ $paper->paper_url}}</p>
 
+
+																<p><b>Paper Url: </b><a class="" href="{!!$paper->paper_url!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$paper->paper_url!!}</a></p><br/>
+																<b>Supervisors: </b><br>
+																@foreach($paper->users as $user=> $value)
+																	@if($value->is_teacher == 1)
+																		{{ $value->name }}<br/>
+																	@endif
+																@endforeach
+																<b>Students: </b><br>
+																@foreach($paper->users as $user=> $value)
+																	@if($value->is_teacher != 0)
+																		{{ $value->name }}<br/>
+																	@endif
+																@endforeach
 
 															</div>
 														</center>
@@ -129,10 +133,10 @@
 
 	{!! Html::style('assets/datatables/jquery.dataTables.min.css') !!}
 
-	<style>
+	{{--<style>--}}
 
-		.modal-dialog  {width:75%;}
-	</style>
+		{{--.modal-dialog  {width:65%;}--}}
+	{{--</style>--}}
 
 @stop
 

@@ -32,20 +32,21 @@
 											<th>id</th>
 											<th>Book Name</th>
 											<th>Details</th>
-											<th>View</th>
-											<th>Edit</th>
-											<th>Delete</th>
+											<th>Actions</th>
+
 										</tr>
 										</thead>
 										<tbody>
 										@foreach ($books as $book)
 											<tr>
 												<td>{!! $book->id !!}</td>
-												<td>{!!Str::limit($book->book_name,50) !!}</td>
+
+												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$book->id}}" >{!!Str::limit($book->book_name,50) !!}</a></td>
 												<td>{!!Str::limit($book->book_details,30) !!}</td>
-												<td> <a><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_{{$book->id}}" >Details</button></a></td>
-												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('book.edit',$book->id)!!}"  style="margin-right: 3px;">Edit</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $book->id!!}">Delete</a></td>
+												<td>
+													<a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('book.edit',$book->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
+													<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $book->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a>
+												</td>
 											</tr>
 
 											<!-- Modal -->
@@ -65,9 +66,11 @@
 
 
 																<p>{{ $book->book_details}}</p>
-																<p><b>Link - 1: </b>{{ $book->book_link1}}</p>
-																<p><b>Link - 2: </b>{{ $book->book_link2}}</p>
-																<p><b>Link - 3: </b>{{ $book->book_link3}}</p>
+
+																<p><b>Link - 1: </b><a class="" href="{!!$book->book_link1!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$book->book_link1!!}</a></p><br/>
+																<p><b>Link - 2: </b><a class="" href="{!!$book->book_link2!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$book->book_link2!!}</a></p><br/>
+																<p><b>Link - 3: </b><a class="" href="{!!$book->book_link3!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$book->book_link3!!}</a></p><br/>
+
 
 
 
@@ -127,10 +130,10 @@
 
 	{!! Html::style('assets/datatables/jquery.dataTables.min.css') !!}
 
-	<style>
+	{{--<style>--}}
 
-		.modal-dialog  {width:75%;}
-	</style>
+		{{--.modal-dialog  {width:75%;}--}}
+	{{--</style>--}}
 
 @stop
 

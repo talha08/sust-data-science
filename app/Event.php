@@ -30,4 +30,14 @@ class Event extends Model
 
     }
 
+
+    /**
+     * One to many relationship with EventFile
+     * Event Has Many eventFile
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function eventFile(){
+        return $this->hasMany('App\EventFile','event_id','id');
+    }
+
 }

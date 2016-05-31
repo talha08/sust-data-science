@@ -43,12 +43,12 @@
 									</div><br/>
 
 									<div class="form-group">
-										{!! Form::label('book_link12', 'Book Second Url :', array('class' => 'control-label')) !!}<br/>
+										{!! Form::label('book_link12', 'Book Second Url (optional):', array('class' => 'control-label')) !!}<br/>
 										{!!Form::text('book_link2', '',array('class' => 'form-control','placeholder' =>  'put book url here...'))!!}
 									</div><br/>
 
 									<div class="form-group">
-										{!! Form::label('book_link3', 'Book Third Url:', array('class' => 'control-label')) !!}<br/>
+										{!! Form::label('book_link3', 'Book Third Url (optional):', array('class' => 'control-label')) !!}<br/>
 										{!!Form::text('book_link3', '',array('class' => 'form-control','placeholder' =>  'put book url here...'))!!}
 									</div><br/>
 

@@ -38,13 +38,13 @@
 
 									<div class="form-group">
 										{!! Form::label('award_developer', 'Select Student :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('award_developer[]', $student, null ,array('class' => 'select2', 'multiple','autofocus'))!!}
+										{!!Form::select('award_developer[]', $student, $x ,array('class' => 'select2', 'multiple','autofocus'))!!}
 									</div><br/>
 
 
 									<div class="form-group">
 										{!! Form::label('award_supervisor', 'Select Supervisor :', array('class' => 'col-md-2 control-label')) !!}
-										{!!Form::select('award_supervisor[]', $teacher, null ,array('class' => 'select2','multiple', 'autofocus'))!!}
+										{!!Form::select('award_supervisor[]', $teacher, $x ,array('class' => 'select2','multiple', 'autofocus'))!!}
 									</div><br/>
 
 

@@ -16,8 +16,8 @@ class CreatePaperTable extends Migration
             $table->increments('id');
             $table->string('paper_title')->nullable();
             $table->text('paper_details')->nullable();
-            $table->text('paper_author')->nullable();
-            $table->text('paper_supervisor')->nullable();
+            //$table->text('paper_author')->nullable();
+           // $table->text('paper_supervisor')->nullable();
             $table->text('paper_url')->nullable();
             $table->text('paper_pdf')->nullable();
             $table->string('paper_meta_data')->unique();

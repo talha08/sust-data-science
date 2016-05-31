@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\EventFile;
 use Illuminate\Http\Request;
 use App\Event;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Input;
+use Validator;
+//use Request;
+use Response;
+use App\Http\Requests\EventFileRequest;
 
 class EventController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +28,9 @@ class EventController extends Controller
         return view('event.index', compact('event'))->with('title',"All Event List");
     }
 
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,6 +40,8 @@ class EventController extends Controller
     {
         return view('event.create')->with('title',"Create New Event");
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -51,16 +64,21 @@ class EventController extends Controller
         return redirect()->back()->with('success', 'Event Successfully Created');
     }
 
+
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($event_meta_data)
     {
-        //
+
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -73,6 +91,9 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
         return view('event.edit', compact('event'))->with('title',"Edit Event");
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -96,6 +117,9 @@ class EventController extends Controller
         return redirect()->back()->with('success', 'Event Successfully Updated');
     }
 
+
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -107,4 +131,105 @@ class EventController extends Controller
         Event::destroy($id);
         return redirect()->route('event.index')->with('success',"Event Successfully deleted");
     }
+
+
+
+
+
+    /**
+     * File upload View
+     *
+     * @return $this
+     */
+    public function fileUploadView(){
+
+         $events= Event::lists('event_title','id')->all();
+        return view('event.eventFileUpload',compact('events'))->with('title',"Upload file");
+    }
+
+
+
+
+
+    /**
+     * File upload from Dropdown event list
+     *
+     * @param EventFileRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function fileUpload(EventFileRequest $request) {
+
+          //  return $request->all();
+           try{
+
+               if( $request->hasFile('file')) {
+                   $files = $request->file;
+                   foreach ($files as $file) {
+                       $destinationPath = public_path() . '/upload/eventFile';
+                       $extension = $file->getClientOriginalExtension();
+                       $fileName = md5(rand(11111, 99999)) . '.' . $extension; // renameing image
+                       $file->move($destinationPath, $fileName); // uploading file to given path
+
+                       $event = new EventFile();
+                       $event->event_id = $request->event_id;
+                       $event->event_file_title = $request->event_file_title;
+                       $event->event_file = '/upload/eventFile/' . $fileName;
+                       $event->save();
+                       return redirect()->back()->with('success', "File Successfully Added");
+                   }
+               }
+               else{
+                   return redirect()->back()->with('error',"Please select files First");
+               }
+               }catch(\Exception $ex){
+                   return redirect()->back()->with('error',"Something went wrong");
+               }
+        }
+
+
+
+
+    /**
+     * File Upload store method for modal view
+     *
+     * @param EventFileRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function singleFileUpload(EventFileRequest $request) {
+        try{
+
+            if( $request->hasFile('file')) {
+                $files = $request->file;
+                foreach ($files as $file) {
+                    $destinationPath = public_path() . '/upload/eventFile';
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = md5(rand(11111, 99999)) . '.' . $extension; // renameing image
+                    $file->move($destinationPath, $fileName); // uploading file to given path
+
+                    $event = new EventFile();
+                    $event->event_id = Input::get('id');
+                    $event->event_file_title = $request->event_file_title;
+                    $event->event_file = '/upload/eventFile/' . $fileName;
+                    $event->save();
+                    return redirect()->back()->with('success', "File Successfully Added");
+                }
+            }
+            else{
+                return redirect()->back()->with('error',"Please select files First");
+            }
+        }catch(\Exception $ex){
+            return redirect()->back()->with('error',"Something went wrong");
+        }
+    }
+
+
+
+
+//    public function getDownload($event_file)
+//    {
+//        $headers = array(
+//            'Content-Type: application/txt',
+//        );
+//        return response()->download($event_file, 'filename.txt', $headers);
+//    }
 }

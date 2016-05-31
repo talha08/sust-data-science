@@ -33,8 +33,7 @@
 											<th>Title</th>
 											<th>Details</th>
 											<th>Position </th>
-											<th>Edit</th>
-											<th>Delete</th>
+											<th>Actions</th>
 										</tr>
 										</thead>
 										<tbody>
@@ -44,8 +43,9 @@
 												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$awards->id}}" >{!! $awards->award_title !!}</a></td>
 												<td>{!!Str::limit($awards->award_details,40) !!}</td>
 												<td>{!! $awards->award_position !!}</td>
-												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('award.edit',$awards->id)!!}"  style="margin-right: 3px;">Edit</a></td>
-												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $awards->id!!}">Delete</a></td>
+												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('award.edit',$awards->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
+												<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $awards->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a>
+												</td>
 											</tr>
 
 											<!-- Modal -->
@@ -63,20 +63,20 @@
 															</div>
 															<div class="modal-body" >
 
-																<p><b>Award: </b>{{ $awards->award_title}}</p>
+
 																<p><b>Details: </b>{{ $awards->award_details}}</p>
 																<p><b>Position: </b>{{ $awards->award_position}}</p>
 
 																@foreach($awards->users as $user=> $value)
-																		@if($value->is_teacher == 1)
-																		<b>Supervisor: </b>{{ $value->name }}<br/>
-
-
-																	    @else
-																		<b>Student: </b>{{ $value->name }}<br/>
-																	    @endif
-
-
+																	@if($value->is_teacher == 1)
+																		{{ $value->name }}<br/>
+																	@endif
+																@endforeach
+																<b>Students: </b><br>
+																@foreach($awards->users as $user=> $value)
+																	@if($value->is_teacher != 1)
+																		{{ $value->name }}<br/>
+																	@endif
 																@endforeach
 
 															</div>
@@ -135,10 +135,10 @@
 
 	{!! Html::style('assets/datatables/jquery.dataTables.min.css') !!}
 
-	<style>
+	{{--<style>--}}
 
-		.modal-dialog  {width:75%;}
-	</style>
+		{{--.modal-dialog  {width:65%;}--}}
+	{{--</style>--}}
 
 @stop
 

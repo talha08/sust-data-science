@@ -32,26 +32,22 @@
                                             <th>id</th>
                                             <th>Title</th>
                                             <th>Tag</th>
-                                            <th>Image</th>
-                                            <th>Meta Data/ Url</th>
-                                            <th>Created at</th>
-                                            <th>Details</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            {{--<th>Image</th>--}}
+                                            <th>Actions</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($blog as $blogs)
                                             <tr>
                                                 <td>{!! $blogs->id !!}</td>
-                                                <td>{!! $blogs->title !!}</td>
+                                                <td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$blogs->id}}" >{!! $blogs->title !!}</a></td>
                                                 <td>{!! $blogs->tag !!}</td>
-                                                <td> <img class="" src="{!! $blogs->img_thumbnail !!}" alt=""></td>
-                                                <td>{!! $blogs->meta_data !!}</td>
-                                                <td>{!! $blogs->created_at->format('Y-m-d') !!}</td>
-                                                <td> <a><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_{{$blogs->id}}" >Details</button></a></td>
-                                                <td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('blog.edit',$blogs->id)!!}"  style="margin-right: 3px;">Edit</a></td>
-                                                <td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $blogs->id!!}">Delete</a></td>
+                                                {{--<td> <img class="" src="{!! $blogs->img_thumbnail !!}" alt=""></td>--}}
+                                                <td>
+                                                    <a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('blog.edit',$blogs->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
+                                                     <a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $blogs->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a>
+                                                </td>
                                             </tr>
 
                                             <!-- Modal -->
@@ -62,11 +58,10 @@
                                                         <center>
                                                             <div class="modal-header">
                                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title"><img class="img-circle" src="{!! $blogs->img_thumbnail !!}" alt="" align="left">{{ $blogs->title}}</h4>
+                                                                <b>{{ $blogs->title}}</b>
+                                                                {{--<h4 class="modal-title"><img class="img-circle" src="{!! $blogs->img_thumbnail !!}" alt="" align="left">{{ $blogs->title}}</h4>--}}
                                                             </div>
                                                             <div class="modal-body" >
-                                                                <p><b>Id: </b>{{ $blogs->id}}</p>
-                                                                <p><b>Meta/Url: </b>{{ $blogs->meta_data}}</p>
                                                                 <p><b>Tag: </b>{{ $blogs->tag}}</p>
                                                                 <p><b>Details: </b>{{ $blogs->details}}</p>
                                                             </div>
