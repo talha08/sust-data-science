@@ -55,7 +55,7 @@ class PaperController extends Controller
             $paper->users()->attach($request->paper_author);
             $paper->users()->attach($request->paper_supervisor);
 
-            return redirect()->back()->with('success', 'Paper Successfully Created');
+            return redirect()->route('paper.index')->with('success', 'Paper Successfully Created');
         }
         return redirect()->back()->with('error', 'Something went wrong');
 
@@ -108,7 +108,7 @@ class PaperController extends Controller
             $paper->users()->sync($request->paper_author);
             $paper->users()->attach($request->paper_supervisor);
 
-            return redirect()->back()->with('success', 'Paper Successfully Updated');
+            return redirect()->route('paper.index')->with('success', 'Paper Successfully Updated');
         }
 
         return redirect()->back()->with('error', 'Something Went Wrong');

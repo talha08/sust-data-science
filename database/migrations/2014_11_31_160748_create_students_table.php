@@ -25,7 +25,7 @@ class CreateStudentsTable extends Migration
             $table->string('linkedIn_user')->nullable();
             $table->text('platform')->nullable();
             $table->string('position')->default('Students');
-            $table->string('organization')->default('Shahjalal University of Science and Technology, Sylhet');
+            $table->string('organization')->default('Department of Computer Science and Engineering');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

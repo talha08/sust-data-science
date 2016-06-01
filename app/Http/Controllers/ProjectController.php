@@ -92,6 +92,10 @@ class ProjectController extends Controller
         return view('project.edit', compact('projects','teacher','students','x'))->with('title',"Edit Project");
     }
 
+
+
+
+
     /**
      * Update the specified resource in storage.
      *

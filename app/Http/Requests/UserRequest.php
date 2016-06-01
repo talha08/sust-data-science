@@ -24,13 +24,16 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-//            'name'                  => 'required',
-//            'email'                 => 'required|unique:users,email',
-//            'password'              => 'required|confirmed',
-//            'password_confirmation' => 'required',
-//            'platform'              => 'required',
-//            'position'              => 'required',
-//            //'organization'          => 'required',
+            'name'                  => 'required',
+            'email'                 => 'required|unique:users,email',
+            'password'              => 'required|confirmed',
+            'password_confirmation' => 'required',
+            'platform'              => 'required',
+            'phone'                 => 'required',
+            'year'                  => 'required',
+            'semester'              => 'required',
+
+
         ];
     }
 }

@@ -6,17 +6,6 @@
 
 			<div class="row"><!-- row -->
 
-				<div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
-
-					<form action="#" id="top-searchform" method="get" role="search">
-						<div class="input-group">
-							<input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
-						</div>
-					</form>
-
-					<div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
-
-				</div><!-- top search end -->
 
 				<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
@@ -32,6 +21,9 @@
 
 			<div class="row no-gutter"><!-- row -->
 
+
+
+
 				<div class="col-lg-8 col-md-8"><!-- doc body wrapper -->
 
 					<div class="col-padded"><!-- inner custom column -->
@@ -46,6 +38,7 @@
 
 						</div><!-- row end -->
 
+    @if($user->is_teacher == 1)
 						<div class="row gutter"><!-- row -->
 
 							<div class="col-lg-12 col-md-12">
@@ -55,16 +48,10 @@
 
 											 <figure class="leadership-photo">
 												 <br/>
-												<img src="{!! asset($user->profiles->img_url)!!}" height="150" width="150"  alt="{!! $user->name !!}" />
+												<img src="{!! asset($user->teachers->img_url)!!}" height="150" width="150"  alt="{!! $user->name !!}" />
 												 <br/><br/>
+												 <b><p style="text-indent: 2em;">Teacher</p></b>
 
-												 @if($user->is_teacher == 1)
-													 <b> <p>Teacher</p></b>
-												 @elseif($user->is_teacher == 0)
-													 <b> <p>Student</p></b>
-												 @else
-													 <b> <p>Alumni</p></b>
-												 @endif
 
 											</figure>
 											<br/>
@@ -80,14 +67,33 @@
 														<div class="panel-heading actives">
 															<h4 class="panel-title actives">
 																<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-																	Collapsible Group Item #1
+																	Basic Information
 																</a>
 															</h4>
 														</div>
 														<div class="panel-collapse collapse in" id="collapseOne">
 															<div class="panel-body">
+
+																<p>{!! $user->teachers->position !!}</p>
+																{!! $user->teachers->organization !!},<br/>
+																Shahjalal University of Science and Technology, Sylhet.
+
+															</div>
+														</div>
+													</div>
+
+													<div class="panel panel-default"><!-- accordion panel four -->
+														<div class="panel-heading">
+															<h4 class="panel-title">
+																<a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																	About Me
+																</a>
+															</h4>
+														</div>
+														<div class="panel-collapse collapse" id="collapseTwo">
+															<div class="panel-body">
 																<p>
-																	Aenean ac nis ornare, sagittis quam sagittis. Donec tristique diam dui, non euismod nulla tincidunt nec. In ut sapien id neque fermentum congue et et dui. Quisque pellentesque faucibus mattis. Donec eu sem turpis.
+																	{!! $user->teachers->about_me !!}
 																</p>
 															</div>
 														</div>
@@ -97,15 +103,18 @@
 													<div class="panel panel-default"><!-- accordion panel two -->
 														<div class="panel-heading">
 															<h4 class="panel-title">
-																<a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-																	Collapsible Group Item #2
+																<a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																	Contact
 																</a>
 															</h4>
 														</div>
-														<div class="panel-collapse collapse" id="collapseTwo">
+														<div class="panel-collapse collapse" id="collapseThree">
 															<div class="panel-body">
-																<img src="img/news-3.jpg" alt="Image" class="img-responsive" />
-															</div>
+															<b>Email: </b>{!! $user->teachers->email !!}<br/>
+															<b>Phone :</b>{!! $user->teachers->phone !!}<br/>
+															<b>Linked In: </b>{!! $user->teachers->linkedIn_user !!}<br/>
+															<b>Github :</b>{!! $user->teachers->github_user !!}<br/>
+														     </div>
 														</div>
 													</div>
 
@@ -113,15 +122,19 @@
 													<div class="panel panel-default"><!-- accordion panel three -->
 														<div class="panel-heading">
 															<h4 class="panel-title">
-																<a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-																	Collapsible Group Item #3
+																<a href="#collapseFour" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																	Projects
 																</a>
 															</h4>
 														</div>
-														<div class="panel-collapse collapse" id="collapseThree">
+														<div class="panel-collapse collapse" id="collapseFour">
 															<div class="panel-body">
 																<p>
-																	Duis vitae turpis non lorem pulvinar tincidunt quis sit amet ante. Duis egestas pulvinar ligula, ut auctor diam. Etiam malesuada mi a ligula congue, eget egestas velit mattis. Ut id aliquam mauris, non bibendum nisl. Phasellus tellus libero, blandit ut blandit vel, dignissim vel turpis.
+																	@foreach($projects as $pro)
+																		<a href="{!!  route('labfront.project_single',App\Project::where('id',$pro->project_id)->pluck('project_meta_data') ) !!}" title="Click to view full profile...">
+																			{!! App\Project::where('id',$pro->project_id)->pluck('project_title') !!}</a>
+																		 <br/>
+																	@endforeach
 																</p>
 															</div>
 														</div>
@@ -132,15 +145,20 @@
 													<div class="panel panel-default"><!-- accordion panel four -->
 														<div class="panel-heading">
 															<h4 class="panel-title">
-																<a href="#collapseFour" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
-																	Collapsible Group Item #4
+																<a href="#collapseFive" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																	Paper
 																</a>
 															</h4>
 														</div>
-														<div class="panel-collapse collapse" id="collapseFour">
+														<div class="panel-collapse collapse" id="collapseFive">
 															<div class="panel-body">
 																<p>
-																	Aenean ac nis ornare, sagittis quam sagittis. Donec tristique diam dui, non euismod nulla tincidunt nec. In ut sapien id neque fermentum congue et et dui. Quisque pellentesque faucibus mattis. Donec eu sem turpis.
+																	@foreach($papers as $pro)
+																		<a href="{!!  route('labfront.paper_single',App\Paper::where('id',$pro->paper_id)->pluck('paper_meta_data') ) !!}" title="Click to view full profile...">
+																			{!! App\Paper::where('id',$pro->paper_id)->pluck('paper_title') !!} </a>
+																		<br/>
+
+																	@endforeach
 																</p>
 															</div>
 														</div>
@@ -157,6 +175,146 @@
 							</div>
 
 						</div><!-- row end -->
+				@else
+							<div class="row gutter"><!-- row -->
+
+								<div class="col-lg-12 col-md-12">
+
+
+									<div class="leadership-wrapper"><!-- leadership single wrap -->
+
+										<figure class="leadership-photo">
+											<br/>
+											<img src="{!! asset($user->students->img_url)!!}" height="150" width="150"  alt="{!! $user->name !!}" />
+											<br/><br/>
+											@if($user->is_teacher == 0)
+												<b><p style="text-indent: 2em;">Student</p></b>
+											@else
+												<b><p style="text-indent: 2em;">Alumni</p></b>
+											@endif
+
+
+										</figure>
+										<br/>
+
+
+
+
+										{{--collapse start--}}
+										<div class="col-sm-offset-3 "><!-- accordion -->
+											<div id="accordion" class="panel-group">
+
+												<div class="panel panel-default"><!-- accordion panel four -->
+													<div class="panel-heading actives">
+														<h4 class="panel-title actives">
+															<a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																Basic Information
+															</a>
+														</h4>
+													</div>
+													<div class="panel-collapse collapse in" id="collapseOne">
+														<div class="panel-body">
+															@if($user->is_teacher == 2)
+																<p>{!! $user->students->position !!} <b>(Alumni)</b> </p>
+															@else
+																<p>{!! $user->students->position !!} <b>(Running)</b> </p>
+															@endif
+															{!! $user->students->organization !!},<br/>
+															Shahjalal University of Science and Technology, Sylhet.
+
+														</div>
+													</div>
+												</div>
+
+												<div class="panel panel-default"><!-- accordion panel four -->
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																About Me
+															</a>
+														</h4>
+													</div>
+													<div class="panel-collapse collapse" id="collapseTwo">
+														<div class="panel-body">
+															<p>
+																{!! $user->students->about_me !!}
+															</p>
+														</div>
+													</div>
+												</div>
+
+
+												<div class="panel panel-default"><!-- accordion panel two -->
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																Contact
+															</a>
+														</h4>
+													</div>
+													<div class="panel-collapse collapse" id="collapseThree">
+														<div class="panel-body">
+															<b>Email: </b>{!! $user->students->email !!}<br/>
+															<b>Phone :</b>{!! $user->students->phone !!}<br/>
+															<b>Linked In: </b>{!! $user->students->linkedIn_user !!}<br/>
+															<b>Github :</b>{!! $user->students->github_user !!}<br/>
+														</div>
+													</div>
+												</div>
+
+
+												<div class="panel panel-default"><!-- accordion panel three -->
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a href="#collapseFour" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																Projects
+															</a>
+														</h4>
+													</div>
+													<div class="panel-collapse collapse" id="collapseFour">
+														<div class="panel-body">
+															<p>
+																@foreach($projects as $pro)
+																	{!! App\Project::where('id',$pro->project_id)->pluck('project_title') !!} <br/>
+																@endforeach
+															</p>
+														</div>
+													</div>
+												</div>
+
+
+
+												<div class="panel panel-default"><!-- accordion panel four -->
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a href="#collapseFive" data-parent="#accordion" data-toggle="collapse" class="accordion-toggle collapsed">
+																Paper
+															</a>
+														</h4>
+													</div>
+													<div class="panel-collapse collapse" id="collapseFive">
+														<div class="panel-body">
+															<p>
+																@foreach($papers as $pro)
+																	{!! App\Paper::where('id',$pro->paper_id)->pluck('paper_title') !!} <br/>
+																@endforeach
+															</p>
+														</div>
+													</div>
+												</div>
+
+
+
+											</div>
+										</div><!-- row end -->
+									</div><!-- leadership single wrap end -->
+									{{--collapse end--}}
+
+
+								</div>
+
+							</div><!-- row end -->
+				@endif
 
 
 					</div><!-- inner custom column end -->

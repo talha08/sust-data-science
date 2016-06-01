@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\News;
 use App\Paper;
+use App\PaperPeople;
 use App\Project;
+use App\ProjectsPeople;
 use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
@@ -144,7 +146,8 @@ class LabFrontController extends Controller
 
     public function supervisor(){
         $user = User::where('is_teacher', 1)
-            ->where('status',1)->get();
+                ->where('status',1)
+                ->simplePaginate(5);
         $news = News::take(3)->orderBy('id','desc')->get();
         return view('labfront.supervisor',compact('user','news'))->with('title','Lab Supervisors/Teachers');
     }
@@ -156,19 +159,22 @@ class LabFrontController extends Controller
     /*==================================================*/
 
     public function student(){
-        $user = User::where('is_teacher', 0)->where('status',1)->get();
+           $user = User::with('students')->where('is_teacher', 0)
+                ->where('status',1)
+               ->simplePaginate(5);
         $news = News::take(3)->orderBy('id','desc')->get();
         return view('labfront.student',compact('user','news'))->with('title','Lab Student/Developer');
     }
 
 
     /*==================================================*/
-    //Allumni List
+    //Alumni List
     /*==================================================*/
 
     public function alumni(){
         $user = User::where('is_teacher', 2)
-            ->where('status',1)->get();
+                 ->where('status',1)
+                 ->simplePaginate(5);
         $news = News::take(3)->orderBy('id','desc')->get();
         return view('labfront.alumni',compact('user','news'))->with('title','Lab Alumni');
     }
@@ -180,9 +186,11 @@ class LabFrontController extends Controller
     /*==================================================*/
 
     public function peopleProfile($id){
+        $papers = PaperPeople::where('user_id',$id)->get();
+        $projects = ProjectsPeople::where('user_id',$id)->get();
         $user = User::findOrFail($id);
         $news = News::take(3)->orderBy('id','desc')->get();
-        return view('labfront.peopleProfile',compact('user','news'))->with('title','Profile');
+        return view('labfront.peopleProfile',compact('user','news','projects','papers'))->with('title','Profile');
     }
 
 
@@ -242,15 +250,73 @@ class LabFrontController extends Controller
 
 
 
+
+    /*==================================================*/
+    //Running Project List
+    /*==================================================*/
+
+    public function runningProject(){
+        $projects = Project::orderBy('id', 'desc')->where('project_status', 1)->paginate(5);
+        $news = News::take(5)->orderBy('id','desc')->get();
+        return view('labfront.project',compact('projects','news'))->with('title','Running Project');
+    }
+
+
+    /*==================================================*/
+    //Complete Project List
+    /*==================================================*/
+
+    public function completeProject(){
+        $projects = Project::orderBy('id', 'desc')->where('project_status', 0)->paginate(5);
+        $news = News::take(5)->orderBy('id','desc')->get();
+        return view('labfront.project',compact('projects','news'))->with('title','Complete Project');
+    }
+
+
+
+    /*==================================================*/
+    //Project details
+    /*==================================================*/
+    public function fullProject($meta_data)
+    {
+        try{
+            $project = Project::where('project_meta_data','=',$meta_data)->first();
+            $event = Event::take(4)->orderBy('id','desc')->get(); //recent 3 news
+            return view('labfront.project_single', compact('project','event'))->with('title',"Project Details" );
+        }catch(\Exception $e){
+            return "Sorry, Page not Found ";
+        }
+
+    }
+
+
     /*==================================================*/
     //Paper List
     /*==================================================*/
 
     public function paper(){
-        $news =   News::orderBy('id', 'desc')->paginate(6);
+        $papers =   Paper::orderBy('id', 'desc')->paginate(6);
         $event =  Event::take(5)->orderBy('id','desc')->get();
-        return view('labfront.news',compact('event','news'))->with('title','News List');
+        return view('labfront.paper',compact('event','papers'))->with('title','Paper List');
     }
+
+
+
+    /*==================================================*/
+    //Project details
+    /*==================================================*/
+    public function fullPaper($meta_data)
+    {
+        try{
+            $paper = Paper::where('paper_meta_data','=',$meta_data)->first();
+            $event = Event::take(4)->orderBy('id','desc')->get(); //recent 3 news
+            return view('labfront.paper_single', compact('paper','event'))->with('title',"Paper Details" );
+        }catch(\Exception $e){
+            return "Sorry, Page not Found ";
+        }
+
+    }
+
 
 
 }

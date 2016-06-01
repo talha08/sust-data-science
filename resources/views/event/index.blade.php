@@ -77,9 +77,9 @@
 																<p><b>Start Time: </b>{{ $events->event_time}}</p><br/>
 																<b>Files: </b><br>
 																@foreach($events->eventFile as $file)
-																	{!! $file->event_file !!}
-																	<a class="btn btn-info btn-xs btn-archive" href="#">
-																		<i class="ion-ios7-cloud-download" aria-hidden="true"></i>
+																	{!! $file->event_file_title !!}
+																	<a class="btn btn-info btn-xs btn-archive" href="{!! $file->event_file!!}" target="_blank">
+																		<i class="fa fa-download" aria-hidden="true"></i>
 																	</a><br><br/>
 																@endforeach
 

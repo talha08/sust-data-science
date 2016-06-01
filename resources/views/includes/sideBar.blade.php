@@ -102,7 +102,7 @@
                     {{--news end--}}
 
                     {{--event--}}
-                    <li class="{!! Menu::areActiveRoutes(['event.index', 'event.create']) !!}"><a href="#"><i class="ion-speakerphone"></i> <span class="nav-label">Event</span></a>
+                    <li class="{!! Menu::areActiveRoutes(['event.index', 'event.create','event.eventFileUpload']) !!}"><a href="#"><i class="ion-speakerphone"></i> <span class="nav-label">Event</span></a>
                         <ul class="list-unstyled">
 
                             <li class="{!! Menu::isActiveRoute('event.index') !!}">
@@ -111,6 +111,10 @@
 
                             <li class="{!! Menu::isActiveRoute('event.create') !!}">
                                 <a href="{!!  URL::route( 'event.create') !!}">Create Event</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('event.eventFileUpload') !!}">
+                                <a href="{!!  URL::route('event.eventFileUpload') !!}">Upload Event File</a>
                             </li>
                         </ul>
                     </li>

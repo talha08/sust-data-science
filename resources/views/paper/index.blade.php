@@ -72,7 +72,7 @@
 																@endforeach
 																<b>Students: </b><br>
 																@foreach($paper->users as $user=> $value)
-																	@if($value->is_teacher != 0)
+																	@if($value->is_teacher != 1)
 																		{{ $value->name }}<br/>
 																	@endif
 																@endforeach

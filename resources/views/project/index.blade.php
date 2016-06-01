@@ -43,6 +43,7 @@
 												<td>{!! $project->id !!}</td>
 												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$project->id}}" >{!!  $project->project_title !!}</a></td>
 												<td>{!!Str::limit($project->project_details,20) !!}</td>
+
 												@if($project->project_status == 0)
 													<td><a class="btn btn-success btn-xs btn-archive " href="{!!route('project.changeStatus',$project->id)!!}"  style="margin-right: 3px;">Complete</a></td>
 												 @else
@@ -81,7 +82,7 @@
 
 																<b>Students: </b><br>
 																@foreach($project->users as $user=> $value)
-																	@if($value->is_teacher != 0)
+																	@if($value->is_teacher != 1)
 																		{{ $value->name }}<br/>
 																	@endif
 																@endforeach

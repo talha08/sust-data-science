@@ -5,19 +5,6 @@
 		<div class="container"><!-- container -->
 
 			<div class="row"><!-- row -->
-
-				<div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
-
-					<form action="#" id="top-searchform" method="get" role="search">
-						<div class="input-group">
-							<input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
-						</div>
-					</form>
-
-					<div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
-
-				</div><!-- top search end -->
-
 				<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 					<ol class="breadcrumb">
@@ -56,7 +43,7 @@
 
 											<figure class="leadership-photo">
 												<a href="{!! route('labfront.peopleProfile',$users->id ) !!}">
-													<img src="{!! asset($users->profiles->img_url)!!}" alt="{!! $users->name !!}" />
+													<img src="{!! asset($users->teachers->img_url)!!}" alt="{!! $users->name !!}" />
 												</a>
 											</figure>
 											<div class="leadership-meta clearfix">
@@ -68,8 +55,9 @@
 												<div class="leadership-position">Member Since {!! Carbon\Carbon::now()->diffForHumans($users->created_at) !!} </div>
 
 												<p class="leadership-bio">
-													{!! $users->profiles->about_me !!}
-												</p>
+													{!! $users->teachers->position !!},<small> {!! $users->teachers->organization !!}</small> <br>
+													<small>Shahjalal University of Science and Technology, Sylhet</small>
+												</p><br/>
 
 											</div>
 										</div><!-- leadership single wrap end -->
@@ -81,7 +69,25 @@
 
 						</div><!-- row end -->
 
+
+						{{--paginate--}}
+						<div class="row gutter"><!-- row -->
+
+							<div class="col-lg-12">
+
+								<ul class="pagination pull-right"><!-- pagination -->
+									{!!$user->render() !!}
+								</ul><!-- pagination end -->
+
+							</div>
+
+						</div><!-- row end -->
+						{{--paginate--}}
+
+
+
 					</div><!-- inner custom column end -->
+
 
 				</div><!-- doc body wrapper end -->
 

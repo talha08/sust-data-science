@@ -8,18 +8,6 @@
 
 			<div class="row"><!-- row -->
 
-				<div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
-
-					<form action="#" id="top-searchform" method="get" role="search">
-						<div class="input-group">
-							<input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
-						</div>
-					</form>
-
-					<div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
-
-				</div><!-- top search end -->
-
 				<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 					<ol class="breadcrumb">
@@ -55,12 +43,21 @@
 
 
 								<div class="news-body clearfix">
-									<p>
-							              {!! $events->event_details !!}
-									</p>
+									<p>{!! $events->event_details !!}</p><br/>
 
+									<b>Files: </b><br>
+									@if(!empty($events->eventFile))
+										@foreach($events->eventFile as $file)
+											{!! $file->event_file_title !!}
+											<a class="btn btn-info btn-xs btn-archive" href="{!! $file->event_file!!}" target="_blank">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a><br><br/>
+										@endforeach
+									@else
+										<p>No File Found With This Event.</p>
+									@endif
 
-								</div>
+								</div><br/>
 
 							</div>
 

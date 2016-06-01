@@ -49,7 +49,8 @@ Route::group(array('middleware' => 'auth'), function()
 	Route::post('change-password', array('as' => 'password.doChange', 'uses' => 'Auth\AuthController@doChangePassword'));
 
 
-	Route::put('profile/update', array('as' => 'profile.update', 'uses' => 'ProfileController@update'));
+	Route::put('profile/updateTeacher', array('as' => 'profile.updateTeacher', 'uses' => 'ProfileController@updateTeacher'));
+	Route::put('profile/updateStudent', array('as' => 'profile.updateStudent', 'uses' => 'ProfileController@updateStudent'));
 	Route::put('photo', array('as' => 'photo.store', 'uses' => 'ProfileController@photoUpload'));
 
 
@@ -236,6 +237,16 @@ Route::get('people/alumni', array('as' => 'labfront.alumni', 'uses' => 'LabFront
 //events
 Route::get('home/event', array('as' => 'labfront.events', 'uses' => 'LabFrontController@events'));
 Route::get('home/event/{meta_data}', array('as' => 'labfront.event_single', 'uses' => 'LabFrontController@fullEvent'));
+
+//project
+Route::get('home/running-projects', array('as' => 'labfront.runningProject', 'uses' => 'LabFrontController@runningProject'));
+Route::get('home/complete-projects', array('as' => 'labfront.completeProject', 'uses' => 'LabFrontController@completeProject'));
+Route::get('home/projects/{meta_data}', array('as' => 'labfront.project_single', 'uses' => 'LabFrontController@fullProject'));
+
+
+//paper
+Route::get('home/papers', array('as' => 'labfront.paper', 'uses' => 'LabFrontController@paper'));
+Route::get('home/papers/{meta_data}', array('as' => 'labfront.paper_single', 'uses' => 'LabFrontController@fullPaper'));
 
 
 
