@@ -139,7 +139,7 @@
 													<div class="recent-news-meta">
 														<div class="recent-news-date">{!! \App\News::fullDate($newsList->id) !!}</div>
 													</div>
-													<h4 class="title-median"><a href="{!! route('labfront.full_news') !!}" title="{!! Str::limit($newsList->news_title,15) !!}">
+													<h4 class="title-median"><a href="{!! route('labfront.full_news',$newsList->news_meta_data) !!}" title="{!! Str::limit($newsList->news_title,15) !!}">
 															{!! $newsList->news_title !!}
 														</a></h4>
 												</div>

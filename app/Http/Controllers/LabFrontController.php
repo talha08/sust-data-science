@@ -281,8 +281,8 @@ class LabFrontController extends Controller
     {
         try{
             $project = Project::where('project_meta_data','=',$meta_data)->first();
-            $event = Event::take(4)->orderBy('id','desc')->get(); //recent 3 news
-            return view('labfront.project_single', compact('project','event'))->with('title',"Project Details" );
+            $news =    News::take(4)->orderBy('id','desc')->get(); //recent 3 news
+            return view('labfront.project_single', compact('project','news'))->with('title',"Project Details" );
         }catch(\Exception $e){
             return "Sorry, Page not Found ";
         }
@@ -309,8 +309,8 @@ class LabFrontController extends Controller
     {
         try{
             $paper = Paper::where('paper_meta_data','=',$meta_data)->first();
-            $event = Event::take(4)->orderBy('id','desc')->get(); //recent 3 news
-            return view('labfront.paper_single', compact('paper','event'))->with('title',"Paper Details" );
+            $news =  News::take(4)->orderBy('id','desc')->get(); //recent 3 news
+            return view('labfront.paper_single', compact('paper','news'))->with('title',"Paper Details" );
         }catch(\Exception $e){
             return "Sorry, Page not Found ";
         }

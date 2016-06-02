@@ -33,10 +33,10 @@
 								<div class="events-title-meta clearfix">
 									<h1 class="page-title">{!! $events->event_title !!}</h1>
 									<div class="event-meta">
-										<span class="event-from">{!! \App\Event::fullDate($events->id,$events->event_start) !!}</span>
+										<span class="event-from">{!! \App\Event::fullDate($events->event_start) !!}</span>
 										<span class="event-divider">to</span>
-										<span class="event-to">{!! \App\Event::fullDate($events->id,$events->event_end) !!}</span>
-										<span class="event-time">{!! \App\Event::fullTime($events->id,$events->event_time) !!}</span>
+										<span class="event-to">{!! \App\Event::fullDate($events->event_end) !!}</span>
+										<span class="event-time">{!! \App\Event::fullTime($events->event_time) !!}</span>
 									</div>
 								</div>
 

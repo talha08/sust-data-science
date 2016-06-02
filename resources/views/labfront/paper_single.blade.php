@@ -125,19 +125,19 @@
 
 
 									<br/><br/>
-									<h1 class="title-widget">Lab Top Events</h1>
-									@foreach($event as $eventList)
+									<h1 class="title-widget">Lab Top News</h1>
+									@foreach($news as $newsList)
 										<li class="recent-news-wrap news-no-summary">
 											<div class="recent-news-content clearfix">
 												<figure class="recent-news-thumb">
-													<a href="{!! route('labfront.event_single',$eventList->event_meta_data) !!}" title="{!! Str::limit($eventList->event_title,15) !!}"><img src="{!! asset($eventList->event_image) !!}" width=100" height="100" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
+													<a href="{!! route('labfront.full_news',$newsList->news_meta_data) !!}" title="{!! Str::limit($newsList->news_title,15) !!}"><img src="{!! asset($newsList->news_image) !!}" width=100" height="100" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" /></a>
 												</figure>
 												<div class="recent-news-text">
 													<div class="recent-news-meta">
-														<div class="recent-news-date">{!! \App\News::fullDate($eventList->id) !!}</div>
+														<div class="recent-news-date">{!! \App\News::fullDate($newsList->id) !!}</div>
 													</div>
-													<h4 class="title-median"><a href="{!! route('labfront.event_single',$eventList->event_meta_data) !!}" title="{!! Str::limit($eventList->event_title,15) !!}">
-															{!! $eventList->event_title !!}
+													<h4 class="title-median"><a href="{!! route('labfront.full_news',$newsList->news_meta_data) !!}" title="{!! Str::limit($newsList->news_title,15) !!}">
+															{!! $newsList->news_title !!}
 														</a></h4>
 												</div>
 											</div>

@@ -52,9 +52,9 @@
 											<h1 class="title-median"><a href="{!! route('labfront.project_single',$project->project_meta_data ) !!}" title="{!! $project->project_title !!}">{!! $project->project_title !!}</a></h1>
 
 											<div class="up-event-meta clearfix">
-												<div class="up-event-time">Start - {!! \App\Project::fullDate($project->id,$project->created_at) !!}</div>
+												<div class="up-event-time">Start - {!! \App\Project::fullDate($project->id) !!}</div>
 												@if($project->project_status ==0)
-												<div class="up-event-time">End  - {!! \App\Project::fullDate($project->id,$project->updated_at) !!}</div>
+												<div class="up-event-time">End  - {!! \App\Project::fullEndDate($project->id) !!}</div>
 												@endif
 
 												<div class="up-event-date">

@@ -130,8 +130,8 @@
 									<h1 class="title-median"><a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" title="{!! Str::limit($events->event_title,20) !!}">{!! Str::limit($events->event_title,20) !!}</a></h1>
 
 									<div class="up-event-meta clearfix">
-										<div class="up-event-date">{!! \App\Event::fullDate($events->id,$events->event_start) !!}</div>
-										<div class="up-event-time">{!! \App\Event::fullTime($events->id,$events->event_time) !!}</div>
+										<div class="up-event-date">{!! \App\Event::fullDate($events->event_start) !!}</div>
+										<div class="up-event-time">{!! \App\Event::fullTime($events->event_time) !!}</div>
 									</div>
 
 									<p>

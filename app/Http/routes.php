@@ -273,10 +273,6 @@ Route::post('home/subscriber', array('as' => 'subscriber.action', 'uses' => 'Sub
 
 
 
-Route::get('xxx',function(){
-	return \App\Award::with('users')->get();
-});
-
 
 
 

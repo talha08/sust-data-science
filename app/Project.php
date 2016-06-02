@@ -21,8 +21,15 @@ class Project extends Model
 
     //parse created_at date and return full date
     // $id= id $date = createed-at, updated_at, others-at  .....
-    public static function fullDate($id, $date){
-        $event = \App\Project::findOrFail($id)->$date;
+    public static function fullDate($id){
+        $event = \App\Project::findOrFail($id)->created_at;
+        $dt = \Carbon\Carbon::parse($event);
+        return  $dt->formatLocalized('%d %B %Y');//day date month year
+    }
+
+
+    public static function fullEndDate($id){
+        $event = \App\Project::findOrFail($id)->updated_at;
         $dt = \Carbon\Carbon::parse($event);
         return  $dt->formatLocalized('%d %B %Y');//day date month year
     }

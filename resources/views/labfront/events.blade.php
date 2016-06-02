@@ -6,6 +6,19 @@
 
 {{--path to go--}}
 		<div class="row"><!-- row -->
+
+			<div id="k-top-search" class="col-lg-12 clearfix"><!-- top search -->
+
+				<form action="#" id="top-searchform" method="get" role="search">
+					<div class="input-group">
+						<input type="text" name="s" id="sitesearch" class="form-control" autocomplete="off" placeholder="Type in keyword(s) then hit Enter on keyboard" />
+					</div>
+				</form>
+
+				<div id="bt-toggle-search" class="search-icon text-center"><i class="s-open fa fa-search"></i><i class="s-close fa fa-times"></i></div><!-- toggle search button -->
+
+			</div><!-- top search end -->
+
 			<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 				<ol class="breadcrumb">
@@ -52,9 +65,9 @@
 								<h1 class="title-median"><a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" title="{!! $events->event_title !!}">{!! $events->event_title !!}</a></h1>
 
 								<div class="up-event-meta clearfix">
-									<div class="up-event-date">{!! \App\Event::fullDate($events->id,$events->event_start) !!}</div>
-									<div class="up-event-date">{!! \App\Event::fullDate($events->id,$events->event_end) !!}</div>
-									<div class="up-event-time">{!! \App\Event::fullTime($events->id,$events->event_time) !!}</div>
+									<div class="up-event-date">{!! \App\Event::fullDate($events->event_start) !!}</div>
+									<div class="up-event-date">{!! \App\Event::fullEndDate($events->event_end) !!}</div>
+									<div class="up-event-time">{!! \App\Event::fullTime($events->event_time) !!}</div>
 								</div>
 
 								<p>
