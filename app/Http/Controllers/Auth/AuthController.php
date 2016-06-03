@@ -95,6 +95,7 @@ class AuthController extends Controller
 
     public function doLogin(Request $request)
     {
+       // return $request->all();
         $rules = array
         (
                     'email'    => 'required',
@@ -115,6 +116,8 @@ class AuthController extends Controller
         } else
         {
 
+            $remember = (\Input::has('remember')) ? true : false;
+
             $credentials = array
             (
                         'email'    => $allInput['email'],
@@ -126,7 +129,7 @@ class AuthController extends Controller
            $count=User::where('email',$request->email)->count();
 
            if($count!= 0 && User::where('email',$request->email)->pluck('status')== 1){
-              if (Auth::attempt($credentials))
+              if (Auth::attempt($credentials,$remember))
               {
                   return redirect()->route('dashboard');
               }

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class StudentRequest extends Request
+class SliderRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StudentRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class StudentRequest extends Request
     public function rules()
     {
         return [
-            //
+            'slider_title'=> 'required',
+            'slider_desc'=> 'required',
+            'slider_position'=> 'required',
         ];
     }
 }

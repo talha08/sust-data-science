@@ -8,6 +8,7 @@ use App\Paper;
 use App\PaperPeople;
 use App\Project;
 use App\ProjectsPeople;
+use App\Slider;
 use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
@@ -32,9 +33,10 @@ class LabFrontController extends Controller
         $blog= Blog::take(4)->orderBy('id','desc')->get();
         $project= Project::take(5)->orderBy('id','desc')->get();
         $paper= Paper::take(5)->orderBy('id','desc')->get();
+        $slider = Slider::take(1)->orderBy('id','desc')->first();
+        $sliders = Slider::take(3)->skip(1)->orderBy('id','desc')->get();
 
-
-        return view('labfront.index',compact('event','news','blog','project','paper'))
+        return view('labfront.index',compact('event','news','blog','project','paper','sliders','slider'))
             ->with('title','Home | SUST CSE Data Science Lab');
     }
 

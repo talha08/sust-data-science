@@ -148,3 +148,14 @@ $factory->define(App\Book::class, function (Faker\Generator $faker) {
         'book_meta_data' =>$faker->unique()->word,
     ];
 });
+
+//for eventFile table
+$factory->define(App\Slider::class, function (Faker\Generator $faker) {
+    return [
+        'slider_title' =>$faker->sentence(5),
+        'slider_position' => 'k-carousel-caption pos-1-3-left scheme-light',
+        'slider_desc' => $faker->sentence(10),
+        'img_url' =>$faker->imageUrl($width = 1140, $height = 400),
+        'thumb_url' =>$faker->imageUrl($width = 41, $height = 41),
+    ];
+});

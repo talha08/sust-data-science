@@ -20,11 +20,4 @@ class FrontViewController extends Controller
 
 
 
-
-
-
-
-
-
-
 }

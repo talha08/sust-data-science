@@ -44,7 +44,7 @@
 
                 <div class="col-sm-5 ">
                     <label class="cr-styled">
-                        <input type="checkbox" checked>
+                        <input checked="checked" name="agree" type="checkbox" value="1">
                         <i class="fa"></i>
                         Remember me
                     </label>

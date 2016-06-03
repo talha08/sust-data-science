@@ -115,6 +115,15 @@ Route::group(array('middleware' => 'auth'), function()
 Route::group(array('middleware' => 'auth'), function() {
 	Route::group(array('middleware' => 'user'), function() {
 
+		//slider image
+		Route::get('slider', array('as' => 'slider.index', 'uses' => 'SliderController@index'));
+		Route::get('slider/create', array('as' => 'slider.create', 'uses' => 'SliderController@create'));
+		Route::post('slider', array('as' => 'slider.store', 'uses' => 'SliderController@store'));
+		Route::delete('slider/{id}', array('as' => 'slider.delete', 'uses' => 'SliderController@destroy'));
+
+
+
+
 		//user list
 		//Route::get('allUser', array('as' => 'user.index', 'uses' => 'UsersController@index'));
 		Route::get('student-list', array('as' => 'user.student', 'uses' => 'UsersController@student'));
@@ -182,8 +191,6 @@ Route::group(array('middleware' => 'auth'), function() {
 	    Route::post('singleFileUpload', array('as' => 'event.singleUpload', 'uses' => 'EventController@singleFileUpload')); //for modal file upload
 
 		//Route::get('/download/{event_file}', array('as' => 'event.download', 'uses' => 'EventController@getDownload'));
-
-
 
 
 

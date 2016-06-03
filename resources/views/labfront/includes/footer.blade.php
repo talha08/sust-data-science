@@ -125,7 +125,7 @@
             <div class="col-lg-12">
 
                 <p class="copy-text text-inverse">
-                    &copy; 2016. SUST Cse Data Science Lab, All rights reserved.
+                    &copy; 2016. SUST Cse Software House, All rights reserved.
                 </p>
 
             </div>

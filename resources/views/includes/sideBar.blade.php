@@ -208,7 +208,20 @@
 
 
 
+                    {{--Slider--}}
+                    <li class="{!! Menu::areActiveRoutes(['slider.index', 'slider.create']) !!}"><a href="#"><i class="ion-images"></i> <span class="nav-label">Slide Show</span></a>
+                        <ul class="list-unstyled">
 
+                            <li class="{!! Menu::isActiveRoute('slider.index') !!}">
+                                <a href="{!!  URL::route( 'slider.index') !!}">All Slide</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('slider.create') !!}">
+                                <a href="{!!  URL::route( 'slider.create') !!}">Add New Slide</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--Slider end--}}
 
 
 
