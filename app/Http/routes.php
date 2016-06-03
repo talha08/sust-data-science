@@ -126,19 +126,21 @@ Route::group(array('middleware' => 'auth'), function() {
 		Route::get('makeAlumni/{id}', array('as' => 'user.makeAlumni', 'uses' => 'UsersController@makeAlumni'));
           //here different delete for different user
 
-
+		//user profile
+		Route::get('user-profile/{id}', array('as' => 'user.profile', 'uses' => 'UsersController@userProfile'));
 
 		//apply user list
 		Route::get('allApplyList', array('as' => 'user.applyList', 'uses' => 'UsersController@applyList'));
 		Route::delete('allApplyList/{id}', array('as' => 'user.destroy', 'uses' => 'UsersController@destroy'));
 
-		//teacher add by admin
-		Route::get('teacher-add', array('as' => 'user.teacherAdd', 'uses' => 'TeacherAddController@teacherAdd'));
-		Route::post('teacher-add/store', array('as' => 'user.teacherStore', 'uses' => 'TeacherAddController@teacherStore'));
 
-		//approve users
+		//teacher and student add by admin
+		Route::get('user-add', array('as' => 'auth.userAdd', 'uses' => 'UserAddController@userAdd'));
+		Route::post('user-add/store', array('as' => 'auth.userStore', 'uses' => 'UserAddController@userStore'));
+
+		//all user  list
 		Route::get('allUser', array('as' => 'user.index', 'uses' => 'UsersController@index'));
-		//all blog section
+		//waiting user approve
 		Route::get('userApprove/{id}', array('as' => 'user.approve', 'uses' => 'UsersController@approve'));
 
 		//all blog
@@ -234,6 +236,7 @@ Route::get('people/student', array('as' => 'labfront.student', 'uses' => 'LabFro
 Route::get('people/alumni', array('as' => 'labfront.alumni', 'uses' => 'LabFrontController@alumni'));
 
 
+
 //events
 Route::get('home/event', array('as' => 'labfront.events', 'uses' => 'LabFrontController@events'));
 Route::get('home/event/{meta_data}', array('as' => 'labfront.event_single', 'uses' => 'LabFrontController@fullEvent'));
@@ -248,6 +251,9 @@ Route::get('home/projects/{meta_data}', array('as' => 'labfront.project_single',
 Route::get('home/papers', array('as' => 'labfront.paper', 'uses' => 'LabFrontController@paper'));
 Route::get('home/papers/{meta_data}', array('as' => 'labfront.paper_single', 'uses' => 'LabFrontController@fullPaper'));
 
+//award
+Route::get('home/award', array('as' => 'labfront.award', 'uses' => 'LabFrontController@award'));
+Route::get('home/award/{meta_data}', array('as' => 'labfront.award_single', 'uses' => 'LabFrontController@awardDetails'));
 
 
 //subscriber or newsletter

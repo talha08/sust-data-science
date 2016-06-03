@@ -28,33 +28,27 @@
 								<div class="panel-body">
 
 
-								{!! Form::open(array('route' => 'user.teacherStore', 'method' => 'post', 'class' => 'form-signin')) !!}
+								{!! Form::open(array('route' => 'auth.userStore', 'method' => 'post', 'class' => 'form-signin')) !!}
 
 
 									<div class="form-group">
 										{!! Form::label('name', 'Complete Name :', array('class' => 'col-md-4 control-label')) !!}<br/>
-										{!! Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Your complete name...', 'autofocus')) !!}
+										{!! Form::text('name', '', array('class' => 'form-control', 'placeholder' => 'Input complete name...', 'autofocus')) !!}
 									</div><br>
 
 									<div class="form-group">
 										{!! Form::label('email', 'Email :', array('class' => 'col-md-4 control-label')) !!}<br/>
-										{!! Form::text('email', '', array('class' => 'form-control', 'placeholder' => 'Email Address...', 'autofocus')) !!}
+										{!! Form::email('email', '', array('class' => 'form-control', 'placeholder' => 'Email Address...', 'autofocus')) !!}
 									</div><br>
-
-
-									<div class="form-group ">
-										{!! Form::label('password', 'Password :', array('class' => 'col-md-4 control-label')) !!}<br/>
-										{!! Form::password('password', array('class' => 'form-control', 'placeholder' => 'Input Password...')) !!}
-									</div><br>
-
-									<div class="form-group ">
-										{!! Form::label('password_confirmation', 'Confirm Password :', array('class' => 'col-md-4 control-label')) !!}<br/>
-										{!! Form::password('password_confirmation', array('class' => 'form-control', 'placeholder' => 'Confirm Password...')) !!}
-									</div><br>
-
 
 									<div class="form-group">
-										{!! Form::submit('Add Teacher', array('class' => 'btn btn-primary')) !!}
+										{!!  Form::label('type', 'Select User Type :', array()) !!}<br/>
+										{!!  Form::radio('type', '1')  !!} Teacher &nbsp;&nbsp;
+										{!!  Form::radio('type', '0')  !!} Student
+									</div><br>
+
+									<div class="form-group">
+										{!! Form::submit('Add User', array('class' => 'btn btn-primary')) !!}
 									</div>
 
 									{!! Form::close() !!}
@@ -71,5 +65,31 @@
 	</div>
 
 
-
 @endsection
+
+
+@section('style')
+
+			<!--Select Input-->
+	{!! Html::style('assets/select2/select2.css') !!}
+@stop
+
+@section('script')
+
+{!! Html::script('assets/select2/select2.min.js') !!}
+
+
+	<script type="text/javascript">
+
+		jQuery(document).ready(function() {
+
+			// Select2
+			jQuery(".select2").select2({
+				width: '100%'
+			});
+
+		});
+
+	</script>
+
+@stop

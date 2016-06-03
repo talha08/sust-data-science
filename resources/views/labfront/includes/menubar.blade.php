@@ -53,6 +53,7 @@
                             <li><a href="{!! route('labfront.runningProject') !!}">Running Projects</a></li>
                             <li><a href="{!! route('labfront.completeProject') !!}">Complete Projects</a></li>
                             <li><a href="{!! route('labfront.paper') !!}">Papers</a></li>
+                            <li><a href="{!! route('labfront.award') !!}">Awards</a></li>
                             {{--<li><a href="#">Books</a></li>--}}
 
                         </ul>

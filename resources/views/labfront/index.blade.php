@@ -450,7 +450,9 @@
 							@foreach($project as $projectList)
 								<div class="media">
 									<div class="media-body">
-										<h5 class="media-heading"><a href="#">{!! Str::limit($projectList->project_title,30) !!} </a></h5>
+										<h5 class="media-heading"><a href="{!! route('labfront.project_single',$projectList->project_meta_data ) !!}">
+												{!! Str::limit($projectList->project_title,30) !!} </a>
+										</h5>
 										<p>
 											{!!Str::limit($projectList->project_details,80) !!}
 										</p>
@@ -468,7 +470,9 @@
 						@foreach($paper as $papers)
 							<div class="media">
 								<div class="media-body">
-									<h5 class="media-heading"><a href="#">{!! Str::limit($papers->paper_title,30) !!} </a></h5>
+									<h5 class="media-heading"><a href="{!! route('labfront.paper_single',$papers->paper_meta_data ) !!}">
+											{!! Str::limit($papers->paper_title,30) !!} </a>
+									</h5>
 									<p>
 										{!!Str::limit($papers->paper_details,80) !!}
 									</p>

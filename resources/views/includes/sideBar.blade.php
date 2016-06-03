@@ -62,7 +62,7 @@
 
 
                     {{--user--}}
-                    <li class="{!! Menu::areActiveRoutes(['user.student','user.teacher','user.alumni','user.applyList']) !!}"><a href="#"><i
+                    <li class="{!! Menu::areActiveRoutes(['user.student','user.teacher','user.alumni','user.applyList','auth.userAdd']) !!}"><a href="#"><i
                                     class="ion-person-stalker"></i> <span class="nav-label">Users</span></a>
                         <ul class="list-unstyled">
 
@@ -78,6 +78,9 @@
 
                             <li class="{!! Menu::isActiveRoute('user.applyList') !!}">
                                 <a href="{!!  URL::route('user.applyList') !!}">Waiting Users</a>
+                            </li>
+                            <li class="{!! Menu::isActiveRoute('auth.userAdd') !!}">
+                                <a href="{!!  URL::route('auth.userAdd') !!}">Add User</a>
                             </li>
 
                         </ul>

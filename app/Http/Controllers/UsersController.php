@@ -126,6 +126,18 @@ class UsersController extends Controller
     }
 
 
+    /**
+     * All User Profile
+     * Admin can view all user
+     * @param $id
+     * @return $this
+     */
+    public function userProfile($id){
+        $user = User::findOrFail($id);
+        return view('user.profile', compact('user'))
+            ->with('title', 'User Profile');
+    }
+
 
     /**
      * Student Sign up Form view
@@ -244,4 +256,8 @@ class UsersController extends Controller
     public function help(){
           return view('help')->with('title','3rd Party Account Information');
     }
+
+
+
+
 }

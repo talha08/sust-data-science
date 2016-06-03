@@ -38,10 +38,13 @@
 										@foreach ($user as $users)
 											<tr>
 												<td>{!! $users->id !!}</td>
-												<td>{!! $users->name !!}</td>
+												<td><a style="color: teal;" href="{!!route('user.profile',$users->id)!!}"  >{!! $users->name !!}</a>
 												<td>{!! $users->email !!}</td>
 												<td>{!! \Carbon\Carbon::now()->diffForHumans($users->created_at) !!}</td>
-												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $users->id!!}">Delete</a></td>
+												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $users->id!!}">
+														<i class="ion-trash-a" aria-hidden="true"></i>
+													</a>
+												</td>
 											</tr>
 										@endforeach
 

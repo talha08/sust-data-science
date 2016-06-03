@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Award;
 use App\Event;
 use App\News;
 use App\Paper;
@@ -311,6 +312,34 @@ class LabFrontController extends Controller
             $paper = Paper::where('paper_meta_data','=',$meta_data)->first();
             $news =  News::take(4)->orderBy('id','desc')->get(); //recent 3 news
             return view('labfront.paper_single', compact('paper','news'))->with('title',"Paper Details" );
+        }catch(\Exception $e){
+            return "Sorry, Page not Found ";
+        }
+
+    }
+
+
+    /*==================================================*/
+    //Award List
+    /*==================================================*/
+
+    public function award(){
+        $awards =   Award::orderBy('id', 'desc')->paginate(6);
+        $event =  Event::take(5)->orderBy('id','desc')->get();
+        return view('labfront.award',compact('event','awards'))->with('title','Award List');
+    }
+
+
+
+    /*==================================================*/
+    //Award details
+    /*==================================================*/
+    public function awardDetails($meta_data)
+    {
+        try{
+            $award = Award::where('paper_meta_data','=',$meta_data)->first();
+            $news =  News::take(4)->orderBy('id','desc')->get(); //recent 3 news
+            return view('labfront.award_single', compact('award','news'))->with('title',"Award Details" );
         }catch(\Exception $e){
             return "Sorry, Page not Found ";
         }

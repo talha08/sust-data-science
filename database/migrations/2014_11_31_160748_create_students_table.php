@@ -24,7 +24,7 @@ class CreateStudentsTable extends Migration
             $table->string('github_user')->nullable();
             $table->string('linkedIn_user')->nullable();
             $table->text('platform')->nullable();
-            $table->string('position')->default('Students');
+            $table->string('position')->default('Student');
             $table->string('organization')->default('Department of Computer Science and Engineering');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

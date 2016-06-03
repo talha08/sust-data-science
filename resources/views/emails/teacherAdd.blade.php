@@ -82,27 +82,32 @@
 							SUST CSE Data Science Lab || Membership Message
 						</td>
 					</tr>
-					<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+					<tr style=" font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 						<td class="content-wrap" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 20px;" valign="top">
+							<center>
 							<table width="100%" cellpadding="0" cellspacing="0" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 
 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-										Congratulation, You are added as a Supervisor at Data Science Lab, CSE, SUST.
+										Congratulation,  <b>{{ $user->name }}</b>.
+										You are added as a
+										@if($user->is_teacher ==1)
+											Supervisor
+										@else
+											Student
+										@endif
+										 at Data Science Lab, CSE, SUST.
 									</td>
-								</tr>
+								</tr><br/>
 
-								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-										Name:  {!! $user->name !!}
-									</td><br>
-									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
-										Email:  {!! $user->email !!}
-									</td><br>
-									{{--<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">--}}
-										{{--Password:  {!! $password !!}--}}
-									{{--</td><br>--}}
-								</tr>
+
+
+
+									 <p>Email : {{ $user->email }}</p>	<br/>
+
+								     <p>Password : {{ $password }}</p><br/>
+
+								<p> N.B.: You are Recommended to change your password as soon as possible and update your account. </p><br/>
 
 								<tr style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 									<td class="content-block" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
@@ -112,7 +117,7 @@
 
 
 							</table>
-
+				    </center>
 
 						</td>
 					</tr>
