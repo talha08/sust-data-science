@@ -205,7 +205,7 @@ return [
         'OAuth'     => Artdarek\OAuth\Facade\OAuth::class,
         'Str'       => 'Illuminate\Support\Str',
         'Image'     => Intervention\Image\Facades\Image::class,
-      
+
     ],
 
 ];
