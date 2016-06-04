@@ -32,7 +32,7 @@
 											<th>id</th>
 											<th> Category Name</th>
 											<th>Created at</th>
-											<th>Details</th>
+											{{--<th>Details</th>--}}
 											<th>Edit</th>
 											<th>Delete</th>
 										</tr>
@@ -42,7 +42,7 @@
 											<tr>
 												<td>{!! $category->id !!}</td>
 												<td>{!! $category->cat_name !!}</td>
-												<td>{!! Str::limit( $category->cat_details,80) !!}</td>
+												{{--<td>{!! Str::limit( $category->cat_details,80) !!}</td>--}}
 												<td> <a><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal_{{$category->id}}" >Details</button></a></td>
 												<td><a class="btn btn-info btn-xs btn-archive Editbtn" href="{!!route('projectCat.edit',$category->id)!!}"  style="margin-right: 3px;">Edit</a></td>
 												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $category->id!!}">Delete</a></td>

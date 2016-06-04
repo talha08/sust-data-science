@@ -31,7 +31,7 @@
 										<tr>
 											<th>id</th>
 											<th>Title</th>
-											<th>Details</th>
+											{{--<th>Details</th>--}}
 											<th>Actions</th>
 
 										</tr>
@@ -41,7 +41,7 @@
 											<tr>
 												<td>{!! $newsList->id !!}</td>
 												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$newsList->id}}" >{!! $newsList->news_title !!}</a></td>
-												<td>{!!Str::limit($newsList->news_details,30) !!}</td>
+												{{--<td>{!!Str::limit($newsList->news_details,30) !!}</td>--}}
 												<td><a class="btn btn-warning btn-xs btn-archive Editbtn" href="{!!route('news.edit',$newsList->id)!!}"  style="margin-right: 3px;"><i class="ion-compose" aria-hidden="true"></i></a>
 												<a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $newsList->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a>
 												</td>

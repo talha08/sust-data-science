@@ -31,7 +31,7 @@
 										<tr>
 											<th>id</th>
 											<th>Title</th>
-											<th>Details</th>
+											{{--<th>Details</th>--}}
 											<th>Start Date</th>
 											<th>End Date</th>
 											<th>Start Time </th>
@@ -44,7 +44,7 @@
 											<tr>
 												<td>{!! $events->id !!}</td>
 												<td> <a data-toggle="modal" style="color: teal;" data-target="#myModal_{{$events->id}}" >{!!  Str::limit($events->event_title,30) !!}</a></td>
-												<td>{!!Str::limit($events->event_details,20) !!}</td>
+												{{--<td>{!!Str::limit($events->event_details,20) !!}</td>--}}
 												<td>{!! $events->event_start !!}</td>
 												<td>{!! $events->event_end !!}</td>
 												<td>{!! $events->event_time !!}</td>
