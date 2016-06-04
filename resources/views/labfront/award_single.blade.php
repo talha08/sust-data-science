@@ -39,6 +39,7 @@
 
 								<div class="events-title-meta clearfix">
 									<h1 class="page-title">{!! $award->award_title !!}</h1>
+									<h3>Achievement:{!! $award->award_position !!} </h3>
 									<div class="event-meta">
 										<p>{!! $award->award_details !!}</p><br/><br/>
 									</div>
