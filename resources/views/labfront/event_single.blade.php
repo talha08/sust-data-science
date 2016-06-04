@@ -50,16 +50,16 @@
 									<p>{!! $events->event_details !!}</p><br/>
 
 									<b>Files: </b><br>
-									@if(!empty($events->eventFile))
+									{{--@if(!empty($events->eventFile))--}}
 										@foreach($events->eventFile as $file)
 											{!! $file->event_file_title !!}
 											<a class="btn btn-info btn-xs btn-archive" href="{!! $file->event_file!!}" target="_blank">
 												<i class="fa fa-download" aria-hidden="true"></i>
 											</a><br><br/>
 										@endforeach
-									@else
-										<p>No File Found With This Event.</p>
-									@endif
+									{{--@else--}}
+										{{--<p>No File Found With This Event.</p>--}}
+									{{--@endif--}}
 
 								</div><br/>
 
