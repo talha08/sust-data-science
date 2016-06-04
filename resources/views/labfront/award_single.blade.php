@@ -12,7 +12,7 @@
 
 					<ol class="breadcrumb">
 						<li><a href="{!!  route('labfront.index') !!}">Home</a></li>
-						<li><a href="{!!  route('labfront.completeProject') !!}">Projects</a></li>
+						<li><a href="{!!  route('labfront.award') !!}">Awards</a></li>
 						<li class="active">{!! $award->award_title !!}</li>
 					</ol>
 
