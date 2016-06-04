@@ -149,7 +149,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Artdarek\OAuth\OAuthServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        'Laracasts\Flash\FlashServiceProvider'
+
 
     ],
 
@@ -205,7 +205,7 @@ return [
         'OAuth'     => Artdarek\OAuth\Facade\OAuth::class,
         'Str'       => 'Illuminate\Support\Str',
         'Image'     => Intervention\Image\Facades\Image::class,
-        'Flash'     => 'Laracasts\Flash\Flash',
+      
     ],
 
 ];
