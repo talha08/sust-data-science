@@ -38,7 +38,7 @@
                 \App\User::where('status',1)
                 ->where('is_teacher', 1)
                 ->count() !!}</h2>
-                <div>Total Student</div>
+                <div>Total Teacher</div>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 \App\User::where('status',1)
                 ->where('is_teacher', 2)
                 ->count() !!}</h2>
-                <div>Total Student</div>
+                <div>Total Alumni</div>
             </div>
         </div>
 
@@ -126,7 +126,7 @@
 
     <div class="alert alert-danger">
         <center>
-            This site is now in <b>Beta version</b>. Mistakes will be resolve soon. <br/>
+            This site is now in <b>Alpha version</b>. Mistakes will be resolve soon. <br/>
             Thank You :)
         </center>
     </div>
