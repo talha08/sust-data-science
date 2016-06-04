@@ -6,7 +6,7 @@ use App\Project;
 use App\ProjectsPeople;
 use App\User;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ProjectRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -24,6 +24,9 @@ class ProjectController extends Controller
         return view('project.index', compact('projects'))->with('title',"All Project List");
     }
 
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,13 +40,14 @@ class ProjectController extends Controller
         return view('project.create',compact('teacher','students'))->with('title',"Create New Project");
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProjectRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
 
         $project = new Project();
@@ -65,6 +69,9 @@ class ProjectController extends Controller
         return redirect()->back()->with('error', 'Something Went Wrong');
     }
 
+
+
+
     /**
      * Display the specified resource.
      *
@@ -75,6 +82,9 @@ class ProjectController extends Controller
     {
         //
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -93,17 +103,14 @@ class ProjectController extends Controller
     }
 
 
-
-
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ProjectRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ProjectRequest $request, $id)
     {
         $project = Project::findOrFail($id);
         $project->project_title = $request->project_title;

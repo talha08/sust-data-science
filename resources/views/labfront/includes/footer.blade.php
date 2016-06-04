@@ -125,7 +125,7 @@
             <div class="col-lg-12">
 
                 <p class="copy-text text-inverse">
-                    &copy; 2016. SUST Cse Software House, All rights reserved.
+                    &copy; <?php echo date("Y"); ?> . SUST Cse Software House, All rights reserved.
                 </p>
 
             </div>
@@ -159,7 +159,11 @@
 
 {!! Html::script('labfront/js/theme.js') !!}
 
-
+<style>
+    .copy-text{
+        color:white ;
+    }
+</style>
 
 @yield('script')
 

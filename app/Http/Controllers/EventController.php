@@ -12,6 +12,8 @@ use Validator;
 //use Request;
 use Response;
 use App\Http\Requests\EventFileRequest;
+use Intervention\Image\ImageManagerStatic as Image;
+use App\Http\Requests\EventRequest;
 
 class EventController extends Controller
 {
@@ -42,40 +44,50 @@ class EventController extends Controller
     }
 
 
-
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param EventRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $event = new Event();
-        $event->event_title = $request->event_title;
-        $event->event_details = $request->event_details;
-        $event->event_start = $request->event_start;
-        $event->event_end = $request->event_end;
-        $event->event_time = $request->event_time;
-        //$award->event_image = $request->event_image;
-        $event->event_meta_data =  md5($request->event_title);
-        $event->save();
 
-        return redirect()->back()->with('success', 'Event Successfully Created');
+        if( $request->hasFile('image')) {
+            $file = $request->image;
+            //getting the file extension
+            $extension = $file->getClientOriginalExtension();
+            $fileName = md5(rand(11111, 99999)) . '.' . $extension; // renameing image
+            //path set
+            $img_url = 'upload/event/img-'.$fileName;
+
+            //resize and crop image using Image Intervention
+            //Image::make($file)->crop(558, 221, 0, 0)->save(public_path($img_url));
+            Image::make($file)->resize(558, 221)->save(public_path($img_url));
+
+            $event = new Event();
+            $event->event_title = $request->event_title;
+            $event->event_details = $request->event_details;
+            $event->event_start = $request->event_start;
+            $event->event_end = $request->event_end;
+            $event->event_time = $request->event_time;
+            $event->event_image = $img_url;
+            $event->event_meta_data =  str_slug($request->event_title).rand(2345,23142);
+
+            if($event->save()){
+                return redirect()->back()->with('success', 'Event Successfully Created');
+            }else{
+                return redirect()->back()->with('error', 'Something went wrong, Please try again');
+            }
+
+        }else{
+            return redirect()->back()->with('error', 'Image Upload Problem, Please Try Again');
+        }
+
     }
 
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($event_meta_data)
-    {
-
-    }
 
 
 
@@ -93,16 +105,14 @@ class EventController extends Controller
     }
 
 
-
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param EventRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(EventRequest $request, $id)
     {
         $event = Event::findOrFail($id);
         $event->event_title = $request->event_title;
@@ -111,7 +121,7 @@ class EventController extends Controller
         $event->event_end = $request->event_end;
         $event->event_time = $request->event_time;
         //$award->event_image = $request->event_image;
-        $event->event_meta_data =  md5($request->event_title);
+        $event->event_meta_data =  str_slug($request->event_title).rand(2345,23142);
         $event->save();
 
         return redirect()->back()->with('success', 'Event Successfully Updated');

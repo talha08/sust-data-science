@@ -186,6 +186,8 @@
     {!! Html::style('assets/tagsinput/jquery.tagsinput.css') !!}
             <!--Select Input-->
     {!! Html::style('assets/select2/select2.css') !!}
+
+
 @stop
 
 @section('script')

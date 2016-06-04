@@ -111,6 +111,9 @@ Route::group(array('middleware' => 'auth'), function()
 
 });
 
+
+
+
 //only admin can access this area
 Route::group(array('middleware' => 'auth'), function() {
 	Route::group(array('middleware' => 'user'), function() {
@@ -121,6 +124,12 @@ Route::group(array('middleware' => 'auth'), function() {
 		Route::post('slider', array('as' => 'slider.store', 'uses' => 'SliderController@store'));
 		Route::delete('slider/{id}', array('as' => 'slider.delete', 'uses' => 'SliderController@destroy'));
 
+
+
+        //home page welcome message
+		Route::get('welcome', array('as' => 'welcome.index', 'uses' => 'WelcomeController@index'));
+		Route::get('welcome/edit', array('as' => 'welcome.edit', 'uses' => 'WelcomeController@edit'));
+		Route::put('award/update', array('as' => 'welcome.update', 'uses' => 'WelcomeController@update'));
 
 
 

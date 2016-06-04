@@ -50,7 +50,7 @@
 
 									<div class="form-group">
 										{!! Form::label('award_position', 'Position :', array('class' => 'control-label')) !!}<br/>
-										{!!Form::text('award_position', '',array('class' => 'form-control','placeholder' =>  'Award position here'))!!}
+										{!!Form::text('award_position', '',array('class' => 'form-control','placeholder' =>  'ex; Champion, Runner up, 5th place,...'))!!}
 									</div><br/>
 
 
@@ -61,10 +61,14 @@
 									</div><br/>
 
 
-									{{--<div class="form-group">--}}
-										{{--{!! Form::label('image', 'Choose an image') !!}--}}
-										{{--{!! Form::file('image') !!}--}}
-									{{--</div> <br>--}}
+									<fieldset>
+										<label>UPLOAD AWARD BANNER:</label>
+										<br/>
+										<img class="preview" id="preview" alt=" " src="{!!asset('/upload/default/slider/upload.png')!!}">
+										<br/>
+										<br/>
+										<input type="file" name="image" id="imgInp" onchange="loadFile(event);">
+									</fieldset>
 
 									<div class="form-group">
 										{!! Form::submit('Create Award', array('class' => 'btn btn-primary')) !!}
@@ -96,6 +100,24 @@
 	{!! Html::style('assets/select2/select2.css') !!}
 	{!! Html::style('assets/summernote/summernote.css') !!}
 
+
+	<style>
+		fieldset {
+			border:0;
+			margin-bottom:20px;
+		}
+
+		input {
+			display:block;
+		}
+
+		img.preview {
+			width:558px;
+			height:221px;
+			clear:both;
+			margin:10px 0;
+		}
+	</style>
 @stop
 
 
@@ -104,6 +126,10 @@
 
 	{!! Html::script('assets/select2/select2.min.js') !!}
 	{!! Html::script('assets/summernote/summernote.min.js') !!}
+
+		<!--photo upload-->
+	{!! Html::script('js/photo_upload.js') !!}
+
 
 	<script type="text/javascript">
 

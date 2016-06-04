@@ -49,7 +49,7 @@
 									<fieldset>
 										<label>UPLOAD PICTURE:</label>
 										<br/>
-										<img class="preview" id="preview" alt=" " src="{!!asset('/upload/default/slider/slide-1.jpg')!!}">
+										<img class="preview" id="preview" alt=" " src="{!!asset('/upload/default/slider/upload.png')!!}">
 										<br/>
 										<br/>
 										<input type="file" name="image" id="imgInp" onchange="loadFile(event);">

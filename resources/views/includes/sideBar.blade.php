@@ -189,7 +189,7 @@
 
 
                     {{--award--}}
-                    <li class="{!! Menu::areActiveRoutes(['award.index', 'award.create']) !!}"><a href="#"><i class="ion-ribbon-b"></i> <span class="nav-label">Award</span></a>
+                    <li class="{!! Menu::areActiveRoutes(['award.index', 'award.create']) !!}"><a href="#"><i class="ion-trophy"></i> <span class="nav-label">Award</span></a>
                         <ul class="list-unstyled">
 
                             <li class="{!! Menu::isActiveRoute('award.index') !!}">
@@ -224,7 +224,20 @@
                     {{--Slider end--}}
 
 
+                    {{--Welcome Note--}}
+                    <li class="{!! Menu::areActiveRoutes(['welcome.index', 'welcome.edit']) !!}"><a href="#"><i class="ion-ios7-pricetag"></i> <span class="nav-label">Welcome Note</span></a>
+                        <ul class="list-unstyled">
 
+                            <li class="{!! Menu::isActiveRoute('welcome.index') !!}">
+                                <a href="{!!  URL::route( 'welcome.index') !!}">View Welcome Note</a>
+                            </li>
+
+                            <li class="{!! Menu::isActiveRoute('welcome.edit') !!}">
+                                <a href="{!!  URL::route( 'welcome.edit') !!}">Edit Welcome Note</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {{--Welcome Note end--}}
 
 
 

@@ -67,7 +67,7 @@
 								<div class="up-event-meta clearfix">
 									<div class="up-event-date">{!! \App\Event::fullDate($events->event_start) !!}</div>
 									<div class="up-event-date">{!! \App\Event::fullEndDate($events->event_end) !!}</div>
-									<div class="up-event-time">{!! \App\Event::fullTime($events->event_time) !!}</div>
+									<div class="up-event-time">Start at - {!! \App\Event::fullTime($events->event_time) !!}</div>
 								</div>
 
 								<p>

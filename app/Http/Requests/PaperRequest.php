@@ -24,7 +24,9 @@ class PaperRequest extends Request
     public function rules()
     {
         return [
-            //
+            'paper_title' => 'required',
+            'paper_details' => 'required',
+
         ];
     }
 }

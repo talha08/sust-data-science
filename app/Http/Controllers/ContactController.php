@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Blog;
 use App\Http\Requests\BlogRequest;
 use Redirect;
+use App\User;
 use Carbon\Carbon;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -41,17 +42,17 @@ class ContactController extends Controller
         //If everything is correct than run passes.
         if ($validator -> passes()){
 
-            //Send email using Laravel send function
+
+
+                //Send email using Laravel send function
             \Mail::send('emails.contact', $data, function($message) use ($data)
             {
-                //email 'From' field: Get users email add and name
-                //$message->from($data['email'] , $data['name']);
-                $message->from($data['email']);
-                //email 'To' field: cahnge this to emails that you want to be notified.
-                //$message->to('talhaqc@gmail.com', 'Talha')->cc('talha2012331008@gmail.com')->subject('Uniliver Building');
-                $message->to('talhaqc@gmail.com')->cc('talhaqc@gmail.com')->subject('User email From SUSt Data Science Lab');
+                //$user = User::findOrFail(1)->pluck('email');
+                $message->from($data['email'],'User email From SUST Data Science Lab');
+                $message->to('talhaqc@gmail.com')->cc('talhaqc@gmail.com')->subject('Your Reminder!');
 
             });
+
 
             return redirect()->back()->with('success','Your message has been sent');
         }else{

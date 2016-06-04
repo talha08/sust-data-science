@@ -6,9 +6,10 @@ use App\Award;
 use App\User;
 use Illuminate\Http\Request;
 use App\AwardPeople;
-
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AwardRequest;
 
 class AwardController extends Controller
 {
@@ -36,52 +37,51 @@ class AwardController extends Controller
         return view('award.create',compact('teacher','student'))->with('title',"Create New Award");
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param AwardRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(AwardRequest $request)
     {
-        $award = new Award();
-        $award->award_title = $request->award_title;
-        $award->award_details = $request->award_details;
-        $award->award_position = $request->award_position;
-        $award->award_meta_data =  str_slug($request->award_title);
-        //$award->award_image = $request->award_image;
+        if( $request->hasFile('image')) {
+            $file = $request->image;
+            //getting the file extension
+            $extension = $file->getClientOriginalExtension();
+            $fileName = md5(rand(11111, 99999)) . '.' . $extension; // renameing image
+            //path set
+            $img_url = 'upload/award/img-'.$fileName;
 
-       if( $award->save()){
-           $award->users()->attach($request->award_supervisor);
-           $award->users()->attach($request->award_developer);
+            //resize and crop image using Image Intervention
+            //Image::make($file)->crop(558, 221, 0, 0)->save(public_path($img_url));
+            Image::make($file)->resize(558, 221)->save(public_path($img_url));
 
-           return redirect()->back()->with('success', 'Award Successfully Created');
-       }
+            $award = new Award();
+            $award->award_title = $request->award_title;
+            $award->award_details = $request->award_details;
+            $award->award_position = $request->award_position;
+            $award->award_meta_data =  str_slug($request->award_title).rand(2345,23142);
+            $award->award_image = $img_url;
 
-        return redirect()->back()->with('error', 'Something went wrong');
+
+            if($award->save()){
+                $award->users()->attach($request->award_supervisor);
+                $award->users()->attach($request->award_developer);
+
+                return redirect()->back()->with('success', 'Award Successfully Created');
+
+            }else{
+                return redirect()->back()->with('error', 'Something went wrong, Please try again');
+            }
+
+        }else{
+            return redirect()->back()->with('error', 'Image Upload Problem, Please Try Again');
+        }
+
+
    }
-
-
-
-
-
-
-
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-
-
 
 
 
@@ -106,22 +106,21 @@ class AwardController extends Controller
     }
 
 
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param AwardRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(AwardRequest $request, $id)
     {
         $award = Award::findOrFail($id);
         $award->award_title = $request->award_title;
         $award->award_details = $request->award_details;
         $award->award_position = $request->award_position;
         //$award->award_image = $request->award_image;
-        $award->award_meta_data =  str_slug($request->award_title);
+        $award->award_meta_data =  str_slug($request->award_title).rand(2345,23142);
         if( $award->save()){
 
             $award->users()->sync($request->award_supervisor);

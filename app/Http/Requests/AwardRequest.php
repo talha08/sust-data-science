@@ -24,7 +24,9 @@ class AwardRequest extends Request
     public function rules()
     {
         return [
-            //
+            'award_title' => 'required',
+            'award_details' => 'required',
+            'award_position' => 'required',
         ];
     }
 }

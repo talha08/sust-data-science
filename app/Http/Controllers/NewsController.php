@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\News;
 use Illuminate\Http\Request;
-
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsRequest;
 
 class NewsController extends Controller
 {
@@ -21,6 +22,8 @@ class NewsController extends Controller
         return view('news.index', compact('news'))->with('title',"All News List");
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -31,34 +34,49 @@ class NewsController extends Controller
         return view('news.create')->with('title',"Create New News");
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param NewsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
-        $news = new News();
-        $news->news_title = $request->news_title;
-        $news->news_details = $request->news_details;
-        //$news->news_image = $request->event_image;
-        $news->news_meta_data =  md5($request->news_title);
-        $news->save();
 
-        return redirect()->back()->with('success', 'News Successfully Created');
+        if( $request->hasFile('image')) {
+            $file = $request->image;
+            //getting the file extension
+            $extension = $file->getClientOriginalExtension();
+            $fileName = md5(rand(11111, 99999)) . '.' . $extension; // renameing image
+            //path set
+            $img_url = 'upload/news/img-'.$fileName;
+
+            //resize and crop image using Image Intervention
+           // Image::make($file)->crop(558, 221, 30, 30)->save(public_path($img_url));
+           Image::make($file)->resize(558, 221)->save(public_path($img_url));
+
+            $news = new News();
+            $news->news_title = $request->news_title;
+            $news->news_details = $request->news_details;
+            $news->news_meta_data =  str_slug($request->news_title).rand(23525,21414);
+            $news->news_image = $img_url;
+
+
+            if($news->save()){
+                return redirect()->back()->with('success', "News Successfully Created");
+            }else{
+                return redirect()->back()->with('error', 'Something went wrong, Please try again');
+            }
+
+        }else{
+            return redirect()->back()->with('error', 'Image Upload Problem, Please Try Again');
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -72,24 +90,29 @@ class NewsController extends Controller
         return view('news.edit', compact('news'))->with('title',"Edit News");
     }
 
+
+
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param NewsRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(NewsRequest $request, $id)
     {
         $news = News::findOrFail($id);
         $news->news_title = $request->news_title;
         $news->news_details = $request->news_details;
         //$news->news_image = $request->event_image;
-        //$news->news_meta_data =  md5($request->news_title);
+        $news->news_meta_data =  str_slug($request->news_title).rand(23525,21414);
         $news->save();
 
         return redirect()->back()->with('success', 'News Successfully Updated');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

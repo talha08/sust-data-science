@@ -32,17 +32,21 @@
 
 							<div class="col-lg-12 col-md-12">
 
+								<figure class="news-featured-image">
+									<img src="{!! asset($award->award_image) !!}" width="720" height="300" alt="Featured image 4" class="img-responsive" />
+								</figure>
+
+
 								<div class="events-title-meta clearfix">
 									<h1 class="page-title">{!! $award->award_title !!}</h1>
 									<div class="event-meta">
+										<p>{!! $award->award_details !!}</p><br/><br/>
 									</div>
 								</div>
 
 
 
 								<div class="news-body clearfix">
-									<p>{!! $award->award_details !!}</p><br/><br/>
-
 
 									<br/><b>Supervisors: </b><br>
 									@foreach($award->users as $user=> $value)

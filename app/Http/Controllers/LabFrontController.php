@@ -11,6 +11,7 @@ use App\ProjectsPeople;
 use App\Slider;
 use App\Tag;
 use App\User;
+use App\Welcome;
 use Illuminate\Http\Request;
 use App\Blog;
 use App\Http\Requests\BlogRequest;
@@ -35,8 +36,9 @@ class LabFrontController extends Controller
         $paper= Paper::take(5)->orderBy('id','desc')->get();
         $slider = Slider::take(1)->orderBy('id','desc')->first();
         $sliders = Slider::take(3)->skip(1)->orderBy('id','desc')->get();
+        $welcome =Welcome::findOrFail(1);
 
-        return view('labfront.index',compact('event','news','blog','project','paper','sliders','slider'))
+        return view('labfront.index',compact('event','news','blog','project','paper','sliders','slider','welcome'))
             ->with('title','Home | SUST CSE Data Science Lab');
     }
 
@@ -339,7 +341,7 @@ class LabFrontController extends Controller
     public function awardDetails($meta_data)
     {
         try{
-            $award = Award::where('paper_meta_data','=',$meta_data)->first();
+            $award = Award::where('award_meta_data','=',$meta_data)->first();
             $news =  News::take(4)->orderBy('id','desc')->get(); //recent 3 news
             return view('labfront.award_single', compact('award','news'))->with('title',"Award Details" );
         }catch(\Exception $e){

@@ -54,7 +54,7 @@ return array(
     |
     */
 
-    'from' => array('address' => 'infancy.itbd@gmail.com', 'name' => 'Data Science Lab, CSE, SUST'),
+    'from' => array('address' => 'talhaqc@gmail.com', 'name' => 'Data Science Lab, CSE, SUST'),
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
     |
     */
 
-    'username' => 'postmaster@sandbox175d9abbdfa34087b499278799f86447.mailgun.org',
+    'username' => 'postmaster@sandbox491c4df5f90144028179302c7a7f7b7c.mailgun.org',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
     |
     */
 
-    'password' => 'cbf548e2d27cbb1484f7cbf895267eb3',
+    'password' => '34aa062ba02e64772f4ea60ca8c2395d',
 
     /*
     |--------------------------------------------------------------------------

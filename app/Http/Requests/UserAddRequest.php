@@ -25,7 +25,7 @@ class UserAddRequest extends Request
     {
         return [
             'name'=> 'required',
-            'email'=> 'required',
+            'email'=> 'required|unique:users,email',
             'type'=> 'required',
         ];
     }

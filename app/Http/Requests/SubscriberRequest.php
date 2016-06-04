@@ -24,7 +24,7 @@ class SubscriberRequest extends Request
     public function rules()
     {
         return [
-            //
+            'subscriber_email' => 'required',
         ];
     }
 }

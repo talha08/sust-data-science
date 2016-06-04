@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subscriber;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\SubscriberRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -12,6 +12,11 @@ class SubscriberController extends Controller
 {
 
 
+    /**
+     * Subscribers email input
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
        public function addSubscriber(Request $request){
 
            $this->validate($request, [

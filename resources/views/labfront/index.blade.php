@@ -116,24 +116,13 @@
 						<div class="news-title-meta">
 							<br/>
 							<h1 class="page-title">
-								Welcome to the Data Science Lab at SUST!
+								{!! $welcome->welcome_title !!}
 							</h1>
 						</div>
 
 						<div class="news-body">
 							<p>
-								Big Data makes for big and interesting problems!
-								Our lab focuses on analyzing large-scale text streams
-								such as news, blogs, and social media to identify cultural
-								trends around the world's people, places, and things.
-								Our research covers a range of topics in natural language processing.
-								A current focus is using Deep Learning techniques to build concise
-								representations of the meanings of words in all significant languages,
-								and use these powerful features to recognize entities and measure sentiment
-								and other properties of texts. Another focus involves analyzing Wikipedia to
-								identify the fame and significance of historical figures as reported in our
-								book Who's Bigger? and associated website. Our Lydia technology has been
-								licensed by General Sentiment, a social media analysis startup.
+								{!! $welcome->welcome_details !!}
 
 							</p>
 
@@ -203,6 +192,10 @@
 
 
 
+
+
+
+
 					<li class="widget-container widget_text">
 						<!-- widget -->
 
@@ -237,8 +230,6 @@
 						{{--</a>--}}
 
 					</li>
-
-
 
 				</ul>
 				<!-- widgets end -->

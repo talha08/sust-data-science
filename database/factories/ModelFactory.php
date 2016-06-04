@@ -149,7 +149,7 @@ $factory->define(App\Book::class, function (Faker\Generator $faker) {
     ];
 });
 
-//for eventFile table
+//for Slider table
 $factory->define(App\Slider::class, function (Faker\Generator $faker) {
     return [
         'slider_title' =>$faker->sentence(5),
@@ -159,3 +159,5 @@ $factory->define(App\Slider::class, function (Faker\Generator $faker) {
         'thumb_url' =>$faker->imageUrl($width = 41, $height = 41),
     ];
 });
+
+

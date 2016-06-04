@@ -6,7 +6,7 @@ use App\Paper;
 use App\PaperPeople;
 use App\User;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\PaperRequest;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -24,6 +24,8 @@ class PaperController extends Controller
         return view('paper.index', compact('papers'))->with('title',"All Paper List");
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -37,13 +39,14 @@ class PaperController extends Controller
         return view('paper.create', compact('students','teacher'))->with('title',"Create New Paper");
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PaperRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(PaperRequest $request)
     {
         $paper = new Paper();
         $paper->paper_title = $request->paper_title;
@@ -61,16 +64,9 @@ class PaperController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,14 +84,15 @@ class PaperController extends Controller
         return view('paper.edit', compact('paper','students','teacher','x'))->with('title',"Edit Paper");
     }
 
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PaperRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(PaperRequest $request, $id)
     {
         $paper = Paper::findOrFail($id);
         $paper->paper_title = $request->paper_title;

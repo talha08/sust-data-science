@@ -24,7 +24,12 @@ class EventRequest extends Request
     public function rules()
     {
         return [
-            //
+            'event_title' => 'required',
+            'event_details' => 'required',
+            'event_start' => 'required',
+            'event_end' => 'required',
+            'event_time' => 'required',
+
         ];
     }
 }

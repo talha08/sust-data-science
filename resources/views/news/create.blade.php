@@ -42,10 +42,16 @@
 									</div><br/>
 
 
-									{{--<div class="form-group">--}}
-									{{--{!! Form::label('image', 'Choose an image') !!}--}}
-									{{--{!! Form::file('image') !!}--}}
-									{{--</div> <br>--}}
+									<fieldset>
+										<label>UPLOAD PICTURE:</label>
+										<br/>
+										<img class="preview" id="preview" alt=" " src="{!!asset('/upload/default/slider/upload.png')!!}">
+										<br/>
+										<br/>
+										<input type="file" name="image" id="imgInp" onchange="loadFile(event);">
+									</fieldset>
+
+
 
 									<div class="form-group">
 										{!! Form::submit('Create News', array('class' => 'btn btn-primary')) !!}
@@ -74,10 +80,26 @@
 
 @section('style')
 
-	{!! Html::style('assets/timepicker/bootstrap-datepicker.min.css') !!}
 	{!! Html::style('assets/summernote/summernote.css') !!}
-	{!! Html::style('assets/timepicker/bootstrap-timepicker.min.css') !!}
 
+
+	<style>
+		fieldset {
+			border:0;
+			margin-bottom:20px;
+		}
+
+		input {
+			display:block;
+		}
+
+		img.preview {
+			width:558px;
+			height:221px;
+			clear:both;
+			margin:10px 0;
+		}
+	</style>
 
 @stop
 
@@ -85,10 +107,11 @@
 @section('script')
 
 
-	{!! Html::script('assets/timepicker/bootstrap-timepicker.min.js') !!}
-	{!! Html::script('assets/summernote/summernote.min.js') !!}
-	{!! Html::script('assets/timepicker/bootstrap-datepicker.js') !!}
 
+	{!! Html::script('assets/summernote/summernote.min.js') !!}
+
+		<!--photo upload-->
+	{!! Html::script('js/photo_upload.js') !!}
 
 
 

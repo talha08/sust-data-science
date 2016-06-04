@@ -30,13 +30,17 @@
 
 							<div class="col-lg-12 col-md-12">
 
+								<figure class="news-featured-image">
+									<img src="{!! asset($events->event_image) !!}" width="720" height="300" alt="Featured image 4" class="img-responsive" />
+								</figure>
+
 								<div class="events-title-meta clearfix">
 									<h1 class="page-title">{!! $events->event_title !!}</h1>
 									<div class="event-meta">
 										<span class="event-from">{!! \App\Event::fullDate($events->event_start) !!}</span>
 										<span class="event-divider">to</span>
 										<span class="event-to">{!! \App\Event::fullDate($events->event_end) !!}</span>
-										<span class="event-time">{!! \App\Event::fullTime($events->event_time) !!}</span>
+										<span class="event-time">Start at - {!! \App\Event::fullTime($events->event_time) !!}</span>
 									</div>
 								</div>
 
