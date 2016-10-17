@@ -29,16 +29,16 @@ class LabFrontController extends Controller
     /*==================================================*/
     public function index(){
         $event = Event::take(3)->orderBy('id','desc')->get();
-        $news = News::take(3)->orderBy('id','desc')->get();
+        $blogAll = Blog::take(3)->orderBy('id','desc')->get();
 
-        $blog= Blog::take(4)->orderBy('id','desc')->get();
+        //$blog= Blog::take(4)->orderBy('id','desc')->get();
         $project= Project::take(5)->orderBy('id','desc')->get();
         $paper= Paper::take(5)->orderBy('id','desc')->get();
         $slider = Slider::take(1)->orderBy('id','desc')->first();
         $sliders = Slider::take(3)->skip(1)->orderBy('id','desc')->get();
         $welcome =Welcome::findOrFail(1);
 
-        return view('labfront.index',compact('event','news','blog','project','paper','sliders','slider','welcome'))
+        return view('labfront.index',compact('event','news','blog','blogAll','project','paper','sliders','slider','welcome'))
             ->with('title','Home | SUST CSE Data Science Lab');
     }
 
@@ -154,7 +154,7 @@ class LabFrontController extends Controller
                 ->where('status',1)
                 ->simplePaginate(5);
         $news = News::take(3)->orderBy('id','desc')->get();
-        return view('labfront.supervisor',compact('user','news'))->with('title','Lab Supervisors/Teachers');
+        return view('labfront.supervisor',compact('user','news'))->with('title','Lab Faculty');
     }
 
 
@@ -183,6 +183,32 @@ class LabFrontController extends Controller
         $news = News::take(3)->orderBy('id','desc')->get();
         return view('labfront.alumni',compact('user','news'))->with('title','Lab Alumni');
     }
+
+   /*==================================================*/
+    //Alumni List
+    /*==================================================*/
+
+    public function allPeople(){
+        $teachers = User::where('is_teacher', 1)
+            ->where('status',1)
+            ->simplePaginate(5);
+
+        $alumnis = User::where('is_teacher', 2)
+                 ->where('status',1)
+                 ->simplePaginate(5);
+
+        $students = User::with('students')->where('is_teacher', 0)
+            ->where('status',1)
+            ->simplePaginate(5);
+
+        return view('labfront.allPeople',compact('teachers','alumnis','students'))->with('title','Lab People');
+    }
+
+
+
+
+
+
 
 
 

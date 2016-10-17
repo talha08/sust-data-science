@@ -8,8 +8,8 @@
 				<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">People</a></li>
+						<li><a href="{!! route('labfront.index') !!}">Home</a></li>
+						<li><a href="{!! route('labfront.allPeople') !!}">People</a></li>
 						<li class="active">{!! $title !!}</li>
 					</ol>
 
@@ -49,7 +49,7 @@
 											<div class="leadership-meta clearfix">
 
 												<h4 class="title-median"><a href="{!!  route('labfront.peopleProfile',$users->id ) !!}" title="Click to view full profile...">
-														{!! $users->name !!}<small>Teacher</small>
+														{!! $users->name !!}<small>Faculty</small>
 													</a></h4>
 
 												<div class="leadership-position">Member Since {!! Carbon\Carbon::now()->diffForHumans($users->created_at) !!} </div>

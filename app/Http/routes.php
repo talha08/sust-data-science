@@ -250,6 +250,7 @@ Route::get('home/news/{meta_data}', array('as' => 'labfront.full_news', 'uses' =
 Route::get('people/supervisor', array('as' => 'labfront.supervisor', 'uses' => 'LabFrontController@supervisor'));
 Route::get('people/student', array('as' => 'labfront.student', 'uses' => 'LabFrontController@student'));
 Route::get('people/alumni', array('as' => 'labfront.alumni', 'uses' => 'LabFrontController@alumni'));
+Route::get('people/all', array('as' => 'labfront.allPeople', 'uses' => 'LabFrontController@allPeople'));
 
 
 

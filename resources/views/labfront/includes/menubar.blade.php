@@ -28,18 +28,18 @@
                     </li>
 
 
+                    {{--<li>--}}
+                        {{--<a href="{!! route('labfront.news') !!}" title="News">News</a>--}}
+                    {{--</li>--}}
+
                     <li>
-                        <a href="{!! route('labfront.news') !!}" title="News">News</a>
+                        <a href="{!! route('labfront.events') !!}" title="News $ Events">News & Events</a>
                     </li>
 
                     <li>
-                        <a href="{!! route('labfront.events') !!}" title="Events">Events</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="Pages Collection" title="People">People</a>
+                        <a href="{!! route('labfront.allPeople') !!}" class="Pages Collection" title="People">People</a>
                         <ul class="sub-menu">
-                            <li><a href="{!! route('labfront.supervisor') !!}">Teachers</a></li>
+                            <li><a href="{!! route('labfront.supervisor') !!}">Faculty</a></li>
                             <li><a href="{!! route('labfront.student') !!}">Students</a></li>
                             <li><a href="{!! route('labfront.alumni') !!}">Alumni</a></li>
                         </ul>
@@ -50,12 +50,11 @@
                     <li>
                         <a href="#" title="Project List">Projects & Paper</a>
                         <ul class="sub-menu">
-                            <li><a href="{!! route('labfront.runningProject') !!}">Running Projects</a></li>
+                            <li><a href="{!! route('labfront.runningProject') !!}">Ongoing Projects</a></li>
                             <li><a href="{!! route('labfront.completeProject') !!}">Complete Projects</a></li>
                             <li><a href="{!! route('labfront.paper') !!}">Papers</a></li>
                             <li><a href="{!! route('labfront.award') !!}">Awards</a></li>
                             {{--<li><a href="#">Books</a></li>--}}
-
                         </ul>
                     </li>
 

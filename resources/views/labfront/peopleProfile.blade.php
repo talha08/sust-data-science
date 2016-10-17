@@ -10,8 +10,8 @@
 				<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">People</a></li>
+						<li><a href="{!! route('labfront.index') !!}">Home</a></li>
+						<li><a href="{!! route('labfront.allPeople') !!}">People</a></li>
 						<li class="active">{!! $title !!}- {!! $user->name !!}</li>
 					</ol>
 
@@ -32,7 +32,7 @@
 
 							<div class="col-lg-12 col-md-12">
 
-								<h1 class="page-title">{!! $title !!} || {!! $user->name !!}</h1><!-- category title -->
+								<h1 class="page-title"> {!! $user->name !!}</h1><!-- category title -->
 
 							</div>
 
@@ -50,7 +50,7 @@
 												 <br/>
 												<img src="{!! asset($user->teachers->img_url)!!}" height="150" width="150"  alt="{!! $user->name !!}" />
 												 <br/><br/>
-												 <b><p style="text-indent: 2em;">Teacher</p></b>
+												 <b><p style="text-indent: 2em;">Faculty</p></b>
 
 
 											</figure>

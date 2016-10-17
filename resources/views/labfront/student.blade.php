@@ -9,8 +9,8 @@
 				<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 
 					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">People</a></li>
+						<li><a href="{!! route('labfront.index') !!}">Home</a></li>
+						<li><a href="{!! route('labfront.allPeople') !!}">People</a></li>
 						<li class="active">{!! $title !!}</li>
 					</ol>
 

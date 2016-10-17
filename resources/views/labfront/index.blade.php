@@ -325,33 +325,27 @@
 					<li class="widget-container widget_recent_news">
 						<!-- widgets list -->
 
-						<h1 class="title-widget">Lab News</h1>
+						<h1 class="title-widget">Lab Blogs</h1>
 
 						<ul class="list-unstyled">
 
-							@foreach($news as $newsList)
-							<li class="recent-news-wrap">
+							@foreach($blogAll as $blogs)
+								<li class="up-event-wrap">
 
-								<h1 class="title-median"><a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="{!! Str::limit($newsList->news_title,30) !!}">{!! Str::limit($newsList->news_title,30) !!}</a></h1>
+									<h1 class="title-median"><a href="{!! route('labfront.blog_details',$blogs->meta_data ) !!}" title="{!! Str::limit($blogs->title,20) !!}">{!! Str::limit($blogs->title,30) !!}</a></h1>
 
-								<div class="recent-news-meta">
-									<div class="recent-news-date">{!! \App\News::fullDate($newsList->id) !!}</div>
-								</div>
-
-								<div class="recent-news-content clearfix">
-									<figure class="recent-news-thumb">
-										<a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="{!! Str::limit($newsList->news_title,30) !!}"><img src="{!! asset($newsList->news_image) !!}" class="attachment-thumbnail wp-post-image" alt="Thumbnail 1" />
-										</a>
-									</figure>
-									<div class="recent-news-text">
-										<p>
-											{!! Str::limit($newsList->news_details, 100) !!} <a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" class="moretag" title="read more">MORE</a>
-										</p>
+									<div class="up-event-meta clearfix">
+										<div class="up-event-date">{!! \App\Blog::fullDate($blogs->id) !!}</div>
+										<div class="up-event-date">By - {!! App\User::where('id',$blogs->user_id)->pluck('name') !!}</div>
 									</div>
-								</div>
-							</li>
-							@endforeach
 
+									<p>
+										{!! Str::limit($blogs->details,100) !!}
+										<a href="{!! route('labfront.blog_details',$blogs->meta_data) !!}" class="moretag" title="read more">MORE</a>
+									</p>
+
+								</li>
+							@endforeach
 
 						</ul>
 
@@ -389,8 +383,8 @@
 					</li>
 					<li><a href="#k-tab-profile" data-toggle="tab">Papers</a>
 					</li>
-					<li><a href="#k-tab-settings" data-toggle="tab">Blogs</a>
-					</li>
+					{{--<li><a href="#k-tab-settings" data-toggle="tab">Blogs</a>--}}
+					{{--</li>--}}
 				</ul>
 				<!-- ends tab controls -->
 
@@ -438,23 +432,23 @@
 
 
    {{--blogs--}}
-					<div id="k-tab-settings" class="tab-pane fade">
-						<!-- tab 3 starts -->
-						@foreach($blog as $new)
-							<div class="media">
-								<a class="pull-left" href="javascript:;">
-									<img class=" " src="{!! asset($new->img_thumbnail) !!}" alt="">
-								</a>
-								<div class="media-body">
-									<h5 class="media-heading"><a href="{!! route('labfront.blog_details',$new->meta_data) !!}">{!! \App\Blog::fullDate($new->id) !!} </a></h5>
-									<p>
-										{!! $new->title !!}
-									</p>
-								</div>
-							</div>
-						@endforeach
+					{{--<div id="k-tab-settings" class="tab-pane fade">--}}
+						{{--<!-- tab 3 starts -->--}}
+						{{--@foreach($blog as $new)--}}
+							{{--<div class="media">--}}
+								{{--<a class="pull-left" href="javascript:;">--}}
+									{{--<img class=" " src="{!! asset($new->img_thumbnail) !!}" alt="">--}}
+								{{--</a>--}}
+								{{--<div class="media-body">--}}
+									{{--<h5 class="media-heading"><a href="{!! route('labfront.blog_details',$new->meta_data) !!}">{!! \App\Blog::fullDate($new->id) !!} </a></h5>--}}
+									{{--<p>--}}
+										{{--{!! $new->title !!}--}}
+									{{--</p>--}}
+								{{--</div>--}}
+							{{--</div>--}}
+						{{--@endforeach--}}
 
-					</div>
+					{{--</div>--}}
 					<!-- tab 3 ends -->
 	{{--blogs end--}}
 
