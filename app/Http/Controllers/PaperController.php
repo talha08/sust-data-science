@@ -19,7 +19,6 @@ class PaperController extends Controller
      */
     public function index()
     {
-
         $papers = Paper::orderBy('id', 'desc')->get();
         return view('paper.index', compact('papers'))->with('title',"All Paper List");
     }
@@ -33,7 +32,8 @@ class PaperController extends Controller
      */
     public function create()
     {
-         $teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+         //$teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+         $teacher = User::lists('name','id')->all();
         //developer can be a student or alumni
          $students = User::where('is_teacher','=',0 )->orWhere('is_teacher','=',2 )->lists('name','id')->all();
         return view('paper.create', compact('students','teacher'))->with('title',"Create New Paper");
@@ -52,7 +52,7 @@ class PaperController extends Controller
         $paper->paper_title = $request->paper_title;
         $paper->paper_details = $request->paper_details;
         $paper->paper_url = $request->paper_url;
-        $paper->paper_meta_data =  str_slug($request->paper_title);
+        $paper->paper_meta_data =  str_slug($request->paper_title).'-'.rand(2134,35254263);
        // $paper->paper_pdf = $request->paper_pdf;
         if($paper->save()){
             $paper->users()->attach($request->paper_author);
@@ -76,7 +76,8 @@ class PaperController extends Controller
      */
     public function edit($id)
     {
-        $teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+        //$teacher = User::where('is_teacher','=',1 )->lists('name','id')->all();
+        $teacher = User::lists('name','id')->all();
         //developer can be a student or alumni
         $students = User::where('is_teacher','=',0 )->orWhere('is_teacher','=',2 )->lists('name','id')->all();
         $x= PaperPeople::where('paper_id',$id)->lists('user_id','user_id')->all();
@@ -99,11 +100,11 @@ class PaperController extends Controller
         $paper->paper_details = $request->paper_details;
         $paper->paper_url = $request->paper_url;
         // $paper->paper_pdf = $request->paper_pdf;
-         $paper->paper_meta_data =  str_slug($request->paper_title);
+        $paper->paper_meta_data =  str_slug($request->paper_title).'-'.rand(2134,35254263);
         if( $paper->save()){
 
             $paper->users()->sync($request->paper_author);
-            $paper->users()->attach($request->paper_supervisor);
+            $paper->users()->sync($request->paper_supervisor);
 
             return redirect()->route('paper.index')->with('success', 'Paper Successfully Updated');
         }

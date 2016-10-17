@@ -64,18 +64,16 @@
 
 
 																<p><b>Paper Url: </b><a class="" href="{!!$paper->paper_url!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$paper->paper_url!!}</a></p><br/>
-																<b>Supervisors: </b><br>
+																<b>Author: </b><br>
 																@foreach($paper->users as $user=> $value)
-																	@if($value->is_teacher == 1)
-																		{{ $value->name }}<br/>
-																	@endif
+																	{{ $value->name }}<br/>
 																@endforeach
-																<b>Students: </b><br>
-																@foreach($paper->users as $user=> $value)
-																	@if($value->is_teacher != 1)
-																		{{ $value->name }}<br/>
-																	@endif
-																@endforeach
+																{{--<b>Students: </b><br>--}}
+																{{--@foreach($paper->users as $user=> $value)--}}
+																	{{--@if($value->is_teacher != 1)--}}
+																		{{--{{ $value->name }}<br/>--}}
+																	{{--@endif--}}
+																{{--@endforeach--}}
 
 															</div>
 														</center>

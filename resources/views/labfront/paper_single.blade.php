@@ -57,19 +57,19 @@
 
 
 
-									<br/><b>Supervisors: </b><br>
+									<br/><b>Author: </b><br>
 									@foreach($paper->users as $user=> $value)
-										@if($value->is_teacher == 1)
+										{{--@if($value->is_teacher == 1)--}}
 											<a href="{!!  route('labfront.peopleProfile',$value->id ) !!}" title="Click to view full profile...">{{ $value->name }}</a>,&nbsp;
-										@endif
+										{{--@endif--}}
 									@endforeach
 
-									<br/><br/><b>Students: </b><br/>
-									@foreach($paper->users as $user=> $value)
-										@if($value->is_teacher != 1)
-											<a href="{!!  route('labfront.peopleProfile',$value->id ) !!}" title="Click to view full profile...">{{ $value->name }}</a>,&nbsp;
-										@endif
-									@endforeach
+									{{--<br/><br/><b>Students: </b><br/>--}}
+									{{--@foreach($paper->users as $user=> $value)--}}
+										{{--@if($value->is_teacher != 1)--}}
+											{{--<a href="{!!  route('labfront.peopleProfile',$value->id ) !!}" title="Click to view full profile...">{{ $value->name }}</a>,&nbsp;--}}
+										{{--@endif--}}
+									{{--@endforeach--}}
 
 									<br/><br/><b>Paper Link: </b><p><a class="" href="{!!$paper->paper_url!!}"  target="_blank" style="margin-right: 3px; color:teal;">{!!$paper->paper_url!!}</a></p>
 

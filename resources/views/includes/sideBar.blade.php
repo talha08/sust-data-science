@@ -90,18 +90,18 @@
 
 
                     {{--news--}}
-                    <li class="{!! Menu::areActiveRoutes(['news.index', 'news.create']) !!}"><a href="#"><i class="ion-android-note"></i> <span class="nav-label">News</span></a>
-                        <ul class="list-unstyled">
+                    {{--<li class="{!! Menu::areActiveRoutes(['news.index', 'news.create']) !!}"><a href="#"><i class="ion-android-note"></i> <span class="nav-label">News</span></a>--}}
+                        {{--<ul class="list-unstyled">--}}
 
-                            <li class="{!! Menu::isActiveRoute('news.index') !!}">
-                                <a href="{!!  URL::route( 'news.index') !!}">All News</a>
-                            </li>
+                            {{--<li class="{!! Menu::isActiveRoute('news.index') !!}">--}}
+                                {{--<a href="{!!  URL::route( 'news.index') !!}">All News</a>--}}
+                            {{--</li>--}}
 
-                            <li class="{!! Menu::isActiveRoute('news.create') !!}">
-                                <a href="{!!  URL::route( 'news.create') !!}">Create News</a>
-                            </li>
-                        </ul>
-                    </li>
+                            {{--<li class="{!! Menu::isActiveRoute('news.create') !!}">--}}
+                                {{--<a href="{!!  URL::route( 'news.create') !!}">Create News</a>--}}
+                            {{--</li>--}}
+                        {{--</ul>--}}
+                    {{--</li>--}}
                     {{--news end--}}
 
                     {{--event--}}
