@@ -62,9 +62,13 @@ class SliderController extends Controller
                 $img_url = 'upload/slider/img/sliderMain-'.$fileName;
                 $thumb_url = 'upload/slider/thumb/sliderThumb-'.$fileName;
 
-                //resize and crop image using Image Intervention
+               // resize and crop image using Image Intervention
                 Image::make($file)->crop(1140, 400, 0, 0)->save(public_path($img_url));
                 Image::make($file)->resize(41, 41)->save(public_path($thumb_url));
+
+//                    list($width, $height) = getimagesize($file);
+//                    $h = ($height/$width)*600;
+//                    Image::make($file)->resize(600, $h)->save(public_path($img_url));
 
                 $slider = new Slider();
                 $slider->slider_title = $request->slider_title;
