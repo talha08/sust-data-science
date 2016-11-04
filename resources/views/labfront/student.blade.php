@@ -38,7 +38,7 @@
 
 							<div class="col-lg-12 col-md-12">
 
-								@if(! empty($user))
+								@if(count($user) != null)
 									@foreach($user as $users)
 										<div class="leadership-wrapper"><!-- leadership single wrap -->
 
@@ -65,7 +65,7 @@
 										</div><!-- leadership single wrap end -->
 									@endforeach
 								@else
-									<p> No People Found in Database</p>
+									<p> No People Found on Database</p>
 								@endif
 							</div>
 

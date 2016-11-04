@@ -64,7 +64,7 @@
 
 							<div class="tab-content">
 								<div id="home" class="tab-pane fade in active">
-									@if(! empty($teachers))
+									@if(count($teachers) != null)
 										@foreach($teachers as $users)
 											<div class="leadership-wrapper"><!-- leadership single wrap -->
 
@@ -90,7 +90,7 @@
 											</div><!-- leadership single wrap end -->
 										@endforeach
 									@else
-										<p> No Teacher Found in Database</p>
+										<p> No Faculy Member in Database</p>
 									@endif
 
 										<div class="row gutter"><!-- row -->
@@ -107,7 +107,7 @@
 
 								</div>
 								<div id="menu1" class="tab-pane fade">
-									@if(! empty($students))
+									@if(count($students) != null)
 										@foreach($students as $users)
 											<div class="leadership-wrapper"><!-- leadership single wrap -->
 
@@ -153,7 +153,7 @@
 								</div>
 								<div id="menu2" class="tab-pane fade">
 
-									@if(! empty($alumnis))
+									@if(count($alumnis) != null)
 										@foreach($alumnis as $users)
 											<div class="leadership-wrapper"><!-- leadership single wrap -->
 
@@ -180,7 +180,7 @@
 											</div><!-- leadership single wrap end -->
 										@endforeach
 									@else
-										<p> No People Found in Database</p>
+										<p> No People Found on Database</p>
 									@endif
 
 										<div class="row gutter"><!-- row -->

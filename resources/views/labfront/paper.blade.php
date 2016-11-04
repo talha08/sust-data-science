@@ -45,7 +45,7 @@
 							<div class="col-lg-12 col-md-12">
 
 
-								@if(! empty($papers))
+								@if(count($papers) != null)
 									@foreach($papers as $paper)
 										<div class="up-event-wrapper"><!-- event summary -->
 
@@ -75,7 +75,7 @@
 										</div><!-- event summary end -->
 									@endforeach
 								@else
-									<p>No Project Found on Database</p> <br/>
+									<p>No Publication on Database</p> <br/>
 								@endif
 
 							</div>

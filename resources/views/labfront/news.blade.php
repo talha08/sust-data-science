@@ -55,30 +55,33 @@
 
 					<div class="row gutter k-equal-height"><!-- row -->
 
+						@if(count($news) != null)
+							@foreach($news as $newsList)
+							<div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
 
-						@foreach($news as $newsList)
-						<div class="news-mini-wrap col-lg-6 col-md-6"><!-- news mini-wrap -->
+								<figure class="news-featured-image">
+									<img src="{!! asset($newsList->news_image) !!}" alt="Featured image 1" class="img-responsive" />
+								</figure>
 
-							<figure class="news-featured-image">
-								<img src="{!! asset($newsList->news_image) !!}" alt="Featured image 1" class="img-responsive" />
-							</figure>
-
-							<div class="page-title-meta">
-								<h1 class="page-title"><a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="{!! Str::limit($newsList->news_title, 30) !!}">{!! $newsList->news_title !!}</a></h1>
-								<div class="news-meta">
-									<span class="news-meta-date">{!! \App\News::fullDate($newsList->id) !!}</span>
-									<span class="news-meta-category"><a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="News">News</a></span>
+								<div class="page-title-meta">
+									<h1 class="page-title"><a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="{!! Str::limit($newsList->news_title, 30) !!}">{!! $newsList->news_title !!}</a></h1>
+									<div class="news-meta">
+										<span class="news-meta-date">{!! \App\News::fullDate($newsList->id) !!}</span>
+										<span class="news-meta-category"><a href="{!! route('labfront.full_news',$newsList->news_meta_data ) !!}" title="News">News</a></span>
+									</div>
 								</div>
-							</div>
 
-							<div class="news-summary">
-								<p>
-									{!! Str::limit($newsList->news_details, 200) !!} <a href="#" title="Read more" class="moretag">More</a>
-								</p>
-							</div>
+								<div class="news-summary">
+									<p>
+										{!! Str::limit($newsList->news_details, 200) !!} <a href="#" title="Read more" class="moretag">More</a>
+									</p>
+								</div>
 
-						</div><!-- news mini-wrap end -->
-						@endforeach
+							</div><!-- news mini-wrap end -->
+							@endforeach
+						@else
+							No News Found in Database
+						@endif
 
 
 

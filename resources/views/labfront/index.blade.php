@@ -12,7 +12,7 @@
 
 			<div class="k-breadcrumbs col-lg-12 clearfix"><!-- breadcrumbs -->
 				<ol class="breadcrumb">
-					<li><a href="#">SUST cse data Science Lab</a></li>
+					<li><a href="#">SUST CSE Data Science Lab</a></li>
 					<li><a href="#">Home</a></li>
 				</ol>
 			</div><!-- breadcrumbs end -->
@@ -274,26 +274,28 @@
 						<h1 class="title-widget">Upcoming Events</h1>
 
 						<ul class="list-unstyled">
+							@if(count($event) != null)
+								@foreach($event as $events)
+									<li class="up-event-wrap">
 
-							@foreach($event as $events)
-								<li class="up-event-wrap">
+										<h1 class="title-median"><a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" title="{!! Str::limit($events->event_title,20) !!}">{!! Str::limit($events->event_title,30) !!}</a></h1>
 
-									<h1 class="title-median"><a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" title="{!! Str::limit($events->event_title,20) !!}">{!! Str::limit($events->event_title,30) !!}</a></h1>
+										<div class="up-event-meta clearfix">
+											<div class="up-event-date">{!! \App\Event::fullDate($events->event_start) !!}</div>
+											<div class="up-event-date">{!! \App\Event::fullEndDate($events->event_end) !!}</div>
+											<div class="up-event-time">{!! \App\Event::fullTime($events->event_time) !!}</div>
+										</div>
 
-									<div class="up-event-meta clearfix">
-										<div class="up-event-date">{!! \App\Event::fullDate($events->event_start) !!}</div>
-										<div class="up-event-date">{!! \App\Event::fullEndDate($events->event_end) !!}</div>
-										<div class="up-event-time">{!! \App\Event::fullTime($events->event_time) !!}</div>
-									</div>
+										<p>
+											{!! Str::limit($events->event_details,100) !!}
+											<a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" class="moretag" title="read more">MORE</a>
+										</p>
 
-									<p>
-										{!! Str::limit($events->event_details,100) !!}
-										<a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" class="moretag" title="read more">MORE</a>
-									</p>
-
-								</li>
-							@endforeach
-
+									</li>
+								@endforeach
+							@else
+								<p>No Event Found on database</p>
+							@endif
 						</ul>
 
 					</li>
@@ -329,23 +331,27 @@
 
 						<ul class="list-unstyled">
 
-							@foreach($blogAll as $blogs)
-								<li class="up-event-wrap">
+							@if(count($blogAll) != null)
+								@foreach($blogAll as $blogs)
+									<li class="up-event-wrap">
 
-									<h1 class="title-median"><a href="{!! route('labfront.blog_details',$blogs->meta_data ) !!}" title="{!! Str::limit($blogs->title,20) !!}">{!! Str::limit($blogs->title,30) !!}</a></h1>
+										<h1 class="title-median"><a href="{!! route('labfront.blog_details',$blogs->meta_data ) !!}" title="{!! Str::limit($blogs->title,20) !!}">{!! Str::limit($blogs->title,30) !!}</a></h1>
 
-									<div class="up-event-meta clearfix">
-										<div class="up-event-date">{!! \App\Blog::fullDate($blogs->id) !!}</div>
-										<div class="up-event-date">By - {!! App\User::where('id',$blogs->user_id)->pluck('name') !!}</div>
-									</div>
+										<div class="up-event-meta clearfix">
+											<div class="up-event-date">{!! \App\Blog::fullDate($blogs->id) !!}</div>
+											<div class="up-event-date">By - {!! App\User::where('id',$blogs->user_id)->pluck('name') !!}</div>
+										</div>
 
-									<p>
-										{!! Str::limit($blogs->details,100) !!}
-										<a href="{!! route('labfront.blog_details',$blogs->meta_data) !!}" class="moretag" title="read more">MORE</a>
-									</p>
+										<p>
+											{!! Str::limit($blogs->details,100) !!}
+											<a href="{!! route('labfront.blog_details',$blogs->meta_data) !!}" class="moretag" title="read more">MORE</a>
+										</p>
 
-								</li>
-							@endforeach
+									</li>
+								@endforeach
+							@else
+							<p>No Blog Found on database</p>
+							@endif
 
 						</ul>
 
@@ -394,7 +400,7 @@
 
 
 					<div id="k-tab-download" class="tab-pane fade in active">
-
+						@if(count($project) != null)
 							@foreach($project as $projectList)
 								<div class="media">
 									<div class="media-body">
@@ -407,6 +413,9 @@
 									</div>
 								</div>
 							@endforeach
+						@else
+							<p>No Project Found on database</p>
+						@endif
 					</div>
 					<!-- tab 1 ends -->
 
@@ -415,18 +424,22 @@
 
 					<div id="k-tab-profile" class="tab-pane fade">
 						<!-- tab 2 starts -->
-						@foreach($paper as $papers)
-							<div class="media">
-								<div class="media-body">
-									<h5 class="media-heading"><a href="{!! route('labfront.paper_single',$papers->paper_meta_data ) !!}">
-											{!! Str::limit($papers->paper_title,30) !!} </a>
-									</h5>
-									<p>
-										{!!Str::limit($papers->paper_details,80) !!}
-									</p>
+						@if(count($paper) != null)
+							@foreach($paper as $papers)
+								<div class="media">
+									<div class="media-body">
+										<h5 class="media-heading"><a href="{!! route('labfront.paper_single',$papers->paper_meta_data ) !!}">
+												{!! Str::limit($papers->paper_title,30) !!} </a>
+										</h5>
+										<p>
+											{!!Str::limit($papers->paper_details,80) !!}
+										</p>
+									</div>
 								</div>
-							</div>
-						@endforeach
+							@endforeach
+						@else
+							<p>No Publication Found on database</p>
+						@endif
 					</div>
 					<!-- tab 2 ends -->
 

@@ -58,7 +58,7 @@
 						<div class="col-lg-12 col-md-12">
 
 
-					@if(! empty($event))
+					@if(count($event) != null)
 						@foreach($event as $events)
 							<div class="up-event-wrapper"><!-- event summary -->
 
