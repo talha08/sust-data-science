@@ -168,7 +168,7 @@ class LabFrontController extends Controller
                 ->where('status',1)
                ->simplePaginate(5);
         $news = News::take(3)->orderBy('id','desc')->get();
-        return view('labfront.student',compact('user','news'))->with('title','Lab Student/Developer');
+        return view('labfront.student',compact('user','news'))->with('title','Lab Student');
     }
 
 

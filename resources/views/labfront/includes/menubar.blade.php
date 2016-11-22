@@ -33,7 +33,7 @@
                     {{--</li>--}}
 
                     <li>
-                        <a href="{!! route('labfront.events') !!}" title="News $ Events">News & Events</a>
+                        <a href="{!! route('labfront.events') !!}" title="News & Events">News & Events</a>
                     </li>
 
                     <li>
