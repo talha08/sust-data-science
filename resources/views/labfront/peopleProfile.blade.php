@@ -297,7 +297,9 @@
 													<div class="panel-collapse collapse" id="collapseFive">
 														<div class="panel-body">
 															<p>
+																<?php  $i = 1 ?>
 																@foreach($papers as $pro)
+																	{{ $i++ }}
 																	<a href="{!!  route('labfront.paper_single',App\Paper::where('id',$pro->paper_id)->pluck('paper_meta_data') ) !!}" title="Click to view full profile...">
 																		{!! App\Paper::where('id',$pro->paper_id)->pluck('paper_title') !!} </a>
 																	<br/>
