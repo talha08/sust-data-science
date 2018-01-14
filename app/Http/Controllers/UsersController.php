@@ -24,7 +24,7 @@ class UsersController extends Controller
     {
 //        return Input::all();
         $id = \Input::get('id');
-         $user = User::where('status', 1)->where('is_teacher','=',1)->orderBy('rank')->get();
+         $user = User::where('status', 1)->where('is_teacher','=',1)->where('email', '!=','admin@gmail.com')->orderBy('rank')->get();
         $t = [];
         for($i=0; $i<sizeof($id); $i++)
         {
@@ -40,7 +40,7 @@ class UsersController extends Controller
             $u->rank = $t[$i];
             $u->save();
         }
-        $user = User::where('status', 1)->where('is_teacher','=',1)->orderBy('rank')->get();
+        $user = User::where('status', 1)->where('is_teacher','=',1)->where('email', '!=','admin@gmail.com')->orderBy('rank')->get();
         return "DONE";
 
     }
