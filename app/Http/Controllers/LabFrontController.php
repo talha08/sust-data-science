@@ -28,15 +28,17 @@ class LabFrontController extends Controller
     //Home PAGE
     /*==================================================*/
     public function index(){
-        $event = Event::take(3)->orderBy('id','desc')->get();
-        $blogAll = Blog::take(3)->orderBy('id','desc')->get();
 
+        #return date("h:i:s");
+        $event = Event::where('event_end', '>=', date('Y-m-d'))->take(3)->orderBy('id','desc')->get();
+
+        $blogAll = Blog::take(3)->orderBy('id','desc')->get();
         //$blog= Blog::take(4)->orderBy('id','desc')->get();
         $project= Project::take(5)->orderBy('id','desc')->get();
         $paper= Paper::take(5)->orderBy('id','desc')->get();
         $slider = Slider::take(1)->orderBy('id','desc')->first();
         $sliders = Slider::take(3)->skip(1)->orderBy('id','desc')->get();
-        $welcome =Welcome::findOrFail(1);
+        $welcome = Welcome::findOrFail(1);
 
         return view('labfront.index',compact('event','news','blog','blogAll','project','paper','sliders','slider','welcome'))
             ->with('title','Home | SUST CSE Data Science Lab');

@@ -2,7 +2,7 @@
 
 return [
     'names' =>[
-        'siteName' => 'Data Science'
+        'siteName' => 'SUST Data Science'
     ],
     'roles' =>[
         'admin' => 'Admin',

@@ -48,7 +48,7 @@
 								<div class="caption-content">
 									<h3 class="caption-title">{!!$slider->slider_title !!}e</h3>
 									<p>
-										{!!$slider->slider_desc !!}
+										{!!strip_tags($slider->slider_desc)  !!}
 									</p>
 								</div>
 							</div>
@@ -62,7 +62,7 @@
 								<div class="caption-content">
 									<h3 class="caption-title">{!!$slide->slider_title !!}e</h3>
 									<p>
-										{!!$slide->slider_desc !!}
+										{!! strip_tags($slide->slider_desc) !!}
 									</p>
 								</div>
 							</div>
@@ -122,7 +122,7 @@
 
 						<div class="news-body">
 							<p>
-								{!! $welcome->welcome_details !!}
+								{!! strip_tags($welcome->welcome_details)  !!}
 
 							</p>
 
@@ -287,7 +287,7 @@
 										</div>
 
 										<p>
-											{!! Str::limit($events->event_details,100) !!}
+											{!! Str::limit(strip_tags($events->event_details),100) !!}
 											<a href="{!! route('labfront.event_single',$events->event_meta_data ) !!}" class="moretag" title="read more">MORE</a>
 										</p>
 
@@ -408,7 +408,7 @@
 												{!! Str::limit($projectList->project_title,30) !!} </a>
 										</h5>
 										<p>
-											{!!Str::limit($projectList->project_details,80) !!}
+											{!!Str::limit(strip_tags($projectList->project_details),80) !!}
 										</p>
 									</div>
 								</div>
@@ -432,7 +432,7 @@
 												{!! Str::limit($papers->paper_title,30) !!} </a>
 										</h5>
 										<p>
-											{!!Str::limit($papers->paper_details,80) !!}
+											{!!Str::limit(strip_tags($papers->paper_details),80) !!}
 										</p>
 									</div>
 								</div>
@@ -482,3 +482,12 @@
 
 
 @endsection
+
+@section('style')
+	<style>
+		/*.item{*/
+			/*width: 1140px; !important;*/
+			/*height: 400px; !important;*/
+		/*}*/
+	</style>
+@stop

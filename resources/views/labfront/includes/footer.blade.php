@@ -18,10 +18,10 @@
 
                             <ul>
                                 <li><a href="http://www.sust.edu/" target="_blank" title="menu item">ShahJalal University of Science and Technology, Sylhet</a></li>
-                                <li><a href="http://www.sust.edu/departments/cse" target="_blank" title="menu item">Computer Science and Engineering Dept, SUST</a></li>
-                                <li><a href="#" target="_blank" title="menu item">CSE Society, SUST</a></li>
-                                <li><a href="#"  target="_blank" title="menu item">Software House, SUST</a></li>
-                                <li><a href="#" target="_blank" title="menu item">ACM Lab, CSE, SUST</a></li>
+                                <li><a href="http://cse.sust.edu/" target="_blank" title="menu item">Computer Science and Engineering Dept, SUST</a></li>
+                                <li><a href="#"  title="menu item">CSE Society, SUST</a></li>
+                                <li><a href="#"  title="menu item">Software House, SUST</a></li>
+                                <li><a href="http://nlp.sust.edu/" target="_blank" title="menu item">NLP GROUP, CSE, SUST</a></li>
                             </ul>
 
                         </li>

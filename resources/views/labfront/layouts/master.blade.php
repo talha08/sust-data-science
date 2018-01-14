@@ -11,9 +11,9 @@
 
 
 @yield('content')
-</div><!-- misc wrapper end -->
+</div>
 
-</div><!
+</div>
 @include('labfront.includes.footer')
 
 

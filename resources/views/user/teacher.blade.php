@@ -12,12 +12,11 @@
 
 
 						<div class="panel-heading">
-
-							<h3 class="panel-title">{!!$title!!}</h3>
-
-
+							<h3 class="panel-title" style="margin: 10px" type="button" data-toggle="modal" data-target="#sortit">
+								{!!$title!!}
+								<button class="btn btn-primary pull-right">Change Order</button>
+							</h3>
 						</div><br>
-
 
 
 						<div class="panel-body">
@@ -30,6 +29,7 @@
 											<th>id</th>
 											<th>Name</th>
 											<th>Email</th>
+											<th>Order</th>
 											<th>Member Since</th>
 											<th>Delete</th>
 										</tr>
@@ -40,6 +40,7 @@
 												<td>{!! $users->id !!}</td>
 												<td><a style="color: teal;" href="{!!route('user.profile',$users->id)!!}"  >{!! $users->name !!}</a>
 												<td>{!! $users->email !!}</td>
+												<td>{!! $users->rank !!}</td>
 												<td>{!! \Carbon\Carbon::now()->diffForHumans($users->created_at) !!}</td>
 												<td><a href="#" class="btn btn-danger btn-xs btn-archive deleteBtn" data-toggle="modal" data-target="#deleteConfirm" deleteId="{!! $users->id!!}"><i class="ion-trash-a" aria-hidden="true"></i></a></td>
 											</tr>
@@ -83,13 +84,40 @@
 	</div>
 
 
+	<!-- Sortable Modal -->
+	<div id="sortit" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Change Order</h4>
+				</div>
+				<div class="modal-body">
+					<ul class='sortable list-group' style="list-style:none;">
+						@foreach($user as $key=>$u)
+							<li class="list-group-item" id="id_{{ $key }}">{!! $u->name !!}</li>
+						@endforeach
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button class="btn btn-success" id="update">Update</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
 @stop
 
 
 @section('style')
 
 	{!! Html::style('assets/datatables/jquery.dataTables.min.css') !!}
-
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @stop
 
 @section('script')
@@ -100,28 +128,30 @@
 
 
 
-	//for Datatable
-	<script type="text/javascript">
-
-		$(document).ready(function() {
-			$('#datatable').dataTable();
-		});
-	</script>
-
-
-
 	<script type="text/javascript" charset="utf-8">
-		$(document).ready(function() {
-			/* do not add datatable method/function here , its always loaded from footer -- masiur */
-			$(document).on("click", ".deleteBtn", function() {
-				var deleteId = $(this).attr('deleteId');
-				var url = "<?php echo URL::route('user.teacher'); ?>";
-				$(".deleteForm").attr("action", url+'/'+deleteId);
-			});
+        $(document).ready(function() {
+            /* do not add datatable method/function here , its always loaded from footer -- masiur */
+            $(document).on("click", ".deleteBtn", function() {
+                var deleteId = $(this).attr('deleteId');
+                var url = "<?php echo URL::route('user.teacher'); ?>";
+                $(".deleteForm").attr("action", url+'/'+deleteId);
+            });
 
-		});
+        });
 	</script>
 
+
+
+	{{--SCRIPT ONLY FOR THIS PAGE SORTABLE + DATATABLE--}}
+	{{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="js/sortable.js"></script>
+	<script >
+        $(document).ready(function () {
+            sortableAndDatatable('{{csrf_token()}}')
+        });
+	</script>
+	{{--SCRIPT ONLY FOR THIS PAGE--}}
 
 @stop
 

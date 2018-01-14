@@ -49,7 +49,7 @@ class ContactController extends Controller
             {
                 //$user = User::findOrFail(1)->pluck('email');
                 $message->from($data['email'],'User email From SUST Data Science Lab');
-                $message->to('talhaqc@gmail.com')->cc('talhaqc@gmail.com')->subject('Your Reminder!');
+                $message->to('talhaqc@gmail.com')->cc('talhaqc@gmail.com')->subject('Email From SUST DATA SCIENCE LAB!');
 
             });
 

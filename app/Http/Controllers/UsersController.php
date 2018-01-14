@@ -20,6 +20,34 @@ class UsersController extends Controller
 {
 
 
+    public function teacherSort()
+    {
+//        return Input::all();
+        $id = \Input::get('id');
+         $user = User::where('status', 1)->where('is_teacher','=',1)->orderBy('rank')->get();
+        $t = [];
+        for($i=0; $i<sizeof($id); $i++)
+        {
+            $t[$i] = 0;
+        }
+        foreach ($id as $i=>$a)
+        {
+            $t[$a] = $i;
+        }
+        foreach ($user as $i=> $a)
+        {
+            $u = User::findOrFail($a->id);
+            $u->rank = $t[$i];
+            $u->save();
+        }
+        $user = User::where('status', 1)->where('is_teacher','=',1)->orderBy('rank')->get();
+        return "DONE";
+
+    }
+
+
+
+
     /**
      * List all User including teacher, student and alumni
      *
@@ -59,7 +87,7 @@ class UsersController extends Controller
      */
     public function teacher()
     {
-        $user = User::where('status', 1)->where('is_teacher','=',1)->get();
+        $user = User::where('status', 1)->where('is_teacher','=',1)->orderBy('rank','desc')->get();
         return view('user.teacher', compact('user'))
             ->with('title', 'All Teacher List');
     }
@@ -243,7 +271,6 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-
         return redirect()->back()->with('success', "User Successfully deleted");
     }
 
