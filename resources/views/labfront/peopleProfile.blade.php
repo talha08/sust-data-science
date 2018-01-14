@@ -275,7 +275,9 @@
 														<div class="panel-body">
 															<p>
 																@foreach($projects as $pro)
-																	{!! App\Project::where('id',$pro->project_id)->pluck('project_title') !!} <br/>
+																	<a href="{!!  route('labfront.project_single',App\Project::where('id',$pro->project_id)->pluck('project_meta_data') ) !!}" title="Click to view full profile...">
+																		{!! App\Project::where('id',$pro->project_id)->pluck('project_title') !!}</a>
+																	<br/>
 																@endforeach
 															</p>
 														</div>
@@ -296,7 +298,10 @@
 														<div class="panel-body">
 															<p>
 																@foreach($papers as $pro)
-																	{!! App\Paper::where('id',$pro->paper_id)->pluck('paper_title') !!} <br/>
+																	<a href="{!!  route('labfront.paper_single',App\Paper::where('id',$pro->paper_id)->pluck('paper_meta_data') ) !!}" title="Click to view full profile...">
+																		{!! App\Paper::where('id',$pro->paper_id)->pluck('paper_title') !!} </a>
+																	<br/>
+
 																@endforeach
 															</p>
 														</div>
